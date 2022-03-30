@@ -1,0 +1,17 @@
+﻿@model DataLayer.Models.UserDetail
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>UserDetail</h4>
+
+<form>
+    <div class="form-group">
+        <input type="submit" value="Login" asp-controller="UserLogin" asp-action="Login" class="btn btn-primary" />
+        <input type="submit" value="Create Account" asp-controller="UserLogin" asp-action="Register" class="btn btn-primary" />
+    </div>
+</form>
+ 

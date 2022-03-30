@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
+
+namespace DataLayer.Models
+{
+    public partial class BuyerAsset
+    {
+        public BuyerAsset()
+        {
+            BrokerInsurers = new HashSet<BrokerInsurer>();
+            PolicyDetails = new HashSet<PolicyDetail>();
+        }
+
+        public int AssetId { get; set; }
+        public int UserId { get; set; }
+        public int? CountryId { get; set; }
+        public string AssetName { get; set; }
+        public decimal PriceUsd { get; set; }
+        public string Type { get; set; }
+        public string Request { get; set; }
+
+        public virtual CurrencyConversion Country { get; set; }
+        public virtual UserDetail User { get; set; }
+        public virtual ICollection<BrokerInsurer> BrokerInsurers { get; set; }
+        public virtual ICollection<PolicyDetail> PolicyDetails { get; set; }
+    }
+}

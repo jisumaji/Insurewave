@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs
+/Insurewave/.vs/Insurewave
+/Insurewave/DataLayer/bin/Debug/net5.0
+/Insurewave/DataLayer/obj
+/Insurewave/PresentationLayer/bin/Debug/net5.0
+/Insurewave/PresentationLayer/obj
+/Insurewave/RepoLayer/bin/Debug/net5.0
+/Insurewave/RepoLayer/obj
