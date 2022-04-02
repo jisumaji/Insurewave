@@ -31,8 +31,9 @@ namespace RepoLayer
         }
         public void AddInsurerDetails(InsurerDetail insurerdetail)
         {
-            db.InsurerDetails.Add(insurerdetail);
-            db.SaveChanges();
+             db.InsurerDetails.Add(insurerdetail);
+             db.SaveChanges();
+
         }
         public void AddBrokerDetails(BrokerDetail brokerdetail)
         {

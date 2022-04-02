@@ -70,7 +70,9 @@ namespace PresentationLayer.Controllers
             obj.AddUser(u);
             if (u.Role.Equals("insurer"))
             {
-                return RedirectToAction("Insurer", new {mailId = u.UserId });
+                TempData["id"] = u.UserId;
+                return RedirectToAction("Insurer");
+                //return RedirectToAction("Insurer", new {mailId = u.UserId });
             }
             /*else if (u.Role.Equals("broker"))
                 return RedirectToAction("Broker");*/
@@ -78,13 +80,18 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult Insurer(string mailId)
         {
-            ViewBag.insurerId = mailId;
+            //ViewBag.insurerId = mailId;
             return View();
         }
         [HttpPost]
         public IActionResult Insurer(InsurerDetail i)
         {
-            obj.AddInsurerDetails(i);
+            InsurerDetail ins = new InsurerDetail
+            {
+                InsurerId = (string)TempData["id"],
+                LicenseId =i.LicenseId,
+            };
+            obj.AddInsurerDetails(ins);
             return RedirectToAction("Index");
         }
         /*public IActionResult Create(UserDetail userdetail)
