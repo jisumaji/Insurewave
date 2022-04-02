@@ -1,4 +1,6 @@
-﻿@model DataLayer.Models.UserDetail
+﻿@model DataLayer.Models.UserDetail;
+
+
 
 @{
     ViewData["Title"] = "Register";
@@ -8,28 +10,17 @@
 
 <h1>Register</h1>
 
-<style type="text/css">
-    #drop:focus option:first-of-type {
-        display: none
-    }
-</style>
-
 <h4>UserDetail</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Register">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" required />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MailId" class="control-label"></label>
-                <input asp-for="MailId" type="email" class="form-control" required />
+                <input asp-for="UserId" type="email" class="form-control" required />
 
-                <span asp-validation-for="MailId" class="text-danger"></span>
+                <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
@@ -39,11 +30,11 @@
             <div class="form-group">
                 <label asp-for="Role" class="control-label">Select Role</label>
 
-                <select name="Role" class="form-control" asp for="Role" asp-items="@ViewBag.roles" required >
+                <select name="Role" class="form-control" asp for="Role" asp-items="@ViewBag.roles" required>
                     <option value="" selected disabled> Select Role</option>
-                    <option value="Buyer">Buyer</option>
-                    <option value="Broker">Broker</option>
-                    <option value="Insurer">Insurer</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="broker">Broker</option>
+                    <option value="insurer">Insurer</option>
 
                 </select>
                 <span asp-validation-for="Role" class="text-danger"></span>
@@ -61,11 +52,11 @@
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
                 <!--<input asp-for="Gender" class="form-control" />-->
-                <select name="Gender" class="form-control" asp for="Gender"  asp-items="@ViewBag.gender" required>
+                <select name="Gender" class="form-control" asp for="Gender" asp-items="@ViewBag.gender" required>
                     <option value="" selected disabled> Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
@@ -79,4 +70,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-

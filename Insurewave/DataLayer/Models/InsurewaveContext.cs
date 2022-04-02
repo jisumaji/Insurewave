@@ -18,7 +18,6 @@ namespace DataLayer.Models
         }
 
         public virtual DbSet<BrokerDetail> BrokerDetails { get; set; }
-        public virtual DbSet<BrokerInsurer> BrokerInsurers { get; set; }
         public virtual DbSet<BuyerAsset> BuyerAssets { get; set; }
         public virtual DbSet<CurrencyConversion> CurrencyConversions { get; set; }
         public virtual DbSet<InsurerDetail> InsurerDetails { get; set; }
@@ -41,76 +40,29 @@ namespace DataLayer.Models
             modelBuilder.Entity<BrokerDetail>(entity =>
             {
                 entity.HasKey(e => e.BrokerId)
-                    .HasName("PK__Broker.D__5D1D9A505DBAC72B");
+                    .HasName("PKBrokerDetails");
 
                 entity.ToTable("Broker.Details");
 
-                entity.HasIndex(e => e.LicenseId, "UQ__Broker.D__72D600831DC706DE")
+                entity.HasIndex(e => e.LicenseId, "UQ__Broker.D__72D6008324F2D96E")
                     .IsUnique();
 
-                entity.Property(e => e.BrokerId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.BrokerDetails)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Broker.De__UserI__32E0915F");
-            });
-
-            modelBuilder.Entity<BrokerInsurer>(entity =>
-            {
-                entity.HasKey(e => e.Biid)
-                    .HasName("PK__Broker.I__3B3C5D6967A3C1CC");
-
-                entity.ToTable("Broker.Insurer");
-
-                entity.Property(e => e.Biid)
-                    .ValueGeneratedNever()
-                    .HasColumnName("BIId");
-
-                entity.Property(e => e.AssetId).HasDefaultValueSql("((-1))");
-
-                entity.Property(e => e.BrokerId).HasDefaultValueSql("((-1))");
-
-                entity.Property(e => e.BrokerStatus)
-                    .HasMaxLength(15)
+                entity.Property(e => e.BrokerId)
+                    .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InsurerId).HasDefaultValueSql("((-1))");
-
-                entity.Property(e => e.PolicyId).HasDefaultValueSql("((-1))");
-
-                entity.HasOne(d => d.Asset)
-                    .WithMany(p => p.BrokerInsurers)
-                    .HasForeignKey(d => d.AssetId)
-                    .HasConstraintName("FK__Broker.In__Asset__4316F928");
-
                 entity.HasOne(d => d.Broker)
-                    .WithMany(p => p.BrokerInsurers)
-                    .HasForeignKey(d => d.BrokerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Broker.In__Broke__3F466844");
-
-                entity.HasOne(d => d.Insurer)
-                    .WithMany(p => p.BrokerInsurers)
-                    .HasForeignKey(d => d.InsurerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Broker.In__Insur__412EB0B6");
-
-                entity.HasOne(d => d.Policy)
-                    .WithMany(p => p.BrokerInsurers)
-                    .HasForeignKey(d => d.PolicyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Broker.In__Polic__45F365D3");
+                    .WithOne(p => p.BrokerDetail)
+                    .HasForeignKey<BrokerDetail>(d => d.BrokerId)
+                    .HasConstraintName("FK__Broker.De__Broke__32E0915F");
             });
 
             modelBuilder.Entity<BuyerAsset>(entity =>
             {
                 entity.HasKey(e => e.AssetId)
-                    .HasName("PK__Buyer.As__43492352423C0FF7");
+                    .HasName("PKBuyerAssets");
 
                 entity.ToTable("Buyer.Assets");
-
-                entity.Property(e => e.AssetId).ValueGeneratedNever();
 
                 entity.Property(e => e.AssetName)
                     .IsRequired()
@@ -133,25 +85,30 @@ namespace DataLayer.Models
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.BuyerAssets)
                     .HasForeignKey(d => d.CountryId)
-                    .HasConstraintName("FK__Buyer.Ass__Count__2C3393D0");
+                    .HasConstraintName("FKBuyerAssetsCountryId");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.BuyerAssets)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Buyer.Ass__UserI__2B3F6F97");
+                    .HasConstraintName("FKBuyerAssetsUserId");
             });
 
             modelBuilder.Entity<CurrencyConversion>(entity =>
             {
                 entity.HasKey(e => e.CountryId)
-                    .HasName("PK__Currency__10D1609FE673318B");
+                    .HasName("PKCurrencyConversion");
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201A81A60F6")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201326A1BBE")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
@@ -165,31 +122,41 @@ namespace DataLayer.Models
             modelBuilder.Entity<InsurerDetail>(entity =>
             {
                 entity.HasKey(e => e.InsurerId)
-                    .HasName("PK__Insurer.__7E508CE65F7F28FA");
+                    .HasName("PKInsurerDetails");
 
                 entity.ToTable("Insurer.Details");
 
-                entity.HasIndex(e => e.LicenseId, "UQ__Insurer.__72D6008382A8B672")
+                entity.HasIndex(e => e.LicenseId, "UQ__Insurer.__72D6008363FFB284")
                     .IsUnique();
 
-                entity.Property(e => e.InsurerId).ValueGeneratedNever();
+                entity.Property(e => e.InsurerId)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.InsurerDetails)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Insurer.D__UserI__36B12243");
+                entity.HasOne(d => d.Insurer)
+                    .WithOne(p => p.InsurerDetail)
+                    .HasForeignKey<InsurerDetail>(d => d.InsurerId)
+                    .HasConstraintName("FK__Insurer.D__Insur__36B12243");
             });
 
             modelBuilder.Entity<PolicyDetail>(entity =>
             {
                 entity.HasKey(e => e.PolicyId)
-                    .HasName("PK__PolicyDe__2E1339A40CC6C047");
+                    .HasName("PKPolicyDetails");
 
                 entity.Property(e => e.PolicyId).ValueGeneratedNever();
 
+                entity.Property(e => e.BrokerId)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Feedback).IsUnicode(false);
 
-                entity.Property(e => e.InsurerId).HasDefaultValueSql("((-1))");
+                entity.Property(e => e.InsurerId)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LumpSum).HasColumnType("money");
 
@@ -201,31 +168,41 @@ namespace DataLayer.Models
 
                 entity.Property(e => e.Premium).HasColumnType("money");
 
+                entity.Property(e => e.ReviewStatus)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
                 entity.HasOne(d => d.Asset)
                     .WithMany(p => p.PolicyDetails)
                     .HasForeignKey(d => d.AssetId)
-                    .HasConstraintName("FK__PolicyDet__Asset__398D8EEE");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FKPolicyDetailsAssetId");
+
+                entity.HasOne(d => d.Broker)
+                    .WithMany(p => p.PolicyDetails)
+                    .HasForeignKey(d => d.BrokerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FKPolicyDetailsBrokerId");
 
                 entity.HasOne(d => d.Insurer)
                     .WithMany(p => p.PolicyDetails)
                     .HasForeignKey(d => d.InsurerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PolicyDet__Insur__3A81B327");
+                    .HasConstraintName("FKPolicyDetailsInsurerId");
             });
 
             modelBuilder.Entity<UserDetail>(entity =>
             {
                 entity.HasKey(e => e.UserId)
-                    .HasName("PK__User.Det__1788CC4C1E06FE05");
+                    .HasName("PKUserDetails");
 
                 entity.ToTable("User.Details");
 
-                entity.HasIndex(e => e.MailId, "UQ__User.Det__09A8749BA9D466C8")
-                    .IsUnique();
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -233,16 +210,10 @@ namespace DataLayer.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gender)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.MailId)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);

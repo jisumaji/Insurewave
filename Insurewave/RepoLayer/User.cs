@@ -9,6 +9,7 @@ namespace RepoLayer
 {
     public class User : IUser
     {
+        
         InsurewaveContext db;
         public User()
         {
@@ -16,7 +17,7 @@ namespace RepoLayer
         }
         public bool LoginUser(UserDetail userdetail)
         {
-            object temp = db.UserDetails.Where(u => (u.MailId== userdetail.MailId && u.Password == userdetail.Password)).FirstOrDefault();
+            object temp = db.UserDetails.Where(u => (u.UserId== userdetail.UserId && u.Password == userdetail.Password)).FirstOrDefault();
             if (temp != null)
                 return true;
             else
@@ -28,5 +29,16 @@ namespace RepoLayer
             db.UserDetails.Add(userdetail);
             db.SaveChanges();
         }
+        public void AddInsurerDetails(InsurerDetail insurerdetail)
+        {
+            db.InsurerDetails.Add(insurerdetail);
+            db.SaveChanges();
+        }
+        public void AddBrokerDetails(BrokerDetail brokerdetail)
+        {
+            db.BrokerDetails.Add(brokerdetail);
+            db.SaveChanges();
+        }
+
     }
 }

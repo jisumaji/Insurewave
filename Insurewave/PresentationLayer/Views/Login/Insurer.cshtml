@@ -1,0 +1,49 @@
+﻿@model DataLayer.Models.InsurerDetail
+
+@{
+    ViewData["Title"] = "Insurer";
+}
+
+<h1>Insurer</h1>
+
+<h4>InsurerDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Insurer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="InsurerId" class="control-label"></label>
+                <input asp-for="InsurerId" class ="form-control" value="@(ViewBag.insurerId)">
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="LicenseId" class="control-label"></label>
+                <input asp-for="LicenseId" class="form-control" />
+                <span asp-validation-for="LicenseId" class="text-danger"></span>
+            </div>
+            <!--
+            <div class="form-group">
+                <label asp-for="NoOfProducts" class="control-label"></label>
+                <input asp-for="NoOfProducts" class="form-control" />
+                <span asp-validation-for="NoOfProducts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Commission" class="control-label"></label>
+                <input asp-for="Commission" class="form-control" />
+                <span asp-validation-for="Commission" class="text-danger"></span>
+            </div>
+                -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+               
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

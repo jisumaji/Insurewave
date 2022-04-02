@@ -9,12 +9,11 @@ namespace DataLayer.Models
     {
         public BuyerAsset()
         {
-            BrokerInsurers = new HashSet<BrokerInsurer>();
             PolicyDetails = new HashSet<PolicyDetail>();
         }
 
         public int AssetId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int? CountryId { get; set; }
         public string AssetName { get; set; }
         public decimal PriceUsd { get; set; }
@@ -23,7 +22,6 @@ namespace DataLayer.Models
 
         public virtual CurrencyConversion Country { get; set; }
         public virtual UserDetail User { get; set; }
-        public virtual ICollection<BrokerInsurer> BrokerInsurers { get; set; }
         public virtual ICollection<PolicyDetail> PolicyDetails { get; set; }
     }
 }

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Controllers
 {
-    public class UserLoginController : Controller
+    public class LoginController : Controller
     {
         IUser obj;
-        public UserLoginController(IUser _obj)
+        public LoginController(IUser _obj)
         {
             obj = _obj;
         }
@@ -28,7 +28,7 @@ namespace PresentationLayer.Controllers
         public IActionResult Login(UserDetail userdetails)
         {
             bool a = obj.LoginUser(userdetails);
-            if(a)
+            if (a)
             {
                 return RedirectToAction("Page1");
             }
@@ -51,21 +51,40 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public IActionResult Register(UserDetail u)
         {
+            //ViewBag.insurerDetail  =  new InsurerDetail();
+            //ViewBag.brokerDetail  =  new BrokerDetail();
             List<SelectListItem> roles = new()
             {
-                new SelectListItem { Value = "Buyer", Text = "Buyer" },
-                new SelectListItem { Value = "Broker", Text = "Broker" },
-                new SelectListItem { Value = "Insurer", Text = "Insurer" },
+                new SelectListItem { Value = "buyer", Text = "Buyer" },
+                new SelectListItem { Value = "broker", Text = "Broker" },
+                new SelectListItem { Value = "insurer", Text = "Insurer" },
             };
             List<SelectListItem> gender = new()
             {
-                new SelectListItem { Value = "Male", Text = "Male" },
-                new SelectListItem { Value = "Female", Text = "Female" },
-                new SelectListItem { Value = "Others", Text = "Others" },
+                new SelectListItem { Value = "male", Text = "Male" },
+                new SelectListItem { Value = "memale", Text = "Female" },
+                new SelectListItem { Value = "others", Text = "Others" },
             };
             ViewBag.roles = roles;
             ViewBag.gender = gender;
             obj.AddUser(u);
+            if (u.Role.Equals("insurer"))
+            {
+                return RedirectToAction("Insurer", new {mailId = u.UserId });
+            }
+            /*else if (u.Role.Equals("broker"))
+                return RedirectToAction("Broker");*/
+            return RedirectToAction("Index");
+        }
+        public IActionResult Insurer(string mailId)
+        {
+            ViewBag.insurerId = mailId;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Insurer(InsurerDetail i)
+        {
+            obj.AddInsurerDetails(i);
             return RedirectToAction("Index");
         }
         /*public IActionResult Create(UserDetail userdetail)
@@ -75,4 +94,5 @@ namespace PresentationLayer.Controllers
             return
         }*/
     }
+
 }
