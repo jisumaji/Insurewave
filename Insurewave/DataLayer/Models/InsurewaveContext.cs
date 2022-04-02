@@ -29,7 +29,7 @@ namespace DataLayer.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= SWETASARKAR\\MSSQLSERVER03;Database=Insurewave;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server= ECSTASY;Database=Insurewave;Integrated Security=true");
             }
         }
 
@@ -44,12 +44,16 @@ namespace DataLayer.Models
 
                 entity.ToTable("Broker.Details");
 
-                entity.HasIndex(e => e.LicenseId, "UQ__Broker.D__72D6008324F2D96E")
+                entity.HasIndex(e => e.LicenseId, "UQ__Broker.D__72D60083B5676695")
                     .IsUnique();
 
                 entity.Property(e => e.BrokerId)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Commission).HasDefaultValueSql("((0.0))");
+
+                entity.Property(e => e.CustomerCount).HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.Broker)
                     .WithOne(p => p.BrokerDetail)
@@ -108,7 +112,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201326A1BBE")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F2017BB249F9")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
@@ -126,25 +130,27 @@ namespace DataLayer.Models
 
                 entity.ToTable("Insurer.Details");
 
-                entity.HasIndex(e => e.LicenseId, "UQ__Insurer.__72D6008363FFB284")
+                entity.HasIndex(e => e.LicenseId, "UQ__Insurer.__72D600831D079FBB")
                     .IsUnique();
 
                 entity.Property(e => e.InsurerId)
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Commission).HasDefaultValueSql("((0.0))");
+
+                entity.Property(e => e.NoOfProducts).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.Insurer)
                     .WithOne(p => p.InsurerDetail)
                     .HasForeignKey<InsurerDetail>(d => d.InsurerId)
-                    .HasConstraintName("FK__Insurer.D__Insur__36B12243");
+                    .HasConstraintName("FK__Insurer.D__Insur__38996AB5");
             });
 
             modelBuilder.Entity<PolicyDetail>(entity =>
             {
                 entity.HasKey(e => e.PolicyId)
                     .HasName("PKPolicyDetails");
-
-                entity.Property(e => e.PolicyId).ValueGeneratedNever();
 
                 entity.Property(e => e.BrokerId)
                     .IsRequired()
