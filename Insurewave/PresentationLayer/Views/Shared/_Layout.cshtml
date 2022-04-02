@@ -8,15 +8,21 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <style>
         body{
-            background-color:beige
+            background-color:black
+        }
+        header{
+            background-color:black
+         }
+        footer {
+            background-color:black
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text-white-50" asp-area="" asp-controller="Home" asp-action="Index">Welcome to Insurewave</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Welcome to Insurewave</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,7 +52,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted bg-dark">
+    <footer class="border-top footer text-muted">
         <div class="container text-white-50">
             &copy; 2022 - PresentationLayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
