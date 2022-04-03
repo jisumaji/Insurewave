@@ -26,6 +26,8 @@ namespace PresentationLayer
         {
             services.AddControllersWithViews();
             services.AddScoped<IUser, User>();
+            services.AddScoped<IBroker, Broker>();
+            services.AddScoped<IInsurer, Insurer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

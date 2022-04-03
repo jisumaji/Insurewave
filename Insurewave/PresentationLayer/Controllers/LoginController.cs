@@ -30,7 +30,12 @@ namespace PresentationLayer.Controllers
             bool a = obj.LoginUser(userdetails);
             if (a)
             {
-                return RedirectToAction("Page1");
+                if(userdetails.Role.Equals("broker"))
+                    return RedirectToAction("Index","Broker",userdetails);
+                else if (userdetails.Role.Equals("insurer"))
+                    return RedirectToAction("Index", "Insurer", userdetails);
+                else
+                    return RedirectToAction("Index");
             }
 
             else
