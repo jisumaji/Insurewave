@@ -4,5 +4,11 @@
 }
 
 <h1>Index</h1>
-<p>Welcome Buyer</p>
+<p class="text-white">Welcome Buyer @ViewBag.name</p>
+<form>
+    <div class="form-group">
+        <input type="submit" value="Add Asset" asp-controller="Buyer" asp-action="AddAssets" class="btn btn-primary" />
+        <input type="submit" value="Display Asset" asp-controller="Buyer" asp-action="DisplayAssets" class="btn btn-primary" />
+    </div>
+</form>
 

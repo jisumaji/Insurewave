@@ -19,13 +19,27 @@ namespace RepoLayer
             db.BuyerAssets.Add(buyerasset);
             db.SaveChanges();
         }
+        
         public List<BuyerAsset> GetAllAssets(int id)
         {
             List<BuyerAsset> asset = db.BuyerAssets.Where(a => a.AssetId == id).ToList();
             //List<BuyerAsset> asset = db.BuyerAssets.Where(t => t.AssetId==id);
             return asset;
-
         }
-       
+        public List<CurrencyConversion> GetAllCountry()
+        {
+            List<CurrencyConversion> country = db.CurrencyConversions.ToList();
+            return country;
+        }
+        public List<string> GetAllCountryNames()
+        {
+            List<string> countryNames  =  db.CurrencyConversions.Select(a  =>  a.CountryName).ToList();
+            return countryNames;
+        }
+        public List<int> GetAllCountryIds()
+        {
+            List<int> countryIds = db.CurrencyConversions.Select(a => a.CountryId).ToList();
+            return countryIds;
+        }
     }
 }

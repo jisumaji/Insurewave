@@ -4,7 +4,7 @@
     ViewData["Title"] = "Login";
 }
 
-<h1 class="text-white">Login</h1>
+
 <!--
 <h4>UserDetail</h4>
 <hr />
@@ -33,14 +33,14 @@
     </div>
 </div>-->
 
-<section class="vh-100" style="background-color: #9A616D;">
+<section class="vh-100" style="background-color:black">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
                 <div class="card" style="border-radius: 1rem;">
                     <div class="row g-0">
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img src="https://i.pinimg.com/236x/fe/11/ed/fe11ed175201f925b03e34fb6189f3b7.jpg" 
+                            <img src="https://cutewallpaper.org/21/northern-lights-wallpaper-portrait/2353-Best-Aurora-Borealis-images-in-2019-Aurora-borealis-.jpg" 
                                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;width:400px;height:600px" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -50,7 +50,7 @@
 
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0">Logo</span>
+                                        <span class="h1 fw-bold mb-0">Login</span>
                                     </div>
 
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
@@ -71,24 +71,17 @@
                                     </div>
                                     <div class="pt-1 mb-4">
                                         <!--<button class="btn btn-dark btn-lg btn-block" type="button">Login</button>-->
-                                        <input type="submit" value="Login" class="btn btn-dark btn-lg btn-block" />
+                                        <input type="submit" value="Login" class="btn btn-success btn-lg btn-block" />
                                     </div>
                                     <div class="pt-1 mb-4">
                                         <!--<button class="btn btn-dark btn-lg btn-block" type="button">Login</button>-->
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">
-                                            Don't have an account? <a asp-controller="Login" asp-action="Register"
-                                                                      style="color: #393f81;">Create here</a>
+                                            Don't have an account? 
+                                            <a asp-controller="Login" asp-action="Register" style="color: #393f81;">Create here</a>
                                         </p>
                                         <!--<a asp-controller="Login" asp-action="Register">Create Account</a>-->
                                         <!--<input type="submit" value="Create Account" asp-controller="UserLogin" asp-action="Register" class="btn btn-dark btn-lg btn-block" />-->
                                     </div>
-                                    <!--<a class="small text-muted" href="#!">Forgot password?</a>
-                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">
-                                        Don't have an account? <a href="#!"
-                                                                  style="color: #393f81;">Register here</a>
-                                    </p>
-                                    <a href="#!" class="small text-muted">Terms of use.</a>
-                                    <a href="#!" class="small text-muted">Privacy policy</a>-->
                                 </form>
 
                             </div>
