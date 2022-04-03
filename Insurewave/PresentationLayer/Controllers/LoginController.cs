@@ -62,7 +62,7 @@ namespace PresentationLayer.Controllers
             List<SelectListItem> gender = new()
             {
                 new SelectListItem { Value = "male", Text = "Male" },
-                new SelectListItem { Value = "memale", Text = "Female" },
+                new SelectListItem { Value = "female", Text = "Female" },
                 new SelectListItem { Value = "others", Text = "Others" },
             };
             ViewBag.roles = roles;
@@ -86,7 +86,8 @@ namespace PresentationLayer.Controllers
                 };
                 obj.AddBrokerDetails(insert);
             }
-                return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return View();
         }
         
     }
