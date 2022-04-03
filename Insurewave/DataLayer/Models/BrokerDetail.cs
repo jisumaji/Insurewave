@@ -13,7 +13,6 @@ namespace DataLayer.Models
         }
 
         public string BrokerId { get; set; }
-        public int LicenseId { get; set; }
         public int? CustomerCount { get; set; }
         public double? Commission { get; set; }
 

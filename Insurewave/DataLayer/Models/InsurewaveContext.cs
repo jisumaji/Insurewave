@@ -29,7 +29,7 @@ namespace DataLayer.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= ECSTASY;Database=Insurewave;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server= SWETASARKAR\\MSSQLSERVER03;Database=Insurewave;Integrated Security=true");
             }
         }
 
@@ -43,9 +43,6 @@ namespace DataLayer.Models
                     .HasName("PKBrokerDetails");
 
                 entity.ToTable("Broker.Details");
-
-                entity.HasIndex(e => e.LicenseId, "UQ__Broker.D__72D60083B5676695")
-                    .IsUnique();
 
                 entity.Property(e => e.BrokerId)
                     .HasMaxLength(30)
@@ -112,7 +109,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F2017BB249F9")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201F99075FE")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
@@ -130,9 +127,6 @@ namespace DataLayer.Models
 
                 entity.ToTable("Insurer.Details");
 
-                entity.HasIndex(e => e.LicenseId, "UQ__Insurer.__72D600831D079FBB")
-                    .IsUnique();
-
                 entity.Property(e => e.InsurerId)
                     .HasMaxLength(30)
                     .IsUnicode(false);
@@ -144,7 +138,7 @@ namespace DataLayer.Models
                 entity.HasOne(d => d.Insurer)
                     .WithOne(p => p.InsurerDetail)
                     .HasForeignKey<InsurerDetail>(d => d.InsurerId)
-                    .HasConstraintName("FK__Insurer.D__Insur__38996AB5");
+                    .HasConstraintName("FK__Insurer.D__Insur__37A5467C");
             });
 
             modelBuilder.Entity<PolicyDetail>(entity =>
@@ -223,6 +217,8 @@ namespace DataLayer.Models
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.LicenseId).HasDefaultValueSql("((-1))");
 
                 entity.Property(e => e.Password)
                     .IsRequired()

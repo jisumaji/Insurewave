@@ -14,10 +14,11 @@ namespace DataLayer.Models
 
         public string UserId { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
+        public string Role { get; set; }
+        public int? LicenseId { get; set; }
 
         public virtual BrokerDetail BrokerDetail { get; set; }
         public virtual InsurerDetail InsurerDetail { get; set; }

@@ -13,7 +13,6 @@ namespace DataLayer.Models
         }
 
         public string InsurerId { get; set; }
-        public int LicenseId { get; set; }
         public int? NoOfProducts { get; set; }
         public double? Commission { get; set; }
 

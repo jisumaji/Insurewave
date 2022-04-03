@@ -68,38 +68,27 @@ namespace PresentationLayer.Controllers
             ViewBag.roles = roles;
             ViewBag.gender = gender;
             obj.AddUser(u);
+            TempData["id"] = u.UserId;
             if (u.Role.Equals("insurer"))
             {
-                TempData["id"] = u.UserId;
-                return RedirectToAction("Insurer");
-                //return RedirectToAction("Insurer", new {mailId = u.UserId });
+            
+                InsurerDetail insert = new InsurerDetail
+                {
+                    InsurerId = (string)TempData["id"]
+                };
+                obj.AddInsurerDetails(insert);
             }
-            /*else if (u.Role.Equals("broker"))
-                return RedirectToAction("Broker");*/
-            return RedirectToAction("Index");
-        }
-        public IActionResult Insurer(string mailId)
-        {
-            //ViewBag.insurerId = mailId;
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Insurer(InsurerDetail i)
-        {
-            InsurerDetail ins = new InsurerDetail
+            else if(u.Role.Equals("broker"))
             {
-                InsurerId = (string)TempData["id"],
-                LicenseId =i.LicenseId,
-            };
-            obj.AddInsurerDetails(ins);
-            return RedirectToAction("Index");
+                BrokerDetail insert = new BrokerDetail
+                {
+                    BrokerId = (string)TempData["id"]
+                };
+                obj.AddBrokerDetails(insert);
+            }
+                return RedirectToAction("Index");
         }
-        /*public IActionResult Create(UserDetail userdetail)
-        {
-            db.UserDetails.Add(userdetail);
-            db.SaveChanges();
-            return
-        }*/
+        
     }
 
 }
