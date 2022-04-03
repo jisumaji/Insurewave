@@ -15,6 +15,8 @@ namespace RepoLayer
         public void AddUser(UserDetail userdetail);
         public void AddBrokerDetails(BrokerDetail brokerdetail);
         public void AddInsurerDetails(InsurerDetail insurerdetail);
-        
+        public UserDetail GetUserById(string userId);
+
+
     }
 }

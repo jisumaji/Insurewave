@@ -28,11 +28,12 @@ namespace PresentationLayer.Controllers
         public IActionResult Login(UserDetail userdetails)
         {
             bool a = obj.LoginUser(userdetails);
+            UserDetail u  =  obj.GetUserById(userdetails.UserId);
             if (a)
             {
-                if(userdetails.Role.Equals("broker"))
-                    return RedirectToAction("Index","Broker",userdetails);
-                else if (userdetails.Role.Equals("insurer"))
+                if(u.Role.Equals("broker"))
+                    return RedirectToAction("Index","Broker",u);
+                else if (u.Role.Equals("insurer"))
                     return RedirectToAction("Index", "Insurer", userdetails);
                 else
                     return RedirectToAction("Index");
@@ -91,8 +92,8 @@ namespace PresentationLayer.Controllers
                 };
                 obj.AddBrokerDetails(insert);
             }
-            //return RedirectToAction("Index");
-            return View();
+            return RedirectToAction("Index");
+            //return View();
         }
         
     }

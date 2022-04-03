@@ -40,6 +40,11 @@ namespace RepoLayer
             db.BrokerDetails.Add(brokerdetail);
             db.SaveChanges();
         }
+        public UserDetail GetUserById(string userId)
+        {
+            UserDetail u = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
+            return u;
+        }
 
     }
 }
