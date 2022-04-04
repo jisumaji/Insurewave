@@ -30,13 +30,12 @@ namespace PresentationLayer.Controllers
             bool a = obj.LoginUser(userdetails);
             UserDetail u  =  obj.GetUserById(userdetails.UserId);
             TempData["id"] = u.UserId;
-            TempData["fname"] = u.FirstName;
             if (a)
             {
                 if(u.Role.Equals("broker"))
-                    return RedirectToAction("Index","Broker",u);
+                    return RedirectToAction("Index","Broker");
                 else if (u.Role.Equals("insurer"))
-                    return RedirectToAction("Index", "Insurer",u);
+                    return RedirectToAction("Index", "Insurer");
                 else
                     return RedirectToAction("Index","Buyer");
             }

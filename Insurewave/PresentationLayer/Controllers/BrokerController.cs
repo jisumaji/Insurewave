@@ -8,15 +8,37 @@ namespace PresentationLayer.Controllers
 {
     public class BrokerController : Controller
     {
-        public IActionResult Index(UserDetail u)
+        public IActionResult Index()
+        {
+            
+            TempData.Keep();
+            return View();
+        }
+        public IActionResult Details()
         {
             return View();
         }
-        public IActionResult OngoingPolicy()
+        public IActionResult OngoingPolicies()
         {
             return View();
         }
         public IActionResult PendingReviews()
+        {
+            return View();
+        }
+        public IActionResult AddPolicy()
+        {
+            return View();
+        }
+        public IActionResult EditPolicy()
+        {
+            return View();
+        }
+        public IActionResult EditDetails()
+        {
+            return View();
+        }
+        public IActionResult CurrentRequests()
         {
             return View();
         }
