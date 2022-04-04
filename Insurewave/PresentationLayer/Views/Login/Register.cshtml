@@ -132,33 +132,33 @@
                                     <h3 class="mb-5 text-uppercase">Register</h3>
                                     <form asp-action="Register" id="form" onsubmit="addToModel()">
                                                 <div class="form-outline">
-                                                    <label asp-for="UserId" class="form-label">User Id</label>
+                                                    <label asp-for="UserId" class="form-label"><b>User Id</b></label>
                                                     <input asp-for="UserId" type="email" class="form-control form-control-lg" required />
                                                     <span asp-validation-for="UserId" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-outline">
-                                                    <label asp-for="Password" class="form-label">Password</label>
+                                                    <label asp-for="Password" class="form-label"><b>Password</b></label>
                                                     <input asp-for="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
                                                     <span asp-validation-for="Password" class="text-danger"></span>
                                                 </div>
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <label asp-for="FirstName" class="form-label"></label>
+                                                    <label asp-for="FirstName" class="form-label"><b>First Name</b></label>
                                                     <input asp-for="FirstName" class="form-control form-control-lg" required />
                                                     <span asp-validation-for="FirstName" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <label asp-for="LastName" class="form-label"></label>
+                                                    <label asp-for="LastName" class="form-label"><b>Last Name</b></label>
                                                     <input asp-for="LastName" class="form-control form-control-lg" required />
                                                     <span asp-validation-for="LastName" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <label asp-for="Gender" class="form-label"></label>
+                                            <label asp-for="Gender" class="form-label"><b>Gender</b></label>
                                             <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
                                                 <option value="" selected disabled> Select Gender</option>
                                                 <option value="male">Male</option>
@@ -167,8 +167,8 @@
                                             </select>
                                             <span asp-validation-for="Gender" class="text-danger"></span>
                                         </div>
-                                        <div class="form-group text-white">
-                                            <label asp-for="Role" class="form-label">Select Role</label>
+                                        <div class="form-group text-black">
+                                            <label asp-for="Role" class="form-label"><b>Role</b></label>
                                             <select name="Role" id="role" class="form-control form-control-lg" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
                                                 <option value="" selected disabled> Select Role</option>
                                                 <option value="buyer">Buyer</option>
@@ -177,7 +177,7 @@
                                             </select>
                                             <span asp-validation-for="Role" class="text-danger"></span>
                                         </div>
-                                        <div class="form-group text-white" id="hiddenDiv">
+                                        <div class="form-group text-black" id="hiddenDiv">
                                             <label asp-for="LicenseId" class="form-label">Enter License Id</label>
                                             <input asp-for="LicenseId" class="form-control form-control-lg" type="number" />
                                             <span asp-validation-for="LicenseId" class="text-danger"></span>

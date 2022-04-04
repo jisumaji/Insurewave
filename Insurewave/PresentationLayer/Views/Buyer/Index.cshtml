@@ -3,8 +3,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-<p class="text-white">Welcome Buyer @ViewBag.name</p>
+<h1 style="color:white">Index</h1>
+<p class="text-white">Welcome Buyer @TempData["fname"]</p>
 <form>
     <div class="form-group">
         <input type="submit" value="Add Asset" asp-controller="Buyer" asp-action="AddAssets" class="btn btn-primary" />

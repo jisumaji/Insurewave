@@ -20,9 +20,9 @@ namespace RepoLayer
             db.SaveChanges();
         }
         
-        public List<BuyerAsset> GetAllAssets(int id)
+        public List<BuyerAsset> GetAllAssets(string id)
         {
-            List<BuyerAsset> asset = db.BuyerAssets.Where(a => a.AssetId == id).ToList();
+            List<BuyerAsset> asset = db.BuyerAssets.Where(a => a.UserId == id).ToList();
             //List<BuyerAsset> asset = db.BuyerAssets.Where(t => t.AssetId==id);
             return asset;
         }
@@ -40,6 +40,23 @@ namespace RepoLayer
         {
             List<int> countryIds = db.CurrencyConversions.Select(a => a.CountryId).ToList();
             return countryIds;
+        }
+
+        public BuyerAsset GetAssetById(int assetid)
+        {
+            BuyerAsset auth = db.BuyerAssets.Where(a => a.AssetId == assetid).FirstOrDefault();
+            return auth;
+        }
+        public void DeleteAsset(int assetid)
+        {
+            BuyerAsset b_asset = db.BuyerAssets.Where(a => a.AssetId == assetid).FirstOrDefault();
+            db.BuyerAssets.Remove(b_asset);
+            db.SaveChanges();
+        }
+        public void EditAsset(BuyerAsset b)
+        {
+            db.BuyerAssets.Update(b);
+            db.SaveChanges();
         }
     }
 }
