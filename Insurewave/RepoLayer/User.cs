@@ -45,6 +45,9 @@ namespace RepoLayer
             UserDetail u = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
             return u;
         }
+        public void EditUserDetails(UserDetail ud)
+        {
 
+        }
     }
 }
