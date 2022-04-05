@@ -29,13 +29,14 @@ namespace PresentationLayer.Controllers
         {
             bool a = obj.LoginUser(userdetails);
             UserDetail u  =  obj.GetUserById(userdetails.UserId);
-            TempData["id"] = u.UserId;
+            TempData["UserId"] = u.UserId;
+            TempData["FirstName"] = u.FirstName;
             if (a)
             {
                 if(u.Role.Equals("broker"))
-                    return RedirectToAction("Index","Broker");
+                    return RedirectToAction("Index","Broker",u);
                 else if (u.Role.Equals("insurer"))
-                    return RedirectToAction("Index", "Insurer");
+                    return RedirectToAction("Index", "Insurer",u);
                 else
                     return RedirectToAction("Index","Buyer");
             }
@@ -81,7 +82,7 @@ namespace PresentationLayer.Controllers
             
                 InsurerDetail insert = new InsurerDetail
                 {
-                    InsurerId = (string)TempData["id"]
+                    InsurerId = (string)TempData["UserId"]
                 };
                 obj.AddInsurerDetails(insert);
             }
@@ -89,7 +90,7 @@ namespace PresentationLayer.Controllers
             {
                 BrokerDetail insert = new BrokerDetail
                 {
-                    BrokerId = (string)TempData["id"]
+                    BrokerId = (string)TempData["UserId"]
                 };
                 obj.AddBrokerDetails(insert);
             }

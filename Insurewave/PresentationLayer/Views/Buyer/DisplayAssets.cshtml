@@ -4,62 +4,59 @@
     ViewData["Title"] = "DisplayAssets";
 }
 
-<h1>DisplayAssets</h1>
+    <h1>DisplayAssets</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AssetName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriceUsd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Request)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssetName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PriceUsd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Request)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AssetId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AssetId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AssetId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AssetName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PriceUsd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Request)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssetName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CountryId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PriceUsd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Request)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a> |
+                            <a asp-action="Details" asp-route-AssetId="@item.AssetId">Details</a>|
+                            <a asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
+                        </td>
+                    </tr>
+                    <a asp-action="Index" >Go back</a>
+                }
+            </tbody>
+        </table>
