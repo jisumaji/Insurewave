@@ -14,25 +14,13 @@ namespace RepoLayer
         {
             db = new InsurewaveContext();
         }
-        public void AddPolicy(PolicyDetail pd)
+        public void GetDetails(string userId)
         {
-            Policy p = new();
-            p.AddPolicy(pd);
+            //call get details of user details
         }
-        public void EditPolicy(PolicyDetail pd)
+        public void EditBrokerDetails(UserDetail u)
         {
-            Policy p = new();
-            p.EditPolicy(pd);
-        }
-        public UserDetail GetDetails(string userId)
-        {
-            //details from 2 tables
-            UserDetail u=new();
-            return u;
-        }
-        public List<PolicyDetail> OngoingPolicy(string userId)
-        {
-            throw new NotImplementedException();
+            //call user detail edit page
         }
         public List<PolicyDetail> GetAllPolicies(string brokerId)
         {
@@ -40,16 +28,21 @@ namespace RepoLayer
             List<PolicyDetail> detail = p.GetAllPoliciesBroker(brokerId);
             return detail;
         }
-        public List<PolicyDetail> PendingReviews(string userId)
+        public void AddPolicy(PolicyDetail pd)
         {
-            throw new NotImplementedException();
+            Policy p = new();
+            p.AddPolicy(pd);
         }
-        public void EditBrokerDetails(UserDetail u)
+        public void EditPolicy(int assetId)
         {
-        }
-        public void RequestBroker(BuyerAsset ba)
+            Policy p = new();
+            PolicyDetail pd = p.GetPolicyById(assetId);
+            p.EditPolicy(pd);
+        }    
+        public List<BrokerRequest> GetRequests(string brokerId)
         {
-
+            Request obj = new();
+            return obj.GetRequestList(brokerId);
         }
     }
 }

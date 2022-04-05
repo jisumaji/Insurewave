@@ -9,6 +9,7 @@ namespace DataLayer.Models
     {
         public BrokerDetail()
         {
+            BrokerRequests = new HashSet<BrokerRequest>();
             PolicyDetails = new HashSet<PolicyDetail>();
         }
 
@@ -17,6 +18,7 @@ namespace DataLayer.Models
         public double? Commission { get; set; }
 
         public virtual UserDetail Broker { get; set; }
+        public virtual ICollection<BrokerRequest> BrokerRequests { get; set; }
         public virtual ICollection<PolicyDetail> PolicyDetails { get; set; }
     }
 }

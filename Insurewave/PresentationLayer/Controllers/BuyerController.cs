@@ -71,12 +71,12 @@ namespace PresentationLayer.Controllers
             }*/
             List<int> ids = obj.GetAllCountryIds();
             List<string> names = obj.GetAllCountryNames();
-            List<Country> countries = new List<Country>();
+            /*List<Country> countries = new List<Country>();
             for(int i=0;i<countries.Count;i++)
             {
                 countries.Add(new Country {Id= ids.ElementAt(i), Name = names.ElementAt(i) });
             }
-            ViewBag.countries = new SelectList(countries, "CountryId", "CountryName");
+            ViewBag.countries = new SelectList(countries, "CountryId", "CountryName");*/
             return View();
         }
        

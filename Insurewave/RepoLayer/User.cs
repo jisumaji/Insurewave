@@ -47,7 +47,12 @@ namespace RepoLayer
         }
         public void EditUserDetails(UserDetail ud)
         {
-
+            UserDetail edit = GetUserById(ud.UserId);
+            edit.Password = ud.Password;
+            edit.FirstName = ud.FirstName;
+            edit.LastName = ud.LastName;
+            edit.LicenseId = ud.LicenseId;
+            edit.Gender = ud.Gender;
         }
     }
 }

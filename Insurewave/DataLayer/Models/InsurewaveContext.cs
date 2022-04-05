@@ -18,6 +18,7 @@ namespace DataLayer.Models
         }
 
         public virtual DbSet<BrokerDetail> BrokerDetails { get; set; }
+        public virtual DbSet<BrokerRequest> BrokerRequests { get; set; }
         public virtual DbSet<BuyerAsset> BuyerAssets { get; set; }
         public virtual DbSet<CurrencyConversion> CurrencyConversions { get; set; }
         public virtual DbSet<InsurerDetail> InsurerDetails { get; set; }
@@ -29,7 +30,7 @@ namespace DataLayer.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= ECSTASY;Database=Insurewave;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server=ECSTASY;Database=Insurewave;Integrated Security=true");
             }
         }
 
@@ -56,6 +57,31 @@ namespace DataLayer.Models
                     .WithOne(p => p.BrokerDetail)
                     .HasForeignKey<BrokerDetail>(d => d.BrokerId)
                     .HasConstraintName("FK__Broker.De__Broke__32E0915F");
+            });
+
+            modelBuilder.Entity<BrokerRequest>(entity =>
+            {
+                entity.HasKey(e => e.RequestId)
+                    .HasName("PKBrokerRequests");
+
+                entity.Property(e => e.BrokerId)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ReviewStatus)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Asset)
+                    .WithMany(p => p.BrokerRequests)
+                    .HasForeignKey(d => d.AssetId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FKBrokerRequestsAssetId");
+
+                entity.HasOne(d => d.Broker)
+                    .WithMany(p => p.BrokerRequests)
+                    .HasForeignKey(d => d.BrokerId)
+                    .HasConstraintName("FKBrokerRequestsBrokerId");
             });
 
             modelBuilder.Entity<BuyerAsset>(entity =>
@@ -109,7 +135,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201F99075FE")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201D53FD031")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();

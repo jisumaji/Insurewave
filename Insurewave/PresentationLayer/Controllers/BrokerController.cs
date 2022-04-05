@@ -14,9 +14,10 @@ namespace PresentationLayer.Controllers
             TempData.Keep();
             return View();
         }
-        public IActionResult Details()
+        public IActionResult GetDetails()
         {
-            return View();
+            //redirect to details of user
+            return RedirectToAction("D");
         }
         public IActionResult OngoingPolicies()
         {

@@ -9,6 +9,7 @@ namespace DataLayer.Models
     {
         public BuyerAsset()
         {
+            BrokerRequests = new HashSet<BrokerRequest>();
             PolicyDetails = new HashSet<PolicyDetail>();
         }
 
@@ -22,6 +23,7 @@ namespace DataLayer.Models
 
         public virtual CurrencyConversion Country { get; set; }
         public virtual UserDetail User { get; set; }
+        public virtual ICollection<BrokerRequest> BrokerRequests { get; set; }
         public virtual ICollection<PolicyDetail> PolicyDetails { get; set; }
     }
 }
