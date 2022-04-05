@@ -97,7 +97,22 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Index");
             //return View();
         }
-        
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ForgotPassword(string UserId, string pwd)
+        {
+            //TempData["Id"] = UserId;
+            //TempData["pwd"] = pwd;
+            obj.ChangePassword(UserId, pwd);
+            return RedirectToAction("PasswordChanged");
+        }
+        public IActionResult PasswordChanged()
+        {
+            return View();
+        }
     }
 
 }

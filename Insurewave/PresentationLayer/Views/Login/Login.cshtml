@@ -71,15 +71,24 @@
                                     </div>
                                     <div class="pt-1 mb-4">
                                         <!--<button class="btn btn-dark btn-lg btn-block" type="button">Login</button>-->
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">
-                                            Don't have an account?
-                                            <a asp-controller="Login" asp-action="Register" style="color: #393f81;">Create here</a>
-
-
-
-                                        </p>
+                                        
+                                        <div class="d-flex">
+                                            <div >
+                                                <p class="mb-5 pb-lg-2" style="color: #393f81;">
+                                                    Don't have an account?
+                                                    <a asp-controller="Login" asp-action="Register" style="color: #393f81;">Create here</a>
+                                                </p>
+                                            </div>
+                                            
+                                            <div class="ml-auto">
+                                                <a asp-controller="Login" asp-action="ForgotPassword"
+                                                   style="color: #393f81;">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                        
                                         <div>
                                             <a asp-action="Index">Go to Home</a>
+
                                         </div>
                                         <!--<a asp-controller="Login" asp-action="Register">Create Account</a>-->
                                         <!--<input type="submit" value="Create Account" asp-controller="UserLogin" asp-action="Register" class="btn btn-dark btn-lg btn-block" />-->
