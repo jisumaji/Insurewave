@@ -20,8 +20,7 @@ namespace RepoLayer
         }
         public void AddRequest(BrokerRequest br)
         {
-            br.ReviewStatus = "no";
-            db.Add(br);
+            db.BrokerRequests.Add(br);
             db.SaveChanges();
         }
     }

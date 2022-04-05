@@ -13,10 +13,14 @@ namespace PresentationLayer.Controllers
     public class BuyerController : Controller
     {
         IBuyer obj;
+        IRequest obj2;
+        IBroker obj3;
         InsurewaveContext db = new InsurewaveContext();
-        public BuyerController(IBuyer _obj)
+        public BuyerController(IBuyer _obj,IRequest _obj2,IBroker _obj3)
         {
             obj = _obj;
+            obj2 = _obj2;
+            obj3 = _obj3;
         }
         public IActionResult Index()
         {
@@ -34,12 +38,13 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult AddAssets()
         {
+            ViewData["CountryId"] = new SelectList(db.CurrencyConversions, "CountryId", "CountryName");
             return View();
         }
         [HttpPost]
         public IActionResult AddAssets(BuyerAsset b)
         {
-            List<CurrencyConversion> cntry = obj.GetAllCountry();
+            //List<CurrencyConversion> cntry = obj.GetAllCountry();
             string id2 = (string)TempData["UserId"];
             BuyerAsset assetinsert = new BuyerAsset
             {
@@ -77,6 +82,7 @@ namespace PresentationLayer.Controllers
         {
             string userid = (string)TempData["UserId"];
             string request = (string)TempData["Request"];
+            TempData["AssetId"]=b.AssetId;
             TempData.Keep();
             BuyerAsset asset = new BuyerAsset
             {
@@ -96,9 +102,46 @@ namespace PresentationLayer.Controllers
         {
             return View();
         }
-        public IActionResult RequestToBroker()
+        public IActionResult RequestToBroker(int assetid)
         {
-            return View();
+            TempData["assetid"] = assetid;
+            List<BrokerDetail> result = obj3.GetAllBrokers();
+            return View(result);
+
+            //return View();
         }
+        public IActionResult AddRequest1(string brokerid)
+        {
+            TempData["BrokerId"] = brokerid;
+            BrokerRequest br = new BrokerRequest();
+            br.AssetId = (int)TempData["AssetId"];
+            br.BrokerId = brokerid;
+            br.ReviewStatus = "no";
+            obj2.AddRequest(br);
+            return RedirectToAction("Index");
+           // return View(br);
+        }
+        /*
+        [HttpPost]
+        public IActionResult AddRequest1(BrokerRequest brq)
+        {
+            // List<CurrencyConversion> cntry = obj.GetAllCountry();
+           //TempData["UserId"]=brokerid;
+            BrokerRequest assetinsert = new BrokerRequest
+            {
+                
+                AssetId = (int)TempData["AssetId"],
+                BrokerId=brokerid,
+                ReviewStatus="no"
+               
+                AssetId= 100028,
+                BrokerId= "moitri@gmail.com",
+                ReviewStatus="no"
+                
+            };
+            obj2.AddRequest(assetinsert);
+            return RedirectToAction("Index");
+        }
+       */
     }
 }

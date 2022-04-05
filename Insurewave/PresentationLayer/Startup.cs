@@ -29,6 +29,7 @@ namespace PresentationLayer
             services.AddScoped<IBuyer,Buyer>();
             services.AddScoped<IBroker, Broker>();
             services.AddScoped<IInsurer,Insurer>();
+            services.AddScoped<IRequest, Request>();
 
         }
 
