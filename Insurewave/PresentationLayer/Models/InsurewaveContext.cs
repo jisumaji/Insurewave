@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace DataLayer.Models
+namespace PresentationLayer.Models
 {
     public partial class InsurewaveContext : DbContext
     {
@@ -30,7 +30,7 @@ namespace DataLayer.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= ECSTASY;Database=Insurewave;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server=ECSTASY;Database=Insurewave;Integrated Security=true");
             }
         }
 
@@ -135,7 +135,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201F99075FE")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201D53FD031")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();

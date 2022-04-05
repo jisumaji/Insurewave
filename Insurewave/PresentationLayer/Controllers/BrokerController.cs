@@ -4,28 +4,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Models;
+using RepoLayer;
+
 namespace PresentationLayer.Controllers
 {
     public class BrokerController : Controller
     {
         public IActionResult Index()
         {
-            
             TempData.Keep();
             return View();
         }
         public IActionResult GetDetails()
         {
             //redirect to details of user
-            return RedirectToAction("D");
+            TempData.Keep();
+            return RedirectToAction("Details","User");
         }
-        public IActionResult OngoingPolicies()
+        public IActionResult EditDetails()
         {
-            return View();
+            //redirect to details of user
+            TempData.Keep();
+            return RedirectToAction("Edit", "User");
         }
-        public IActionResult PendingReviews()
+        public IActionResult GetAllPolicies()
         {
-            return View();
+            TempData.Keep();
+            string brokerId = (string)TempData["UserId"];
+            Broker b = new();
+            List<PolicyDetail> bd = b.GetAllPolicies(brokerId);
+            return View(bd);
         }
         public IActionResult AddPolicy()
         {
@@ -36,10 +44,7 @@ namespace PresentationLayer.Controllers
         {
             return View();
         }
-        public IActionResult EditDetails()
-        {
-            return View();
-        }
+        
         public IActionResult CurrentRequests()
         {
             return View();
