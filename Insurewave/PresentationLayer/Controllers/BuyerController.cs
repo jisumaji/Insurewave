@@ -1,19 +1,19 @@
 ﻿using DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using PresentationLayer.Models;
 using RepoLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BuyerAsset = DataLayer.Models.BuyerAsset;
+using CurrencyConversion = DataLayer.Models.CurrencyConversion;
 
 namespace PresentationLayer.Controllers
 {
     public class BuyerController : Controller
     {
         IBuyer obj;
-        InsurewaveContext db = new InsurewaveContext();
         public BuyerController(IBuyer _obj)
         {
             obj = _obj;

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DataLayer.Models.PolicyDetail>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -10,6 +10,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>GetAllPolicies</title>
+    <style>
+        td,th{
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
 <p>
@@ -45,15 +50,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Feedback)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Asset)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Broker)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Insurer)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -86,15 +82,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Feedback)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asset.AssetName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Broker.BrokerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Insurer.InsurerId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PolicyId">Edit</a> |
