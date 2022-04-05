@@ -24,6 +24,11 @@ namespace RepoLayer
             List<PolicyDetail> p = db.PolicyDetails.Where(a=>a.BrokerId==brokerId).ToList();
             return p;
         }
+        public List<PolicyDetail> GetAllPoliciesInsurer(string insurerId)
+        {
+            List<PolicyDetail> p = db.PolicyDetails.Where(a => a.InsurerId == insurerId).ToList();
+            return p;
+        }
         public void AddPolicy(PolicyDetail p)
         {
             db.PolicyDetails.Add(p);

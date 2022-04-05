@@ -13,5 +13,6 @@ namespace RepoLayer
         public List<PolicyDetail> GetAllPoliciesBroker(string brokerId);
         public void AddPolicy(PolicyDetail p);
         public void EditPolicy(PolicyDetail p);
+        public List<PolicyDetail> GetAllPoliciesInsurer(string insurerId);
     }
 }
