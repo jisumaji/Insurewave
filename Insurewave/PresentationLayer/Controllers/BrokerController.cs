@@ -13,10 +13,11 @@ namespace PresentationLayer.Controllers
     public class BrokerController : Controller
     {
         InsurewaveContext _context;
-
-        public BrokerController()
+        IBroker obj;
+        public BrokerController(IBroker _obj)
         {
             _context = new InsurewaveContext();
+            obj = _obj;
         }
         public IActionResult Index()
         {
@@ -29,22 +30,16 @@ namespace PresentationLayer.Controllers
             TempData.Keep();
             return RedirectToAction("Details","User");
         }
-        public IActionResult EditDetails()
-        {
-            //redirect to details of user
-            TempData.Keep();
-            return RedirectToAction("Edit", "User");
-        }
         public IActionResult GetAllPolicies()
         {
-            TempData.Keep();
             string brokerId = (string)TempData["UserId"];
-            Broker b = new();
-            List<PolicyDetail> bd = b.GetAllPolicies(brokerId);
+            List<PolicyDetail> bd = obj.GetAllPolicies(brokerId);
+            TempData.Keep();
             return View(bd);
         }
         public IActionResult AddPolicy()
         {
+            TempData.Keep();
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName");
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
@@ -64,6 +59,7 @@ namespace PresentationLayer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPolicy([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
+            
             if (ModelState.IsValid)
             {
                 TempData.Keep();
@@ -77,10 +73,12 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
+            TempData.Keep();
             return View(policyDetail);
         }
         public async Task<IActionResult> EditPolicy(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
@@ -94,6 +92,7 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
+            TempData.Keep();
             return View(policyDetail);
         }
 
@@ -104,6 +103,7 @@ namespace PresentationLayer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPolicy(int id, [Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
+            TempData.Keep();
             if (id != policyDetail.PolicyId)
             {
                 return NotFound();
@@ -137,6 +137,7 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult CurrentRequests()
         {
+            TempData.Keep();
             return View();
         }
     }
