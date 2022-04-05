@@ -28,7 +28,8 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult AddPolicy()
         {
-            return View();
+            TempData.Keep();
+            return RedirectToAction("AddPolicy", "Policy");
         }
         public IActionResult EditPolicy()
         {

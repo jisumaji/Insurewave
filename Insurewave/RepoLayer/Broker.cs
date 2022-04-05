@@ -47,5 +47,9 @@ namespace RepoLayer
         public void EditBrokerDetails(UserDetail u)
         {
         }
+        public void RequestBroker(BuyerAsset ba)
+        {
+
+        }
     }
 }
