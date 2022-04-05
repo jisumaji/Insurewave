@@ -9,31 +9,43 @@ namespace RepoLayer
 {
     public class Broker : IBroker
     {
-        InsurewaveContext _ic;
+        InsurewaveContext db;
         public Broker()
         {
-            _ic = new InsurewaveContext();
+            db = new InsurewaveContext();
         }
-        public void EditPolicy(int policyId)
+        public void AddPolicy(PolicyDetail pd)
         {
-            throw new NotImplementedException();
+            Policy p = new();
+            p.AddPolicy(pd);
         }
-
+        public void EditPolicy(PolicyDetail pd)
+        {
+            Policy p = new();
+            p.EditPolicy(pd);
+        }
         public UserDetail GetDetails(string userId)
         {
             //details from 2 tables
-            UserDetail u=new UserDetail();
+            UserDetail u=new();
             return u;
         }
-
         public List<PolicyDetail> OngoingPolicy(string userId)
         {
             throw new NotImplementedException();
         }
-
+        public List<PolicyDetail> GetAllPolicies(string brokerId)
+        {
+            Policy p = new();
+            List<PolicyDetail> detail = p.GetAllPoliciesBroker(brokerId);
+            return detail;
+        }
         public List<PolicyDetail> PendingReviews(string userId)
         {
             throw new NotImplementedException();
+        }
+        public void EditBrokerDetails(UserDetail u)
+        {
         }
     }
 }
