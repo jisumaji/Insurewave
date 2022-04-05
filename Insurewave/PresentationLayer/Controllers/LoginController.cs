@@ -34,9 +34,9 @@ namespace PresentationLayer.Controllers
             if (a)
             {
                 if(u.Role.Equals("broker"))
-                    return RedirectToAction("Index","Broker",u);
+                    return RedirectToAction("Index","Broker");
                 else if (u.Role.Equals("insurer"))
-                    return RedirectToAction("Index", "Insurer",u);
+                    return RedirectToAction("Index", "Insurer");
                 else
                     return RedirectToAction("Index","Buyer");
             }
