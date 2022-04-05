@@ -48,5 +48,10 @@ namespace RepoLayer
             edit.Feedback = p.Feedback;
             db.SaveChanges();
         }
+        public List<PolicyDetail> GetRequestList(string insurerId)
+        {
+            List<PolicyDetail> pd = db.PolicyDetails.Where(a => a.InsurerId == insurerId && a.ReviewStatus == "no").ToList();
+            return pd;
+        }
     }
 }
