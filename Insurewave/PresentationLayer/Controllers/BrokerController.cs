@@ -7,7 +7,6 @@ using DataLayer.Models;
 using RepoLayer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 
 namespace PresentationLayer.Controllers
 {
@@ -15,29 +14,33 @@ namespace PresentationLayer.Controllers
     {
         InsurewaveContext _context;
         IBroker obj;
-        public BrokerController( IBroker _obj)
+        public BrokerController(IBroker _obj)
         {
             _context = new InsurewaveContext();
             obj = _obj;
         }
         public IActionResult Index()
         {
+            TempData.Keep();
             return View();
         }
         public IActionResult GetDetails()
         {
             //redirect to details of user
-            string s = HttpContext.Session.GetString("UserId");
-            return RedirectToAction("Details","UserDetails");
+            TempData.Keep();
+            return RedirectToAction("Details","User");
         }
         public IActionResult GetAllPolicies()
         {
-            string brokerId = HttpContext.Session.GetString("UserId");
+            string brokerId = (string)TempData["UserId"];
             List<PolicyDetail> bd = obj.GetAllPolicies(brokerId);
+            TempData.Keep();
             return View(bd);
         }
         public IActionResult AddPolicy()
         {
+            TempData.Keep();
+            //ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName");
             ViewData["AssetId"] = new SelectList(_context.BrokerRequests, "AssetId", "AssetId");
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
@@ -60,17 +63,19 @@ namespace PresentationLayer.Controllers
             
             if (ModelState.IsValid)
             {
-                policyDetail.BrokerId = HttpContext.Session.GetString("UserId");
+                TempData.Keep();
+                policyDetail.BrokerId = TempData["UserId"] as string;
                 policyDetail.ReviewStatus = "no";
-                policyDetail.PolicyStatus = "pending";
 
                 _context.Add(policyDetail);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
+            ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetId", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
-            ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);            return View(policyDetail);
+            ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
+            TempData.Keep();
+            return View(policyDetail);
         }
         public async Task<IActionResult> EditPolicy(int? id)
         {
@@ -88,6 +93,7 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
+            TempData.Keep();
             return View(policyDetail);
         }
 
@@ -98,7 +104,7 @@ namespace PresentationLayer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPolicy(int id, [Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
-            
+            TempData.Keep();
             if (id != policyDetail.PolicyId)
             {
                 return NotFound();
@@ -130,13 +136,10 @@ namespace PresentationLayer.Controllers
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
             return View(policyDetail);
         }
-        public async Task<IActionResult> CurrentRequests()
+        public IActionResult CurrentRequests()
         {
-            string brokerId = HttpContext.Session.GetString("UserId");
-            /*Request r = new();
-            List<BrokerRequest> br = r.GetRequestList(brokerId);*/
-            var insurewaveContext = _context.BrokerRequests.Include(b => b.Asset).Include(b => b.Broker).Where(a=>a.BrokerId==brokerId);
-            return View(await insurewaveContext.ToListAsync());
+            TempData.Keep();
+            return View();
         }
     }
 }
