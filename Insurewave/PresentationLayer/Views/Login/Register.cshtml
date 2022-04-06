@@ -161,7 +161,7 @@
                                     <div class="form-outline mb-4">
                                         <label asp-for="Gender" class="form-label"></label>
                                         <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
-                                            <option value="" selected disabled hidden> Select Gender</option>
+                                            <option value="" selected hidden disabled> Select Gender</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                             <option value="others">Others</option>
@@ -171,7 +171,7 @@
                                     <div class="form-group text-black">
                                         <label asp-for="Role" class="form-label">Select Role</label>
                                         <select name="Role" id="role" class="form-control form-control-lg" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
-                                            <option value="" selected disabled hidden> Select Role</option>
+                                            <option value="" selected hidden disabled> Select Role</option>
                                             <option value="buyer">Buyer</option>
                                             <option value="broker">Broker</option>
                                             <option value="insurer">Insurer</option>

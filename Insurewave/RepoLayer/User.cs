@@ -54,5 +54,11 @@ namespace RepoLayer
             edit.LicenseId = ud.LicenseId;
             edit.Gender = ud.Gender;
         }
+        public void ChangePassword(string Uname, string pwd)
+        {
+            UserDetail temp = db.UserDetails.Where(u => u.UserId == Uname).FirstOrDefault();
+            temp.Password = pwd;
+            db.SaveChanges();
+        }
     }
 }

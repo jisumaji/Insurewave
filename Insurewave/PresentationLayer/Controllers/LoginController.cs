@@ -34,9 +34,9 @@ namespace PresentationLayer.Controllers
             if (a)
             {
                 if(u.Role.Equals("broker"))
-                    return RedirectToAction("Index","Broker",u);
+                    return RedirectToAction("Index","Broker");
                 else if (u.Role.Equals("insurer"))
-                    return RedirectToAction("Index", "Insurer",u);
+                    return RedirectToAction("Index", "Insurer");
                 else
                     return RedirectToAction("Index","Buyer");
             }
@@ -97,7 +97,22 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Index");
             //return View();
         }
-        
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ForgotPassword(string UserId, string pwd)
+        {
+            //TempData["Id"] = UserId;
+            //TempData["pwd"] = pwd;
+            obj.ChangePassword(UserId, pwd);
+            return RedirectToAction("PasswordChanged");
+        }
+        public IActionResult PasswordChanged()
+        {
+            return View();
+        }
     }
 
 }

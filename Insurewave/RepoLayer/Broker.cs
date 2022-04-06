@@ -39,15 +39,10 @@ namespace RepoLayer
             PolicyDetail pd = p.GetPolicyById(assetId);
             p.EditPolicy(pd);
         }    
-        public List<BrokerRequest>GetRequests(string brokerId)
+        public List<BrokerRequest> GetRequests(string brokerId)
         {
             Request obj = new();
             return obj.GetRequestList(brokerId);
-        }
-        public List<BrokerDetail> GetAllBrokers()
-        {
-            List<BrokerDetail> brokerdetails = db.BrokerDetails.ToList();
-            return brokerdetails;
         }
     }
 }

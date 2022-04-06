@@ -1,71 +1,69 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataLayer.Models;
-using RepoLayer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using DataLayer.Models;
 
 namespace PresentationLayer.Controllers
 {
-    public class BrokerController : Controller
+    public class PolicyDetailsController : Controller
     {
-        InsurewaveContext _context;
-        IBroker obj;
-        public BrokerController(IBroker _obj)
+        private readonly InsurewaveContext _context;
+
+        public PolicyDetailsController(InsurewaveContext context)
         {
-            _context = new InsurewaveContext();
-            obj = _obj;
+            _context = context;
         }
-        public IActionResult Index()
+
+        // GET: PolicyDetails
+        public async Task<IActionResult> Index()
         {
-            TempData.Keep();
-            return View();
+            var insurewaveContext = _context.PolicyDetails.Include(p => p.Asset).Include(p => p.Broker).Include(p => p.Insurer);
+            return View(await insurewaveContext.ToListAsync());
         }
-        public IActionResult GetDetails()
+
+        // GET: PolicyDetails/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            //redirect to details of user
-            TempData.Keep();
-            return RedirectToAction("Details","User");
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var policyDetail = await _context.PolicyDetails
+                .Include(p => p.Asset)
+                .Include(p => p.Broker)
+                .Include(p => p.Insurer)
+                .FirstOrDefaultAsync(m => m.PolicyId == id);
+            if (policyDetail == null)
+            {
+                return NotFound();
+            }
+
+            return View(policyDetail);
         }
-        public IActionResult GetAllPolicies()
+
+        // GET: PolicyDetails/Create
+        public IActionResult Create()
         {
-            string brokerId = (string)TempData["UserId"];
-            List<PolicyDetail> bd = obj.GetAllPolicies(brokerId);
-            TempData.Keep();
-            return View(bd);
-        }
-        public IActionResult AddPolicy()
-        {
-            TempData.Keep();
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName");
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
             return View();
         }
-        /*[HttpPost]
-        public IActionResult AddPolicy(PolicyDetail pd)
-        {
-            TempData.Keep();
-            Policy p = new Policy();
-            pd.BrokerId = TempData["UserId"] as string;
-            pd.ReviewStatus = "no";
-            p.AddPolicy(pd);
-            return RedirectToAction("GetAllPolicies");
-        }*/
+
+        // POST: PolicyDetails/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPolicy([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
+        public async Task<IActionResult> Create([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
-            
             if (ModelState.IsValid)
             {
-                TempData.Keep();
-                policyDetail.BrokerId = TempData["UserId"] as string;
-                policyDetail.ReviewStatus = "no";
-
                 _context.Add(policyDetail);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -73,12 +71,12 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
-            TempData.Keep();
             return View(policyDetail);
         }
-        public async Task<IActionResult> EditPolicy(int? id)
+
+        // GET: PolicyDetails/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            
             if (id == null)
             {
                 return NotFound();
@@ -92,7 +90,6 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
-            TempData.Keep();
             return View(policyDetail);
         }
 
@@ -101,9 +98,8 @@ namespace PresentationLayer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPolicy(int id, [Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
+        public async Task<IActionResult> Edit(int id, [Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
-            TempData.Keep();
             if (id != policyDetail.PolicyId)
             {
                 return NotFound();
@@ -118,8 +114,7 @@ namespace PresentationLayer.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    Policy p = new();
-                    if (!p.PolicyDetailExists(policyDetail))
+                    if (!PolicyDetailExists(policyDetail.PolicyId))
                     {
                         return NotFound();
                     }
@@ -135,10 +130,42 @@ namespace PresentationLayer.Controllers
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
             return View(policyDetail);
         }
-        public IActionResult CurrentRequests()
+
+        // GET: PolicyDetails/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            TempData.Keep();
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var policyDetail = await _context.PolicyDetails
+                .Include(p => p.Asset)
+                .Include(p => p.Broker)
+                .Include(p => p.Insurer)
+                .FirstOrDefaultAsync(m => m.PolicyId == id);
+            if (policyDetail == null)
+            {
+                return NotFound();
+            }
+
+            return View(policyDetail);
+        }
+
+        // POST: PolicyDetails/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var policyDetail = await _context.PolicyDetails.FindAsync(id);
+            _context.PolicyDetails.Remove(policyDetail);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool PolicyDetailExists(int id)
+        {
+            return _context.PolicyDetails.Any(e => e.PolicyId == id);
         }
     }
 }

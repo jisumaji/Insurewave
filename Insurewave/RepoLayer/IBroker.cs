@@ -15,7 +15,6 @@ namespace RepoLayer
         public void EditPolicy(int assetId);
         public void AddPolicy(PolicyDetail p);
         public List<BrokerRequest> GetRequests(string brokerId);
-        public List<BrokerDetail> GetAllBrokers();
 
     }
 }
