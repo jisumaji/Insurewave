@@ -1,0 +1,85 @@
+﻿@model DataLayer.Models.UserDetail
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutBroker.cshtml";
+}
+<style>
+    .ass
+    {
+        width:150px;
+        
+    }
+    .ass:hover
+    {
+        border-radius:20px;
+
+        @*transition:all ease-in-out 0.3s;
+            *@
+    }
+</style>
+<h1>Details</h1>
+
+<div>
+    <h4>UserDetail</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LicenseId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LicenseId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @{
+
+        if (Model.Role == "broker")
+        {
+            <a  class="btn btn-outline-success ass" asp-action="Index" asp-controller="Broker">Back to List</a>
+        }
+
+        if (Model.Role == "insurer")
+        {
+            <a  class="btn btn-outline-success ass" asp-action="Index" asp-controller="Insurer">Back to List</a>
+        }
+        if (Model.Role == "buyer")
+        {
+            <a  class="btn btn-outline-success ass" asp-action="Index" asp-controller="Buyer">Back to List</a>
+        }
+    }
+    <a  class="btn btn-outline-primary ass" asp-action="Edit" asp-route-id="@Model.UserId">Edit</a>
+    
+
+</div>

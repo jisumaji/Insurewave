@@ -1,6 +1,8 @@
+using DataLayer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,10 @@ namespace PresentationLayer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<InsurewaveContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Constr")));
+
+
             services.AddScoped<IUser, User>();
             services.AddScoped<IBuyer,Buyer>();
             services.AddScoped<IBroker, Broker>();
@@ -32,6 +38,9 @@ namespace PresentationLayer
             services.AddScoped<IPolicy, Policy>();
             services.AddScoped<ICountry, Country>();
             services.AddScoped<IRequest, Request>();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromSeconds(30);//You can set Time   
+            });
 
         }
 
@@ -50,6 +59,8 @@ namespace PresentationLayer
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

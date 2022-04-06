@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RepoLayer;
@@ -29,17 +30,18 @@ namespace PresentationLayer.Controllers
         {
             bool a = obj.LoginUser(userdetails);
             UserDetail u  =  obj.GetUserById(userdetails.UserId);
-            TempData["UserId"] = u.UserId;
-            TempData["FirstName"] = u.FirstName;
             if (a)
             {
-                if(u.Role.Equals("broker"))
+                HttpContext.Session.SetString("FirstName", u.FirstName);
+                HttpContext.Session.SetString("UserId", u.UserId);
+                if (u.Role.Equals("broker"))
                     return RedirectToAction("Index","Broker");
                 else if (u.Role.Equals("insurer"))
                     return RedirectToAction("Index", "Insurer");
                 else
                     return RedirectToAction("Index","Buyer");
             }
+           
 
             else
             {
