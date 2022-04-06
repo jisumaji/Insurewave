@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DataLayer.Models.PolicyDetail>
+
+@{
+    ViewData["Title"] = "ViewPolicyForOneAsset";
+}
+
+<h1>ViewPolicyForOneAsset</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Premium)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LumpSum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PremiumInterval)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaturityAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Premium)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LumpSum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PremiumInterval)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaturityAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asset.AssetName)
+            </td>
+            @*
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PolicyId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PolicyId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PolicyId">Delete</a>
+            </td>
+             *@
+        </tr>
+}
+    </tbody>
+</table>

@@ -53,7 +53,8 @@
                         <td>
                             <a asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a> |
                             <a asp-controller="Buyer" asp-action="RequestToBroker" asp-route-AssetId="@item.AssetId">Request Broker</a>|
-                            <a asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
+                            <a asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>|
+                            <a asp-action="ViewPolicyForOneAsset" asp-route-AssetId="@item.AssetId">Policy</a>
                         </td>
                     </tr>
                     <a asp-action="Index" >Go back</a>

@@ -58,5 +58,12 @@ namespace RepoLayer
             db.BuyerAssets.Update(b);
             db.SaveChanges();
         }
+       public void EditAssetRequest(BuyerAsset b)
+         {
+            b.Request = "yes";
+            db.BuyerAssets.Update(b);
+            db.SaveChanges();
+        }
+        
     }
 }

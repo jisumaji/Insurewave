@@ -15,12 +15,14 @@ namespace PresentationLayer.Controllers
         IBuyer obj;
         IRequest obj2;
         IBroker obj3;
+        IPolicy obj4;
         InsurewaveContext db = new InsurewaveContext();
-        public BuyerController(IBuyer _obj,IRequest _obj2,IBroker _obj3)
+        public BuyerController(IBuyer _obj, IRequest _obj2, IBroker _obj3, IPolicy _obj4)
         {
             obj = _obj;
             obj2 = _obj2;
             obj3 = _obj3;
+            obj4 = _obj4;
         }
         public IActionResult Index()
         {
@@ -49,21 +51,21 @@ namespace PresentationLayer.Controllers
             BuyerAsset assetinsert = new BuyerAsset
             {
                 UserId = id2,
-                CountryId=b.CountryId,
-                AssetName=b.AssetName,
-                PriceUsd=b.PriceUsd,
-                Type=b.Type
+                CountryId = b.CountryId,
+                AssetName = b.AssetName,
+                PriceUsd = b.PriceUsd,
+                Type = b.Type
             };
             obj.AddAsset(assetinsert);
             return RedirectToAction("Index");
         }
-        
+
         public IActionResult DeleteOneAsset(int assetid)
         {
             BuyerAsset p = obj.GetAssetById(assetid);
             return View(p);
         }
-        
+
         [HttpPost]
         [ActionName("Delete")]
         public IActionResult Delete(int assetid)
@@ -72,7 +74,7 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int assetid)
-        { 
+        {
             BuyerAsset p = obj.GetAssetById(assetid);
             TempData["Request"] = p.Request;
             return View(p);
@@ -82,7 +84,7 @@ namespace PresentationLayer.Controllers
         {
             string userid = (string)TempData["UserId"];
             string request = (string)TempData["Request"];
-            TempData["AssetId"]=b.AssetId;
+            TempData["AssetId"] = b.AssetId;
             TempData.Keep();
             BuyerAsset asset = new BuyerAsset
             {
@@ -98,12 +100,16 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ViewPolicy()
+        public IActionResult ViewPolicyForOneAsset(int assetid)
         {
-            return View();
+            //int id1 = (int)TempData["AssetId"];
+            TempData.Keep();
+            List<PolicyDetail> result = obj4.GetAllPoliciesAsset(assetid);
+            return View(result);
         }
         public IActionResult RequestToBroker(int assetid)
         {
+            TempData.Keep();
             TempData["assetid"] = assetid;
             List<BrokerDetail> result = obj3.GetAllBrokers();
             return View(result);
@@ -112,14 +118,31 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult AddRequest1(string brokerid)
         {
+            TempData.Keep();
             TempData["BrokerId"] = brokerid;
             BrokerRequest br = new BrokerRequest();
             br.AssetId = (int)TempData["AssetId"];
             br.BrokerId = brokerid;
             br.ReviewStatus = "no";
             obj2.AddRequest(br);
+            TempData["GetAssetById"] = obj.GetAssetById((int)TempData["AssetId"]);
+            BuyerAsset b = (BuyerAsset)TempData["GetAssetById"];
+            /*
+                BuyerAsset basset = new BuyerAsset()
+                {
+                    AssetId = b.AssetId,
+                    UserId = (string)TempData["UserId"],
+                    CountryId = b.CountryId,
+                    AssetName = b.AssetName,
+                    PriceUsd = b.PriceUsd,
+                    Type = b.Type,
+                    Request = "yes"
+                };
+            */
+           // obj.EditAssetRequest(b, (string)TempData["UserId"]);
+            //obj.EditBuyerAssetRequest((BuyerAsset)TempData["GetAssetById"],(string)TempData["UserId"]);
             return RedirectToAction("Index");
-           // return View(br);
+            // return View(br);
         }
         /*
         [HttpPost]

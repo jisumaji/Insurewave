@@ -16,5 +16,7 @@ namespace RepoLayer
         public List<PolicyDetail> GetAllPoliciesInsurer(string insurerId);
         public List<PolicyDetail> GetRequestList(string insurerId);
         public bool PolicyDetailExists(PolicyDetail policyId);
+        public List<PolicyDetail> GetAllPoliciesAsset(int assetid);
+
     }
 }
