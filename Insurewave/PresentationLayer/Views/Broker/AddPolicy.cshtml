@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "AddPolicy";
+    Layout = "_LayoutBroker";
 }
 
 <h1>AddPolicy</h1>
@@ -54,11 +55,11 @@
                 <input asp-for="MaturityAmount" class="form-control" />
                 <span asp-validation-for="MaturityAmount" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label asp-for="PolicyStatus" class="control-label"></label>
                 <input asp-for="PolicyStatus" class="form-control" />
                 <span asp-validation-for="PolicyStatus" class="text-danger"></span>
-            </div>
+            </div>-->
             <!--<div class="form-group">
                 <label asp-for="ReviewStatus" class="control-label"></label>
                 <input asp-for="ReviewStatus" class="form-control" />

@@ -39,10 +39,10 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult AddPolicy()
         {
-            TempData.Keep();
-            ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName");
+            ViewData["AssetId"] = new SelectList(_context.BrokerRequests, "AssetId", "AssetId");
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
+            TempData.Keep();
             return View();
         }
         /*[HttpPost]
@@ -65,6 +65,7 @@ namespace PresentationLayer.Controllers
                 TempData.Keep();
                 policyDetail.BrokerId = TempData["UserId"] as string;
                 policyDetail.ReviewStatus = "no";
+                policyDetail.PolicyStatus = "pending";
 
                 _context.Add(policyDetail);
                 await _context.SaveChangesAsync();
@@ -103,7 +104,7 @@ namespace PresentationLayer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPolicy(int id, [Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
-            TempData.Keep();
+            
             if (id != policyDetail.PolicyId)
             {
                 return NotFound();
@@ -133,12 +134,18 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
+            TempData.Keep();
             return View(policyDetail);
         }
-        public IActionResult CurrentRequests()
+        public async Task<IActionResult> CurrentRequests()
         {
+            string brokerId = TempData["UserId"] as string;
+            /*Request r = new();
+            List<BrokerRequest> br = r.GetRequestList(brokerId);*/
             TempData.Keep();
-            return View();
+            var insurewaveContext = _context.BrokerRequests.Include(b => b.Asset).Include(b => b.Broker).Where(a=>a.BrokerId==brokerId);
+            
+            return View(await insurewaveContext.ToListAsync());
         }
     }
 }

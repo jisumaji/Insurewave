@@ -76,7 +76,7 @@ namespace PresentationLayer.Controllers
             ViewBag.roles = roles;
             ViewBag.gender = gender;
             obj.AddUser(u);
-            TempData["id"] = u.UserId;
+            TempData["UserId"] = u.UserId;
             if (u.Role.Equals("insurer"))
             {
             

@@ -1,9 +1,10 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
+    Layout = "_LayoutBroker";
 }
 
-<h1>Broker Page @TempData["name"]</h1>
-<a class="btn btn-success" href="/Broker/GetAllPolicies">Details</a>
-<a class="btn btn-primary" asp-action="AddPolicy" asp-controller="Broker">Add Policy</a>
+<h1>Broker Page @TempData["FirstName"]</h1>
+<!--<a class="btn btn-success" href="/Broker/GetAllPolicies">Details</a>
+<a class="btn btn-primary" asp-action="AddPolicy" asp-controller="Broker">Add Policy</a>-->
 

@@ -1,36 +1,37 @@
-﻿@model DataLayer.Models.BrokerDetail
+﻿@model DataLayer.Models.BrokerRequest
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutBroker.cshtml";
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>BrokerDetail</h4>
+    <h4>BrokerRequest</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerCount)
+            @Html.DisplayNameFor(model => model.ReviewStatus)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerCount)
+            @Html.DisplayFor(model => model.ReviewStatus)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Commission)
+            @Html.DisplayNameFor(model => model.Asset)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Commission)
+            @Html.DisplayFor(model => model.Asset.AssetName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Broker)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Broker.UserId)
+            @Html.DisplayFor(model => model.Broker.BrokerId)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.BrokerId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.RequestId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

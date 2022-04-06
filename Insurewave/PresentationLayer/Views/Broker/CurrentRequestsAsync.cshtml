@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DataLayer.Models.BrokerRequest>
+
+@{
+    ViewData["Title"] = "CurrentRequestsAsync";
+    Layout = "~/Views/Shared/_LayoutBroker.cshtml";
+}
+
+<h1>CurrentRequestsAsync</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asset)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Broker)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asset.AssetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Broker.BrokerId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RequestId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

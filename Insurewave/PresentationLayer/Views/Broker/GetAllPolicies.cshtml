@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DataLayer.Models.PolicyDetail>
 
 @{
-    Layout = "_Layout";
+    Layout = "_LayoutBroker";
 }
 
 <!DOCTYPE html>
@@ -23,6 +23,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Duration)
             </th>
@@ -56,6 +59,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
