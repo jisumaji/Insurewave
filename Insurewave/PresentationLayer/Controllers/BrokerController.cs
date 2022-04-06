@@ -36,9 +36,12 @@ namespace PresentationLayer.Controllers
             List<PolicyDetail> bd = obj.GetAllPolicies(brokerId);
             return View(bd);
         }
-        public IActionResult AddPolicy()
+        public IActionResult AddPolicy(int assetId)
         {
-            ViewData["AssetId"] = new SelectList(_context.BrokerRequests, "AssetId", "AssetId");
+            Request r = new();
+            List<BrokerRequest> br = r.GetRequestList(HttpContext.Session.GetString("UserId"));
+            //ViewData["AssetId"] = new SelectList(br, "AssetId", "AssetId");
+            ViewBag.assetId = assetId;
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
             return View();
@@ -74,7 +77,6 @@ namespace PresentationLayer.Controllers
         }
         public async Task<IActionResult> EditPolicy(int? id)
         {
-            
             if (id == null)
             {
                 return NotFound();
@@ -135,7 +137,7 @@ namespace PresentationLayer.Controllers
             string brokerId = HttpContext.Session.GetString("UserId");
             /*Request r = new();
             List<BrokerRequest> br = r.GetRequestList(brokerId);*/
-            var insurewaveContext = _context.BrokerRequests.Include(b => b.Asset).Include(b => b.Broker).Where(a=>a.BrokerId==brokerId);
+            var insurewaveContext = _context.BrokerRequests.Include(b => b.Asset).Include(b => b.Broker).Where(a=>a.BrokerId==brokerId && a.ReviewStatus=="no");
             return View(await insurewaveContext.ToListAsync());
         }
     }
