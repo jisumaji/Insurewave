@@ -44,5 +44,10 @@ namespace RepoLayer
             Request obj = new();
             return obj.GetRequestList(brokerId);
         }
+        public List<BrokerDetail> GetAllBrokers()
+        {
+            List<BrokerDetail> bd = db.BrokerDetails.ToList();
+            return bd;
+        }
     }
 }
