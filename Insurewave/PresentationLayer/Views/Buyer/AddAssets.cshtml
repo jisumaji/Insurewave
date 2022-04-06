@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "AddAssets";
-    
+    Layout = "~/Views/Shared/_LayoutLogReg.cshtml";
 }
 <!--
 <div class="row">
@@ -40,72 +40,70 @@
     <a asp-action="Index">Back to List</a>
 </div>
     -->
-<section class="vh-100" style="background-color:black">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-            <div class="card" style="border-radius: 1rem;">
-                <div class="row g-0">
-                    <div class="col-md-6 col-lg-5 d-none d-md-block">
-                        <img src="https://i.pinimg.com/originals/c2/9a/e6/c29ae69df9a0bb161df15117fa504f21.jpg"
-                             alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;width:520px;height:620px" />
-                    </div>
-                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                        <div class="card-body p-4 p-lg-5 text-black">
-                            <form asp-action="AddAssets">
-                                <div class="d-flex align-items-center mb-3 pb-1">
-                                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                    <span class="h1 fw-bold mb-0">Add Asset</span>
-                                </div>
-                                <div asp-validation-summary="ModelOnly" class="text-danger text-white"></div>
-                                <div class="form-group">
-                                    <label asp-for="CountryId" class="control-label"></label>
-                                    <input asp-for="CountryId" class="form-control" />
-                                    <span asp-validation-for="CountryId" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="AssetName" class="control-label"></label>
-                                    <input asp-for="AssetName" class="form-control" />
-                                    <span asp-validation-for="AssetName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="PriceUsd" class="control-label"></label>
-                                    <input asp-for="PriceUsd" class="form-control" />
-                                    <span asp-validation-for="PriceUsd" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Type" class="control-label"></label>
-                                    <input asp-for="Type" class="form-control" />
-                                    <span asp-validation-for="Type" class="text-danger"></span>
-                                </div>
-                                <!--
-                                <div class="form-group">
-                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                </div>
-                                    -->
-                                <div class="pt-1 mb-4">
-                                    <input type="submit" value="Create" class="btn btn-success btn-lg btn-block" />
-                                </div>
-                                <div>
-                                    <a asp-action="Index">Back to List</a>
-                                </div>
-                            </form>
-
+<div class="col col-xl-10" style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
+    <div class="card" style="border-radius: 1rem;">
+        <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="https://i.pinimg.com/originals/c2/9a/e6/c29ae69df9a0bb161df15117fa504f21.jpg"
+                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;width:520px;height:620px" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                    <form asp-action="AddAssets">
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                            <span class="h1 fw-bold mb-0">Add Asset</span>
                         </div>
-                    </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger text-white"></div>
+                        <!--<div class="form-group">
+                            <label asp-for="CountryId" class="control-label"></label>
+                            <input asp-for="CountryId" class="form-control" />
+                            <span asp-validation-for="CountryId" class="text-danger"></span>
+                        </div>
+                            -->
+                        <div class="form-group">
+                            <label asp-for="CountryId" class="control-label">Country Name</label>
+                            <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="AssetName" class="control-label"></label>
+                            <input asp-for="AssetName" class="form-control" />
+                            <span asp-validation-for="AssetName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PriceUsd" class="control-label"></label>
+                            <input asp-for="PriceUsd" class="form-control" />
+                            <span asp-validation-for="PriceUsd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Type" class="control-label"></label>
+                            <input asp-for="Type" class="form-control" />
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                            -->
+                        <div class="pt-1 mb-4">
+                            <input type="submit" value="Create" class="btn btn-success btn-lg btn-block" />
+                        </div>
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-</section>
-
-<!--
-<form>
-    <div class="form-group">
-        <input type="submit" value="Create Account" asp-controller="UserLogin" asp-action="Register" class="btn btn-primary" />
     </div>
-</form>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
--->
+    <!--
+    <form>
+        <div class="form-group">
+            <input type="submit" value="Create Account" asp-controller="UserLogin" asp-action="Register" class="btn btn-primary" />
+        </div>
+    </form>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+    -->
