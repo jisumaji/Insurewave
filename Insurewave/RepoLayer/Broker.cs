@@ -49,5 +49,10 @@ namespace RepoLayer
             List<BrokerDetail> bd = db.BrokerDetails.ToList();
             return bd;
         }
+        public void ChangeReviewStatus(int assetId, string brokerId)
+        {
+            Request r = new Request();
+            r.ChangeStatus(assetId, brokerId);
+        }
     }
 }

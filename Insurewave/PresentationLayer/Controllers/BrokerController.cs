@@ -42,6 +42,7 @@ namespace PresentationLayer.Controllers
             List<BrokerRequest> br = r.GetRequestList(HttpContext.Session.GetString("UserId"));
             //ViewData["AssetId"] = new SelectList(br, "AssetId", "AssetId");
             ViewBag.assetId = assetId;
+            TempData["AssetId"] = assetId;
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
             return View();
@@ -60,6 +61,8 @@ namespace PresentationLayer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPolicy([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
+            Broker r = new();
+            r.ChangeReviewStatus((int)policyDetail.AssetId, policyDetail.BrokerId);
             
             if (ModelState.IsValid)
             {

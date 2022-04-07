@@ -11,5 +11,6 @@ namespace RepoLayer
     {
         public List<BrokerRequest> GetRequestList(string brokerId);
         public void AddRequest(BrokerRequest br);
+        public void ChangeStatus(int assetId, string brokerId);
     }
 }
