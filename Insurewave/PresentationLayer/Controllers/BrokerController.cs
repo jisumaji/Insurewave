@@ -62,7 +62,7 @@ namespace PresentationLayer.Controllers
         public async Task<IActionResult> AddPolicy([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
             Broker r = new();
-            r.ChangeReviewStatus((int)policyDetail.AssetId, policyDetail.BrokerId);
+            r.ChangeReviewStatus((int)TempData["AssetId"], policyDetail.BrokerId);
             
             if (ModelState.IsValid)
             {
