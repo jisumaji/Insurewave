@@ -7,6 +7,7 @@ using DataLayer.Models;
 using RepoLayer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace PresentationLayer.Controllers
 {
@@ -46,6 +47,17 @@ namespace PresentationLayer.Controllers
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
             return View();
         }
+        /*
+        public IActionResult AddPolicy()
+        {
+            Request r = new();
+            List<BrokerRequest> br = r.GetRequestList(HttpContext.Session.GetString("UserId"));
+            ViewData["AssetId"] = new SelectList(br, "AssetId", "AssetId");
+            ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
+            ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
+            return View();
+        }
+        */
         /*[HttpPost]
         public IActionResult AddPolicy(PolicyDetail pd)
         {
@@ -136,10 +148,13 @@ namespace PresentationLayer.Controllers
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
             return View(policyDetail);
         }
-        public IActionResult CurrentRequests()
+        public async Task<IActionResult> CurrentRequests()
         {
-            TempData.Keep();
-            return View();
+            string brokerId = HttpContext.Session.GetString("UserId");
+            /*Request r = new();
+            List<BrokerRequest> br = r.GetRequestList(brokerId);*/
+            var insurewaveContext = _context.BrokerRequests.Include(b => b.Asset).Include(b => b.Broker).Where(a => a.BrokerId == brokerId && a.ReviewStatus == "no");
+            return View(await insurewaveContext.ToListAsync());
         }
     }
 }

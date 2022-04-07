@@ -18,18 +18,17 @@
             *@
     }
 </style>
-<h1>Details</h1>
+<h1>Profile Details</h1>
 
 <div>
-    <h4>UserDetail</h4>
     <hr />
     <dl class="row">
+        @*
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Password)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+        *@
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -54,12 +53,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Role)
         </dd>
+        @if (Model.Role=="broker"|| Model.Role=="insurer")
+        {
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LicenseId)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LicenseId)
         </dd>
+        }
     </dl>
 </div>
 <div>

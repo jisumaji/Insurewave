@@ -39,7 +39,7 @@ namespace PresentationLayer
             services.AddScoped<ICountry, Country>();
             services.AddScoped<IRequest, Request>();
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromSeconds(30);//You can set Time   
+                options.IdleTimeout = TimeSpan.FromMinutes(30);//You can set Time   
             });
 
         }
