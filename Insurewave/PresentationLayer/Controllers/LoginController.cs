@@ -32,23 +32,24 @@ namespace PresentationLayer.Controllers
             UserDetail u  =  obj.GetUserById(userdetails.UserId);
             if (a)
             {
+                //HttpContext.Session.SetInt32("LoggedIn", 1);
                 HttpContext.Session.SetString("FirstName", u.FirstName);
                 HttpContext.Session.SetString("UserId", u.UserId);
                 if (u.Role.Equals("broker"))
-                    return RedirectToAction("Index","Broker");
+                {
+                    //HttpContext.Session.SetString("Role", u.Role);
+                    return RedirectToAction("Index", "Broker");
+                }
                 else if (u.Role.Equals("insurer"))
                     return RedirectToAction("Index", "Insurer");
                 else
-                    return RedirectToAction("Index","Buyer");
+                    return RedirectToAction("Index", "Buyer");
             }
-           
-
             else
             {
-                TempData["msg"] = "UserId or Password is wrong.!";
-                //return RedirectToAction("Index");
+                //TempData["msg"] = "UserId or Password is wrong.!";
+                return RedirectToAction("Error");
             }
-            return View();
         }
         public IActionResult Page1()
         {
@@ -112,6 +113,16 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("PasswordChanged");
         }
         public IActionResult PasswordChanged()
+        {
+            return View();
+        }
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("UserId");
+            HttpContext.Session.Clear();
+            return RedirectToAction("index", "home");
+        }
+        public IActionResult Error()
         {
             return View();
         }

@@ -17,7 +17,8 @@ namespace RepoLayer
         public List<PolicyDetail> GetAllPolicies(string insurerId)
         {
             Policy p = new();
-            return p.GetAllPoliciesInsurer(insurerId);
+            List<PolicyDetail> detail = p.GetAllPoliciesInsurer(insurerId);
+            return detail;
         }
         public void GetDetails(string userId)
         {

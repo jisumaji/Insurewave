@@ -17,9 +17,6 @@
     </style>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -90,9 +87,8 @@
                 @Html.DisplayFor(modelItem => item.Feedback)
             </td>
             <td>
-                <a asp-action="EditPolicy" asp-route-id="@item.PolicyId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PolicyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PolicyId">Delete</a>
+                <a class="btn btn-primary " asp-action="EditPolicy" asp-route-id="@item.PolicyId">Edit</a>
+                
             </td>
         </tr>
 }

@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<DataLayer.Models.PolicyDetail>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "GetAllPolicies";
+    Layout = "~/Views/Shared/_LayoutInsurer.cshtml";
 }
 
-<h1>Index</h1>
+<h1>GetAllPolicies</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -45,9 +43,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Broker)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Insurer)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -85,16 +83,16 @@
                 @Html.DisplayFor(modelItem => item.Asset.AssetName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Broker.BrokerId)
+                @Html.DisplayFor(modelItem => item.BrokerId)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Insurer.InsurerId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PolicyId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PolicyId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.PolicyId">Delete</a>
-            </td>
+            </td>*@
         </tr>
 }
     </tbody>

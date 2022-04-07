@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutBroker.cshtml";
 }
 
 <h1>Edit</h1>
@@ -15,8 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="UserId" />
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <label asp-for="Password" class="control-label" hidden></label>
+                <input asp-for="Password" class="form-control" hidden/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,6 +51,21 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @{
+
+        if (Model.Role == "broker")
+        {
+            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Broker">Back to List</a>
+        }
+
+        if (Model.Role == "insurer")
+        {
+            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Insurer">Back to List</a>
+        }
+        if (Model.Role == "buyer")
+        {
+            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Buyer">Back to List</a>
+        }
+    }
 </div>
 
