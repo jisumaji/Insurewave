@@ -10,7 +10,7 @@
 <html>
 <head>
     <script src="~/lib/jquery/dist/jquery.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
     <script type="text/javascript">
         $(document).ready(function () {
             $("#hiddenDiv").hide()
@@ -29,14 +29,83 @@
                 else
                     $("#notMatch").show()
             })*/
-            $("#form").submit(function () {
+            $("#ConfirmPassword").on('keyup', function () {
+                var password = $("#Password").val();
+                var confirmPassword = $("#ConfirmPassword").val();
+                if (password != confirmPassword) {
+                    $("#CheckPasswordMatch").html("Password does not match !").css("color", "red");
+                    $("#butt").prop("disabled", true);
+                }
+
+                else {
+                    $("#CheckPasswordMatch").html("Passwords match").css("color", "green");
+                    $("#butt").show();
+                    $("#butt").prop("disabled",false);
+                }
+                   
+            });
+            $("#Password").on('keyup', function () {
+                var password = $("#Password").val();
+                var confirmPassword = $("#ConfirmPassword").val();
+                if (password != confirmPassword) {
+                    $("#CheckPasswordMatch").html("Password does not match !").css("color", "red");
+                    $("#butt").prop("disabled", true);
+                }
+
+                else {
+                    $("#CheckPasswordMatch").html("Passwords match").css("color", "green");
+                    $("#butt").show();
+                    $("#butt").prop("disabled", false);
+                }
+
+            });
+
+            $('#eye').click(function () {
+
+                if ($(this).hasClass('fa-eye-slash')) {
+
+                    $(this).removeClass('fa-eye-slash');
+
+                    $(this).addClass('fa-eye');
+
+                    $('#Password').attr('type', 'text');
+
+                } else {
+
+                    $(this).removeClass('fa-eye');
+
+                    $(this).addClass('fa-eye-slash');
+
+                    $('#Password').attr('type', 'password');
+                }
+            });
+            $('#eye1').click(function () {
+
+                if ($(this).hasClass('fa-eye-slash')) {
+
+                    $(this).removeClass('fa-eye-slash');
+
+                    $(this).addClass('fa-eye');
+
+                    $('#ConfirmPassword').attr('type', 'text');
+
+                } else {
+
+                    $(this).removeClass('fa-eye');
+
+                    $(this).addClass('fa-eye-slash');
+
+                    $('#ConfirmPassword').attr('type', 'password');
+                }
+            });
+            /*$("#form").submit(function () {
                 if ($("#hiddenDiv").val() == 'insurer') {
 
                 }
                 /*else if ($("#hiddenDiv").val() == 'broker') {
 
-                }*/
-            })
+                }
+            })*/
         });
     </script>
 </head>
@@ -126,7 +195,7 @@
                             <img src="  https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
                                  alt="Sample photo"
                                  class="img-fluid"
-                                 style="border-radius: 1rem 0 0 1rem; height: 850px; width: 500px" />
+                                 style="border-radius: 1rem 0 0 1rem; height: 950px; width: 570px" />
                         </div>
                         <div class="col-xl-6">
                             <div class="card-body p-md-5 text-black">
@@ -137,11 +206,33 @@
                                         <input asp-for="UserId" type="email" class="form-control form-control-lg" required />
                                         <span asp-validation-for="UserId" class="text-danger"></span>
                                     </div>
+
                                     <div class="form-outline">
                                         <label asp-for="Password" class="form-label">Password</label>
-                                        <input asp-for="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
-                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                        <div class="input-group">
+                                            <input asp-for="Password" id="Password" placeholder="Enter a password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-eye" id="eye"></i></div>
+                                            </div>
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
                                     </div>
+
+
+                                    <div class="form-outline">
+                                        <label class="form-label">Confirm Password</label>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control form-control-lg" id="ConfirmPassword" placeholder="Confirm Password" name="confpassword" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-eye" id="eye1"></i></div>
+                                            </div>
+                                        </div>
+                                        <em style="margin-top: 7px;" id="CheckPasswordMatch"></em>
+                                    </div>
+
+
+                                    <!--hidden while input   eye button confirm password  viewbag already existying-->
+
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
@@ -158,7 +249,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-outline mb-4">
+                                    <div class="form-group mb-4">
                                         <label asp-for="Gender" class="form-label"></label>
                                         <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
                                             <option value="" selected hidden disabled> Select Gender</option>
@@ -185,7 +276,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-end pt-3">
-                                            <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                                            <input id="butt" type="submit" value="Create" class="btn btn-primary btn-lg" />
                                         </div>
                                         <div>
                                             <a asp-action="Index">Go to Home</a>
