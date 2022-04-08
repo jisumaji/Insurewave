@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,7 +32,7 @@
                 <a class="navbar-brand" href="#">
                     <img src="/css/insurewave.png" alt="" width="80" height="50" class="d-inline-block align-text-top">
                 </a>
-                <a class="navbar-brand text-dark" asp-controller="Home" asp-action="Index"><b> Insurewave</b> </a>
+                <a class="navbar-brand text-dark" asp-controller="Home" asp-action="Index" style="font-size:x-large"><b > Insurewave</b> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -56,12 +55,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Broker" asp-action="GetDetails">
-                                <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="color:steelblue"></i>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a onclick="preventBack()" class="nav-link text-dark" asp-controller="Login" asp-action="LogOut">
-                                <i class="fa fa-power-off fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-power-off fa-2x" aria-hidden="true" style="color:red"></i>
                             </a>
                         </li>
                     </ul>
