@@ -1,14 +1,17 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Index";
+    Layout = "_LayoutBuyer";
 }
 
 <h1 style="color:white">Index</h1>
-<p class="text-white">Welcome Buyer @TempData["FirstName"]</p>
+<p class="text-white">Welcome Buyer @Context.Session.GetString("FirstName")</p>
+@*
 <form>
     <div class="form-group">
         <input type="submit" value="Add Asset" asp-controller="Buyer" asp-action="AddAssets" class="btn btn-primary" />
         <input type="submit" value="Display Asset" asp-controller="Buyer" asp-action="DisplayAssets" class="btn btn-primary" />
     </div>
 </form>
+    *@
 

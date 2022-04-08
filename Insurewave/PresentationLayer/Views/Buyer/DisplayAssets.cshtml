@@ -2,13 +2,10 @@
 
 @{
     ViewData["Title"] = "DisplayAssets";
+    Layout = "_LayoutBuyer";
 }
 
-    <h1>DisplayAssets</h1>
-
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+    <h1>Display All Assets</h1>
 
         <table class="table text-white">
             <thead>
@@ -20,7 +17,7 @@
                         @Html.DisplayNameFor(model => model.Type)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Country)
+                        Country ID
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.PriceUsd)
@@ -51,12 +48,18 @@
                             @Html.DisplayFor(modelItem => item.Request)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a> |
-                            <a asp-controller="Buyer" asp-action="RequestToBroker" asp-route-AssetId="@item.AssetId">Request Broker</a>|
-                            <a asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
+                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a>
+                            <a class="btn btn-success btn-sm" asp-controller="Buyer" asp-action="RequestToBroker" asp-route-AssetId="@item.AssetId">Request Broker</a>
+                            @if (item.Request == "yes")
+                            {
+                            <a class="btn btn-secondary btn-sm" asp-action="ViewPolicyForOneAsset" asp-route-AssetId="@item.AssetId">Policy</a>
+                            }
+                            else
+                            {
+                            <a class="btn btn-danger btn-sm" asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
+                            }
                         </td>
                     </tr>
-                    <a asp-action="Index" >Go back</a>
                 }
             </tbody>
         </table>

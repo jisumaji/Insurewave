@@ -3,7 +3,19 @@
 @{
     ViewData["Title"] = "DeleteOneAsset";
 }
+<style>
+    input[type="submit"]
+    {
+        width:250px;
+    }
+    input[type="submit"]:hover
+    {
+        border-radius:20px;
 
+        @*transition:all ease-in-out 0.3s;
+            *@
+    }
+</style>
 <section >
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -60,8 +72,10 @@
                             </dl>
                             <form asp-action="Delete">
                                 <input type="hidden" asp-for="AssetId" />
-                                <input type="submit" value="Delete" class="btn btn-danger" /> |
-                                <a asp-action="Index">Back to List</a>
+                                <input type="submit" value="Delete" class="btn btn-outline-danger" /> 
+                                <div class="py-3">
+                                    <a asp-action="DisplayAssets">Back to List</a>
+                                </div>
                             </form>
                         </div>
 
