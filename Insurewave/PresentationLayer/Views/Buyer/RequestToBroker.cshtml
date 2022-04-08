@@ -20,17 +20,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.CustomerCount)
             </th>
-            @*
-                <th>
-                    @Html.DisplayNameFor(model => model.Commission)
-                </th>
-            *@
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            <div>
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.BrokerId)
@@ -38,20 +34,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerCount)
                 </td>
-                @*
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Commission)
-                    </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Broker.UserId)
-                    </td>
-                *@
                 <td>
                     <a class="btn btn-sm btn-success" asp-action="AddRequest1" onclick="myFunction()" asp-route-BrokerId="@item.BrokerId ">Send Request</a>
 
                 </td>
             </tr>
+        </div>
         }
     </tbody>
 </table>
