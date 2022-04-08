@@ -91,8 +91,8 @@
                         </td>*@
                     <td>
 
-                        <a class="btn btn-success" asp-action="AcceptPolicy" asp-route-assetId="@item.PolicyId">Accept</a>
-                        <a class="btn btn-danger" asp-action="RejectPolicy" asp-route-assetId="@item.PolicyId">Reject</a>
+                        <a class="btn btn-success" onclick="myMethod()" asp-action="Reject" asp-route-id="@item.PolicyId" asp-route-method="accepted">Accept</a>
+                        <a class="btn btn-danger" onclick="myMethod()" asp-action="Reject" asp-route-id="@item.PolicyId" asp-route-method="rejected">Reject</a>
                         @*<a asp-action="Delete" asp-route-id="@item.PolicyId">Delete</a>*@
                     </td>
                 </tr>

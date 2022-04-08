@@ -45,35 +45,21 @@ namespace PresentationLayer.Controllers
             var insurewaveContext = _context.PolicyDetails.Include(b => b.Asset).Include(b => b.Broker).Where(a => a.InsurerId == insurerId && a.ReviewStatus == "no");
             return View(await insurewaveContext.ToListAsync());
         }
-        public IActionResult RejectPolicy(int policyId)
+        private bool PolicyDetailExists(int id)
         {
-            List<PolicyDetail> br = obj.GetRequests(HttpContext.Session.GetString("UserId"));
-            ViewData["AssetId"] = new SelectList(br, "AssetId", "AssetId");
-            //ViewBag.AssetId = policyId;
-            ViewBag.InsurerId = HttpContext.Session.GetString("UserId");
-            TempData["PolicyId"] = policyId;
-
-            ViewData["BrokerId"] = new SelectList(_context.PolicyDetails, "BrokerId", "BrokerId");
-            //ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
-            TempData.Keep();
-            return View();
+            return _context.PolicyDetails.Any(e => e.PolicyId == id);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RejectPolicy([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
+        public async Task<IActionResult> Reject(string method, int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                policyDetail.AssetId = (int)TempData["AssetId"];
-                policyDetail.BrokerId = HttpContext.Session.GetString("UserId");
-                policyDetail.ReviewStatus = "yes";
-                policyDetail.PolicyStatus = "accepted";
-                /*Broker r = new();
-                r.ChangeReviewStatus((int)policyDetail.AssetId, policyDetail.BrokerId);*/
-
-                _context.Add(policyDetail);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return NotFound();
+            }
+            HttpContext.Session.SetString("method", method);
+            var policyDetail = await _context.PolicyDetails.FindAsync(id);
+            if (policyDetail == null)
+            {
+                return NotFound();
             }
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
@@ -81,42 +67,40 @@ namespace PresentationLayer.Controllers
             return View(policyDetail);
         }
 
-
-
-
-
-
-
-        public IActionResult AcceptPolicy(int assetId)
-        {
-            Request r = new();
-            List<BrokerRequest> br = r.GetRequestList(HttpContext.Session.GetString("UserId"));
-            //ViewData["AssetId"] = new SelectList(br, "AssetId", "AssetId");
-            ViewBag.assetId = assetId;
-            ViewBag.brokerId = HttpContext.Session.GetString("UserId");
-            TempData["AssetId"] = assetId;
-
-            //ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId");
-            ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId");
-            TempData.Keep();
-            return View();
-        }
+        // POST: PolicyDetails/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AcceptPolicy([Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
+        public async Task<IActionResult> Reject(int id, [Bind("PolicyId,AssetId,InsurerId,BrokerId,Duration,Premium,LumpSum,StartDate,PremiumInterval,MaturityAmount,PolicyStatus,ReviewStatus,Feedback")] PolicyDetail policyDetail)
         {
+            if (id != policyDetail.PolicyId)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                policyDetail.AssetId = (int)TempData["AssetId"];
-                policyDetail.BrokerId = HttpContext.Session.GetString("UserId");
-                policyDetail.ReviewStatus = "yes";
-                policyDetail.PolicyStatus = "rejected";
-                Broker r = new();
-                r.ChangeReviewStatus((int)policyDetail.AssetId, policyDetail.BrokerId);
-
-                _context.Add(policyDetail);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string method = HttpContext.Session.GetString("method");
+                try
+                {
+                    policyDetail.ReviewStatus = "yes";
+                    policyDetail.PolicyStatus = method;
+                    _context.Update(policyDetail);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PolicyDetailExists(policyDetail.PolicyId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(CurrentRequests));
             }
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);

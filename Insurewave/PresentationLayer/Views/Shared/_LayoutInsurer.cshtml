@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <script type="text/javascript">
+
+    function myMethod() {
+        var method = @Context.Session.GetString("method");
+        var rh = document.getElementById("rejectHead");
+        var ah = document.getElementById("acceptHead");
+        var btn = document.getElementById("btn")
+            if (true) {
+                ah.style.display = "none";
+                btn.setAttribute("class", "btn-danger");
+                //btn.classList.add("btn-danger")
+            }
+            else if (method == "accepted") {
+                rh.style.display = "none";
+                btn.setAttribute("class", "btn-success");
+                //btn.classList.add("btn-success")
+            }
+        }
+    </script>
+    
     <style>
         body {
             background-image: linear-gradient(to right,#cfe3ed, #96c4db);
