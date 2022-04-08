@@ -1,0 +1,102 @@
+﻿@model IEnumerable<DataLayer.Models.PolicyDetail>
+
+@{
+    ViewData["Title"] = "CurrentRequests";
+    Layout = "~/Views/Shared/_LayoutInsurer.cshtml";
+}
+
+<h1>CurrentRequests</h1>
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Premium)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LumpSum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PremiumInterval)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaturityAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PolicyStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedback)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Asset)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Broker)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Insurer)
+                    </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Premium)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LumpSum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PremiumInterval)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaturityAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PolicyStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Feedback)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Asset.AssetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Broker.BrokerId)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Insurer.InsurerId)
+                        </td>*@
+                    <td>
+
+                        <a class="btn btn-success" onclick="myMethod()" asp-action="Reject" asp-route-id="@item.PolicyId" asp-route-method="accepted">Accept</a>
+                        <a class="btn btn-danger" onclick="myMethod()" asp-action="Reject" asp-route-id="@item.PolicyId" asp-route-method="rejected">Reject</a>
+                        @*<a asp-action="Delete" asp-route-id="@item.PolicyId">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

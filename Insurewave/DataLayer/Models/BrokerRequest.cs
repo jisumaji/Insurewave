@@ -8,7 +8,7 @@ namespace DataLayer.Models
     public partial class BrokerRequest
     {
         public int RequestId { get; set; }
-        public int? AssetId { get; set; }
+        public int AssetId { get; set; }
         public string BrokerId { get; set; }
         public string ReviewStatus { get; set; }
 

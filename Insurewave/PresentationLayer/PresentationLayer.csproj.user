@@ -13,6 +13,6 @@
     <WebStackScaffolding_DbContextTypeFullName>DataLayer.Models.InsurewaveContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
-    <WebStackScaffolding_LayoutPageFile />
+    <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_LayoutInsurer.cshtml</WebStackScaffolding_LayoutPageFile>
   </PropertyGroup>
 </Project>
