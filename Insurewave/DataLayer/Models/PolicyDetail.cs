@@ -24,5 +24,6 @@ namespace DataLayer.Models
         public virtual BuyerAsset Asset { get; set; }
         public virtual BrokerDetail Broker { get; set; }
         public virtual InsurerDetail Insurer { get; set; }
+        public virtual PaymentBuyer PaymentBuyer { get; set; }
     }
 }

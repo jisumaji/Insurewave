@@ -22,6 +22,7 @@ namespace DataLayer.Models
         public virtual DbSet<BuyerAsset> BuyerAssets { get; set; }
         public virtual DbSet<CurrencyConversion> CurrencyConversions { get; set; }
         public virtual DbSet<InsurerDetail> InsurerDetails { get; set; }
+        public virtual DbSet<PaymentBuyer> PaymentBuyers { get; set; }
         public virtual DbSet<PolicyDetail> PolicyDetails { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
 
@@ -166,6 +167,27 @@ namespace DataLayer.Models
                     .WithOne(p => p.InsurerDetail)
                     .HasForeignKey<InsurerDetail>(d => d.InsurerId)
                     .HasConstraintName("FK__Insurer.D__Insur__37A5467C");
+            });
+
+            modelBuilder.Entity<PaymentBuyer>(entity =>
+            {
+                entity.HasKey(e => e.PolicyId)
+                    .HasName("PKPaymentBuyer");
+
+                entity.ToTable("PaymentBuyer");
+
+                entity.Property(e => e.PolicyId).ValueGeneratedNever();
+
+                entity.Property(e => e.PaidStatus)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('false')");
+
+                entity.HasOne(d => d.Policy)
+                    .WithOne(p => p.PaymentBuyer)
+                    .HasForeignKey<PaymentBuyer>(d => d.PolicyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__PaymentBu__Polic__619B8048");
             });
 
             modelBuilder.Entity<PolicyDetail>(entity =>
