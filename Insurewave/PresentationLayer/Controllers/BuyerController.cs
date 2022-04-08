@@ -115,7 +115,7 @@ namespace PresentationLayer.Controllers
         {
            
             BrokerRequest br = new BrokerRequest();
-            br.AssetId = HttpContext.Session.GetInt32("AssetId2");
+            br.AssetId = (int)HttpContext.Session.GetInt32("AssetId2");
             br.BrokerId = brokerid;
             br.ReviewStatus = "no";
             obj2.AddRequest(br);
