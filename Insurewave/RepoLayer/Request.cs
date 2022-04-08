@@ -24,5 +24,12 @@ namespace RepoLayer
             db.Add(br);
             db.SaveChanges();
         }
+        public void ChangeStatus(int assetId, string brokerId)
+        {
+            //int requestId=db.BrokerRequests.Select(a=>a.AssetId==assetId )
+            BrokerRequest br = db.BrokerRequests.Where(a => (a.BrokerId == brokerId) && (a.AssetId == assetId)).FirstOrDefault();
+            br.ReviewStatus = "yes";
+            db.SaveChanges();
+        }
     }
 }

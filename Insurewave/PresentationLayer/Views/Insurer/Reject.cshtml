@@ -1,0 +1,110 @@
+﻿@model DataLayer.Models.PolicyDetail
+
+@{
+    ViewData["Title"] = "Reject";
+    Layout = "~/Views/Shared/_LayoutInsurer.cshtml";
+}
+
+@if (Context.Session.GetString("method") == "rejected")
+{
+    <h2 id="rejectHead">Please provide feedback</h2>
+}
+@if (Context.Session.GetString("method") == "accepted")
+{
+    <h2 id="acceptHead">You can provide a feedback (optional)</h2>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Reject">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PolicyId" />
+            <div class="form-group">
+                <label asp-for="AssetId" class="control-label" hidden></label>
+                <select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetId" hidden></select>
+                <span asp-validation-for="AssetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsurerId" class="control-label" hidden></label>
+                <select asp-for="InsurerId" class="form-control" asp-items="ViewBag.InsurerId" hidden></select>
+                <span asp-validation-for="InsurerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrokerId" class="control-label" hidden></label>
+                <select asp-for="BrokerId" class="form-control" asp-items="ViewBag.BrokerId" hidden></select>
+                <span asp-validation-for="BrokerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label" hidden></label>
+                <input asp-for="Duration" class="form-control" hidden />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Premium" class="control-label" hidden></label>
+                <input asp-for="Premium" class="form-control" hidden />
+                <span asp-validation-for="Premium" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LumpSum" class="control-label" hidden></label>
+                <input asp-for="LumpSum" class="form-control" hidden />
+                <span asp-validation-for="LumpSum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label" hidden></label>
+                <input asp-for="StartDate" class="form-control" hidden />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PremiumInterval" class="control-label" hidden></label>
+                <input asp-for="PremiumInterval" class="form-control" hidden />
+                <span asp-validation-for="PremiumInterval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaturityAmount" class="control-label" hidden></label>
+                <input asp-for="MaturityAmount" class="form-control" hidden />
+                <span asp-validation-for="MaturityAmount" class="text-danger" hidden></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PolicyStatus" class="control-label" hidden></label>
+                <input asp-for="PolicyStatus" class="form-control" hidden />
+                <span asp-validation-for="PolicyStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewStatus" class="control-label" hidden></label>
+                <input asp-for="ReviewStatus" class="form-control" hidden />
+                <span asp-validation-for="ReviewStatus" class="text-danger"></span>
+            </div>
+            @if (Context.Session.GetString("method") == "rejected")
+            {<div class="form-group">
+                    <label asp-for="Feedback" class="control-label" style="font-size:large">Feedback :</label>
+                    <input asp-for="Feedback" class="form-control" required />
+                    <span asp-validation-for="Feedback" class="text-danger"></span>
+                </div>
+            }
+            @if (Context.Session.GetString("method") == "accepted")
+            {<div class="form-group">
+                    <label asp-for="Feedback" class="control-label" style="font-size:large">Feedback :</label>
+                    <input asp-for="Feedback" class="form-control" />
+                    <span asp-validation-for="Feedback" class="text-danger"></span>
+                </div>
+            }
+            @if (Context.Session.GetString("method") == "rejected")
+            {
+                <div id="btn" class="form-group">
+                    <input type="submit" value="Reject" class="btn btn-danger" />
+                </div>
+            }
+            @if (Context.Session.GetString("method") == "accepted")
+            {
+                <div id="btn" class="form-group">
+                    <input type="submit" value="Accept" class="btn btn-success" />
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-sm btn-primary" asp-action="CurrentRequests">Back to List</a>
+</div>
+

@@ -65,6 +65,7 @@ namespace DataLayer.Models
                     .HasName("PKBrokerRequests");
 
                 entity.Property(e => e.BrokerId)
+                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
@@ -75,12 +76,12 @@ namespace DataLayer.Models
                 entity.HasOne(d => d.Asset)
                     .WithMany(p => p.BrokerRequests)
                     .HasForeignKey(d => d.AssetId)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FKBrokerRequestsAssetId");
 
                 entity.HasOne(d => d.Broker)
                     .WithMany(p => p.BrokerRequests)
                     .HasForeignKey(d => d.BrokerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKBrokerRequestsBrokerId");
             });
 

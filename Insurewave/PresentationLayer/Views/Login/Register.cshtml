@@ -10,7 +10,6 @@
 <html>
 <head>
     <script src="~/lib/jquery/dist/jquery.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $("#hiddenDiv").hide()
@@ -23,184 +22,179 @@
                     $("#hiddenDiv").hide()
                 }
             })
-            /*$("#confirmPass").keyup(function () {
-                if ($("#pass").val() === $(this).val())
-                    $("#notMatch").hide()
-                else
-                    $("#notMatch").show()
-            })*/
-            $("#form").submit(function () {
-                if ($("#hiddenDiv").val() == 'insurer') {
-
+            
+            $("#ConfirmPassword").on('keyup', function () {
+                var password = $("#Password").val();
+                var confirmPassword = $("#ConfirmPassword").val();
+                if (password != confirmPassword) {
+                    $("#CheckPasswordMatch").html("Password does not match !").css("color", "red");
+                    $("#butt").prop("disabled", true);
                 }
-                /*else if ($("#hiddenDiv").val() == 'broker') {
 
-                }*/
-            })
+                else {
+                    $("#CheckPasswordMatch").html("Passwords match").css("color", "green");
+                    $("#butt").show();
+                    $("#butt").prop("disabled",false);
+                }
+                   
+            });
+            $("#Password").on('keyup', function () {
+                var password = $("#Password").val();
+                var confirmPassword = $("#ConfirmPassword").val();
+                if (password != confirmPassword) {
+                    $("#CheckPasswordMatch").html("Password does not match !").css("color", "red");
+                    $("#butt").prop("disabled", true);
+                }
+
+                else {
+                    $("#CheckPasswordMatch").html("Passwords match").css("color", "green");
+                    $("#butt").show();
+                    $("#butt").prop("disabled", false);
+                }
+
+            });
+
+            $('#eye').click(function () {
+
+                if ($(this).hasClass('fa-eye-slash')) {
+
+                    $(this).removeClass('fa-eye-slash');
+
+                    $(this).addClass('fa-eye');
+
+                    $('#Password').attr('type', 'text');
+
+                } else {
+
+                    $(this).removeClass('fa-eye');
+
+                    $(this).addClass('fa-eye-slash');
+
+                    $('#Password').attr('type', 'password');
+                }
+            });
+            $('#eye1').click(function () {
+
+                if ($(this).hasClass('fa-eye-slash')) {
+
+                    $(this).removeClass('fa-eye-slash');
+
+                    $(this).addClass('fa-eye');
+
+                    $('#ConfirmPassword').attr('type', 'text');
+
+                } else {
+
+                    $(this).removeClass('fa-eye');
+
+                    $(this).addClass('fa-eye-slash');
+
+                    $('#ConfirmPassword').attr('type', 'password');
+                }
+            });
+            
         });
     </script>
 </head>
 <body>
-    
-    <!--
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Register" id="form" onsubmit="addToModel()">
-
-                <div class="form-group text-white">
-                    <label asp-for="UserId" class="control-label"></label>
-                    <input asp-for="UserId" type="email" class="form-control" required />
-
-                    <span asp-validation-for="UserId" class="text-danger"></span>
+    <div class="row d-flex justify-content-center align-items-center h-80">
+        <div class="card card-registration my-4" style="border-radius: 1rem; background-color: white; ">
+            <div class="row g-0">
+                <div class="col-xl-6 d-none d-xl-block">
+                      <img src="  https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                      alt="Sample photo"
+                      class="img-fluid"
+                      style="border-radius: 1rem 0 0 1rem; height: 100%; width: 550px" />
                 </div>
-
-
-
-                <div class="form-group text-white" id="pass">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" required />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-        -->
-                <!--<div class="form-group text-white" id="confirmPass" onkeyup="validate()">
-                    <em id="notMatch">Password doesn't match</em>
-                    <label class="control-label"></label>
-                    <input   class="form-control" required />
-                    <span class="text-danger"></span>
-                </div>-->
-
-
-    <!--
-                <div class="form-group text-white">
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <input asp-for="FirstName" class="form-control" required />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group text-white">
-                    <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" required />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-                <div class="form-group text-white">
-                    <label asp-for="Gender" class="control-label"></label>
-                    <select name="Gender" class="form-control" asp for="Gender" asp-items="@ViewBag.gender" required>
-                        <option value="" selected disabled> Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="others">Others</option>
-                    </select>
-                    <span asp-validation-for="Gender" class="text-danger"></span>
-                </div>
-                <div class="form-group text-white">
-                    <label asp-for="Role" class="control-label">Select Role</label>
-                    <select name="Role" id="role" class="form-control" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
-                        <option value="" selected disabled> Select Role</option>
-                        <option value="buyer">Buyer</option>
-                        <option value="broker">Broker</option>
-                        <option value="insurer">Insurer</option>
-
-                    </select>
-                    <span asp-validation-for="Role" class="text-danger"></span>
-                </div>
-                <div class="form-group text-white" id="hiddenDiv">
-                    <label asp-for="LicenseId" class="control-label">Enter License Id</label>
-                    <input  asp-for="LicenseId" class="form-control" type="number" />
-                    <span asp-validation-for="LicenseId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-    -->
-    
-  
-    
-            <div class="row d-flex justify-content-center align-items-center h-80">
-                
-                <div class="card card-registration my-4" style="border-radius: 1rem; background-color: white; ">
-                    <div class="row g-0">
-                        <div class="col-xl-6 d-none d-xl-block">
-                            <img src="  https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                                 alt="Sample photo"
-                                 class="img-fluid"
-                                 style="border-radius: 1rem 0 0 1rem; height: 850px; width: 500px" />
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card-body p-md-5 text-black">
-                                <h3 class="mb-5 text-uppercase">Register</h3>
-                                <form asp-action="Register" id="form" onsubmit="addToModel()">
-                                    <div class="form-outline">
-                                        <label asp-for="UserId" class="form-label">User Id</label>
-                                        <input asp-for="UserId" type="email" class="form-control form-control-lg" required />
-                                        <span asp-validation-for="UserId" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-outline">
-                                        <label asp-for="Password" class="form-label">Password</label>
-                                        <input asp-for="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
+                <div class="col-xl-6">
+                      <div class="card-body p-md-5 text-black">
+                           <h3 class="mb-5 text-uppercase">Register</h3>
+                           <form asp-action="Register" id="form" onsubmit="addToModel()">
+                               <div class="form-outline">
+                                   <label asp-for="UserId" class="form-label">User Id</label>
+                                   <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                                       </div>
+                                       <input asp-for="UserId" type="email" class="form-control form-control-lg" required />
+                                   </div>
+                                   <span asp-validation-for="UserId" class="text-danger"></span>
+                               </div>
+                                <div class="form-outline">
+                                    <label asp-for="Password" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <input asp-for="Password" id="Password" placeholder="Enter a password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="fa fa-eye" id="eye"></i></div>
+                                        </div>
                                         <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4">
-                                            <div class="form-outline">
-                                                <label asp-for="FirstName" class="form-label"></label>
-                                                <input asp-for="FirstName" class="form-control form-control-lg" required />
-                                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-outline">
+                                    <label class="form-label">Confirm Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control form-control-lg" id="ConfirmPassword" placeholder="Confirm Password" name="confpassword" required>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="fa fa-eye" id="eye1"></i></div>
+                                        </div>
+                                    </div>
+                                    <em style="margin-top: 7px;" id="CheckPasswordMatch"></em>
+                                </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <label asp-for="FirstName" class="form-label"></label>
+                                                    <input asp-for="FirstName" class="form-control form-control-lg" required />
+                                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <label asp-for="LastName" class="form-label"></label>
+                                                    <input asp-for="LastName" class="form-control form-control-lg" required />
+                                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-4">
-                                            <div class="form-outline">
-                                                <label asp-for="LastName" class="form-label"></label>
-                                                <input asp-for="LastName" class="form-control form-control-lg" required />
-                                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Gender" class="form-label"></label>
+                                            <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
+                                                <option value="" selected hidden disabled> Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="others">Others</option>
+                                            </select>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group text-black">
+                                            <label asp-for="Role" class="form-label">Select Role</label>
+                                            <select name="Role" id="role" class="form-control form-control-lg" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
+                                                <option value="" selected hidden disabled> Select Role</option>
+                                                <option value="buyer">Buyer</option>
+                                                <option value="broker">Broker</option>
+                                                <option value="insurer">Insurer</option>
+                                            </select>
+                                            <span asp-validation-for="Role" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group text-black" id="hiddenDiv">
+                                            <label asp-for="LicenseId" class="form-label">Enter License Id</label>
+                                            <input asp-for="LicenseId" class="form-control form-control-lg" type="number" />
+                                            <span asp-validation-for="LicenseId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <input id="butt" type="submit" value="Create" class="btn btn-primary btn-lg" />
+                                            </div>
+                                            <div>
+                                                <a asp-action="Index">Go to Home</a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label asp-for="Gender" class="form-label"></label>
-                                        <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
-                                            <option value="" selected hidden disabled> Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="others">Others</option>
-                                        </select>
-                                        <span asp-validation-for="Gender" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group text-black">
-                                        <label asp-for="Role" class="form-label">Select Role</label>
-                                        <select name="Role" id="role" class="form-control form-control-lg" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
-                                            <option value="" selected hidden disabled> Select Role</option>
-                                            <option value="buyer">Buyer</option>
-                                            <option value="broker">Broker</option>
-                                            <option value="insurer">Insurer</option>
-                                        </select>
-                                        <span asp-validation-for="Role" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group text-black" id="hiddenDiv">
-                                        <label asp-for="LicenseId" class="form-label">Enter License Id</label>
-                                        <input asp-for="LicenseId" class="form-control form-control-lg" type="number" />
-                                        <span asp-validation-for="LicenseId" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="d-flex justify-content-end pt-3">
-                                            <input type="submit" value="Create" class="btn btn-primary btn-lg" />
-                                        </div>
-                                        <div>
-                                            <a asp-action="Index">Go to Home</a>
-                                        </div>
-                                    </div>
-                                </form>
+                            </form>
 
-                            </div>
-                        </div>
-                    </div>
+                      </div>
                 </div>
-                </div>
-            
-        
-    
-   
+            </div>
+        </div>
+    </div>
 </body>
 </html>
