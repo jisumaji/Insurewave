@@ -65,5 +65,10 @@ namespace RepoLayer
             db.BuyerAssets.Update(b_asset);
             db.SaveChanges();
         }
+        /*public void GetAssets(string buyerId)
+        {
+            List<BuyerAsset> b  =  GetAllAssets(buyerId);
+            return var;
+        }*/
     }
 }
