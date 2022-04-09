@@ -121,9 +121,40 @@ namespace PresentationLayer.Controllers
             obj2.AddRequest(br);
             int assetid =(int) HttpContext.Session.GetInt32("AssetId2");
             obj.EditAssetRequest(assetid);
-            return RedirectToAction("Index");
-            
+            return RedirectToAction("Index");    
         }
-
+        
+        public IActionResult Payment()
+        {
+            var q =(from ba in db.BuyerAssets
+                     join pa in db.PolicyDetails on ba.AssetId equals pa.AssetId
+                     join id in db.UserDetails on ba.UserId equals id.UserId
+                     join payb in db.PaymentBuyers on pa.PolicyId equals payb.PolicyId
+                     where ba.UserId  ==  HttpContext.Session.GetString("UserId")
+                     orderby id.UserId
+                     select new
+                     {
+                         Name=ba.AssetName,
+                         LS=pa.LumpSum,
+                         P=pa.Premium,
+                         Status=payb.PaidStatus
+                     }).ToList();
+            List<Pay> result  =  new List<Pay>();
+            foreach(var x in q)
+            {
+                Pay p  =  new Pay();
+                p.AssetName  =  x.Name;
+                p.LumpSum  =  x.LS;
+                p.Premium  =  x.P;
+                p.PaidStatus  =  x.Status;
+                result.Add(p);
+            }
+            ViewBag.abc =q.Count;
+            return View(result);
+        }
+        public IActionResult Gateway()
+        {
+            return View();
+        }
     }
 }

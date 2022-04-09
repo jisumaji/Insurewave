@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Pay>
+@* @model Pay *@
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "_LayoutBuyer";
+}
+
+<script type="text/javascript">
+
+</script>
+<h1>Payment</h1>
+
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LumpSum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Premium)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidStatus)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.AssetName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.LumpSum)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Premium)
+            </td>
+
+            @if (item.PaidStatus == "true")
+            {
+                <td>
+                    paid
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Gateway">Make Payment</a>
+                </td>
+            }
+            else
+            {
+                < td > unpaid </ td >
+                <td>
+                    <a class="btn btn-success" asp-action="Gateway">Make Payment</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

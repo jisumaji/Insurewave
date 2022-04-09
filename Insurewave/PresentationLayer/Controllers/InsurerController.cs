@@ -86,6 +86,12 @@ namespace PresentationLayer.Controllers
                 {
                     policyDetail.ReviewStatus = "yes";
                     policyDetail.PolicyStatus = method;
+                    if (method == "accepted")
+                    {
+                        PaymentBuyer pb = new PaymentBuyer();
+                        pb.PolicyId = policyDetail.PolicyId;
+                        _context.PaymentBuyers.Add(pb);
+                    }
                     _context.Update(policyDetail);
                     await _context.SaveChangesAsync();
                 }
