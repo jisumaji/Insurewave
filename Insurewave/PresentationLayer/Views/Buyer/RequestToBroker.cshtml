@@ -9,37 +9,43 @@
         alert("Request has been sent successfully!");
     }
 </script>
+<div class="mx-auto" style="width: 1400px; margin-top: 50px; border-radius:30px;">
+    <div class="card text-center" style="border-radius: 30px;">
+        <h3 class="card-title" style="background-color: #532866 /*rgb(7, 43, 68)*/; border-radius: 30px; color:rgb(251, 251, 255)">Request To Broker</h3>
+        <div class="card-body" style="background-color:#9fdfc3; border-radius: 30px;">
+            <table class="table table-hover" style="border-radius: 30px;">
+                <thead class="bg-light" style="border-radius: 30px;">
+                    <tr style="text-align:center; background-color: rgb(101, 167, 202);">
 
-<h1>Request Broker</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Broker)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerCount)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-           
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BrokerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerCount)
-                </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Broker)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustomerCount)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
 
-                <td>
-                    <a class="btn btn-sm btn-success" asp-action="AddRequest1" onclick="myFunction()" asp-route-BrokerId="@item.BrokerId ">Send Request</a>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BrokerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerCount)
+                            </td>
 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                            <td>
+                                <a class="btn btn-sm btn-success" asp-action="AddRequest1" onclick="myFunction()" asp-route-BrokerId="@item.BrokerId ">Send Request</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
