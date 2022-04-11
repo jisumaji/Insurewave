@@ -24,7 +24,7 @@
     }
 </style>
 <h1 style="text-align:center">Profile Details</h1>
-
+@*
 <head>
     <title>Document</title>
     <link href="~/css/userDetail.css" rel="stylesheet" />
@@ -74,7 +74,7 @@
                     <h4>@Html.DisplayFor(model => model.Gender)</h4>
 
                 </div>
-               
+
                 <div class="box">
                     @if (Model.Role == "broker" || Model.Role == "insurer")
                     {
@@ -83,7 +83,7 @@
                             @Html.DisplayFor(model => model.LicenseId)
                         </h4>
                     }
-                    </div>
+                </div>
                 <div class="box">
                     <span class="value"><b>Role</b></span>
                     <h4>@Html.DisplayFor(model => model.Role)</h4>
@@ -92,6 +92,76 @@
             </div>
         </div>
     </div>
-</body>
+</body>*@
 
-</html>
+<section>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card text-black" style="border-radius:10px; box-shadow:0 0 20px black;width:450px">
+                    
+                    <img src="https://cdn-icons-png.flaticon.com/512/306/306473.png"
+                         class="card-img-top"
+                         alt="Apple Computer" style="width:300px;height:300px;padding:10px;align-self:center"/>
+                    <div class="card-body" >
+                        <div class="text-center">
+                            <h4>Profile</h4>
+                            <hr />
+                            <dl class="row">
+                                <dt class="col-sm-5">
+                                    Name
+                                </dt>
+                                <dd class="col-sm-5">
+                                    @Html.DisplayFor(model => model.FirstName)
+                                    @Html.DisplayFor(model => model.LastName)
+                                </dd>
+                                <dt class="col-sm-5">
+                                    Gender
+                                </dt>
+                                <dd class="col-sm-5">
+                                    @Html.DisplayFor(model => model.Gender)
+                                </dd>
+                                <dt class="col-sm-5">
+                                    Role
+                                </dt>
+                                <dd class="col-sm-5">
+                                    @Html.DisplayFor(model => model.Role)
+                                </dd>
+                                @if (Model.Role == "broker" || Model.Role == "insurer")
+                                {
+                                    <dt class="col-sm-5">
+                                        License Id
+                                    </dt>
+                                    <dd class="col-sm-5">
+                                        @Html.DisplayFor(model => model.LicenseId)
+                                    </dd>
+                                }
+                            </dl>
+
+                            <div class="py-3">
+                                <a class="btn btn-outline-primary ass" asp-action="Edit" asp-route-id="@Model.UserId">Edit</a>
+                                &nbsp;
+                                @{
+
+                                    if (Model.Role == "broker")
+                                    {
+                                        <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Broker">Back to Page</a>
+                                    }
+
+                                    if (Model.Role == "insurer")
+                                    {
+                                        <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Insurer">Back to Page</a>
+                                    }
+                                    if (Model.Role == "buyer")
+                                    {
+                                        <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Buyer">Back to Page</a>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
