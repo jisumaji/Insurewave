@@ -81,9 +81,6 @@ namespace PresentationLayer.Controllers
             }
             return View(userDetail);
         }
-
-        
-
         private bool UserDetailExists(string id)
         {
             return _context.UserDetails.Any(e => e.UserId == id);
