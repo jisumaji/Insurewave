@@ -22,7 +22,7 @@
                     $("#hiddenDiv").hide()
                 }
             })
-            
+
             $("#ConfirmPassword").on('keyup', function () {
                 var password = $("#Password").val();
                 var confirmPassword = $("#ConfirmPassword").val();
@@ -36,7 +36,7 @@
                     $("#butt").show();
                     $("#butt").prop("disabled",false);
                 }
-                   
+
             });
             $("#Password").on('keyup', function () {
                 var password = $("#Password").val();
@@ -92,7 +92,20 @@
                     $('#ConfirmPassword').attr('type', 'password');
                 }
             });
-            
+            @*$('#userId').on('keyup',function () {
+                var id = $('#userId').val();
+                const users = @ViewBag.allUsers;
+                console.log(users);
+                if (users.includes(id)) {
+                    $('#UserIdValid').html("User Id is not available").css("color", "red");
+                    $("#butt").prop("disabled", true);
+                }
+                else {
+                    $('#UserIdValid').html("User Id is available").css("color", "green");
+                    $("#butt").prop("disabled", false);
+                }
+            })*@
+
         });
     </script>
 </head>
@@ -114,10 +127,11 @@
                                    <label asp-for="UserId" class="form-label">User Id</label>
                                    <div class="input-group mb-3">
                                        <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                                           <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                                        </div>
-                                       <input asp-for="UserId" type="email" class="form-control form-control-lg" required />
+                                       <input id="userId" asp-for="UserId" type="email" class="form-control form-control-lg" required />
                                    </div>
+                                   <em style="margin-top: 7px;" id="UserIdValid"></em>
                                    <span asp-validation-for="UserId" class="text-danger"></span>
                                </div>
                                 <div class="form-outline">

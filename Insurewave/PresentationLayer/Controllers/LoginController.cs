@@ -57,6 +57,8 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult Register()
         {
+            /*List<string> allUsers = obj.GetAllUserIds();
+            ViewBag.allUsers = allUsers.ToArray();*/
             return View();
         }
         [HttpPost]
@@ -78,6 +80,9 @@ namespace PresentationLayer.Controllers
             };
             ViewBag.roles = roles;
             ViewBag.gender = gender;
+            if (obj.GetAllUserIds().Contains(u.UserId))
+                return RedirectToAction("Unavailable");
+
             obj.AddUser(u);
             TempData["UserId"] = u.UserId;
             if (u.Role.Equals("insurer"))
@@ -99,6 +104,11 @@ namespace PresentationLayer.Controllers
             }
             return RedirectToAction("Index");
             //return View();
+        }
+        public IActionResult Unavailable()
+        {
+
+            return View();
         }
         public IActionResult ForgotPassword()
         {

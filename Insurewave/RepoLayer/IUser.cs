@@ -18,5 +18,6 @@ namespace RepoLayer
         public UserDetail GetUserById(string userId);
         public void EditUserDetails(UserDetail ud);
         public void ChangePassword(string Uname, string pwd);
+        public List<string> GetAllUserIds();
     }
 }

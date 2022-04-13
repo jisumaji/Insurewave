@@ -60,5 +60,10 @@ namespace RepoLayer
             temp.Password = pwd;
             db.SaveChanges();
         }
+        public List<string> GetAllUserIds()
+        {
+            List<string> result = db.UserDetails.Select(a => a.UserId).ToList();
+            return result;
+        }
     }
 }
