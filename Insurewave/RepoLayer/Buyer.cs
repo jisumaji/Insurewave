@@ -70,5 +70,12 @@ namespace RepoLayer
             List<BuyerAsset> b  =  GetAllAssets(buyerId);
             return var;
         }*/
+        public void ChangePaymentStatus(int policyid)
+        {
+            PaymentBuyer b_pay = db.PaymentBuyers.Where(a => a.PolicyId== policyid).FirstOrDefault();
+            b_pay.PaidStatus= "true";
+            db.PaymentBuyers.Update(b_pay);
+            db.SaveChanges();
+        }
     }
 }

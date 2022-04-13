@@ -131,26 +131,28 @@
 
                                 @if (item.PaidStatus == "true")
                                 {
-                                    <td>
-                                        <a class="btn btn-primary" asp-action="Gateway">Make Payment</a>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <a class="btn btn-success" asp-action="Gateway">Make Payment</a>
-                                    </td>
-                                }
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</body>
+                            <td>
+                                <a class="btn btn-primary" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a> 
+                                @*<a class="btn btn-primary btn-sm" style="border-radius:10px;" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>*@
 
-</html>
+                                    </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <a class="btn btn-success" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </body>
+
+        </html>
 
 
 

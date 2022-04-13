@@ -67,5 +67,10 @@ namespace RepoLayer
             bool result = db.PolicyDetails.Contains(p);
             return result;
         }
+        public PolicyDetail GetPolicyByPolId(int polid)
+        {
+            PolicyDetail p = db.PolicyDetails.Where(a => a.PolicyId == polid).FirstOrDefault();
+            return p;
+        }
     }
 }
