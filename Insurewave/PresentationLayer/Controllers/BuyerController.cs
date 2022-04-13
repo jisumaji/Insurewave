@@ -67,7 +67,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost]
-        [ActionName("Delete")]
+        [ActionName("DeleteOneAsset")]
         public IActionResult Delete(int assetid)
         {
             obj.DeleteAsset(assetid);
@@ -134,6 +134,7 @@ namespace PresentationLayer.Controllers
                      orderby id.UserId
                      select new
                      {
+                         PolID=payb.PolicyId,
                          Name=ba.AssetName,
                          LS=pa.LumpSum,
                          P=pa.Premium,
@@ -143,6 +144,7 @@ namespace PresentationLayer.Controllers
             foreach(var x in q)
             {
                 Pay p  =  new Pay();
+                p.PolicyId = x.PolID;
                 p.AssetName  =  x.Name;
                 p.LumpSum  =  x.LS;
                 p.Premium  =  x.P;
@@ -152,9 +154,19 @@ namespace PresentationLayer.Controllers
             ViewBag.abc =q.Count;
             return View(result);
         }
-        public IActionResult Gateway()
+        public IActionResult Gateway(int policyid)
         {
-            return View();
+            PolicyDetail p = obj4.GetPolicyByPolId(policyid); 
+            return View(p);
+        }
+        //[HttpPost]
+        //[ActionName("Gateway1")]
+        public IActionResult Gateway1(int policyid)
+        //public static void Gateway1(int policyid)
+        {
+            IBuyer obj = new Buyer();
+            obj.ChangePaymentStatus(policyid);
+            return RedirectToAction("Payment");
         }
     }
 }

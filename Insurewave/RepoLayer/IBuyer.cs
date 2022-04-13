@@ -18,5 +18,7 @@ namespace RepoLayer
         public void DeleteAsset(int assetid);
         public void EditAsset(BuyerAsset b);
         public void EditAssetRequest(int assetid);
+        public void ChangePaymentStatus(int policyid);
+
     }
 }

@@ -7,6 +7,7 @@ namespace PresentationLayer.Models
 {
     public class Pay
     {
+        public int PolicyId { get; set; }
         public string AssetName { get; set; }
         public decimal LumpSum { get; set; }
         public decimal Premium { get; set; }
