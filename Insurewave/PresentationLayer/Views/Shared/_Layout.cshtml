@@ -239,12 +239,26 @@
             width: 100px;
             border-radius: 20px;
         }
+        html {
+            scroll-behavior: smooth;
+        }
+        .hover{
+            box-shadow:2px 2px 10px black;
+        }
+        .hover:hover{
+            box-shadow:0 0 20px black;
+        }
     </style>
+    <script>
+        $('.carousel').carousel({
+            interval: 1000
+        })
+    </script>
 
 </head>
 <body>
     <header>
-        <nav class="navbar bg-dark navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3 ">
+        <nav class="navbar bg-dark navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="/css/Insurewave.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
@@ -264,113 +278,70 @@
                         &nbsp;
                         &nbsp;
                         <li class="nav-item">
-                            <a class="nav-link text-light btn btn-outline-warning cow" asp-area="" asp-controller="Login" asp-action="Register">Sign Up</a>
+                            <a class="nav-link text-light btn btn-outline-info cow" asp-area="" asp-controller="Login" asp-action="Register">Sign Up</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="col-xl-12 col-lg-12 col-md-12">
-
-
-        <div class="w3-content w3-section" style="max-width:500px">
-            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
-            <img class="mySlides" src="https://www.maxlifeinsurance.com/content/dam/corporate/images/online%20insurance.jpg" style="height:400px;width:1490px">
-            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+    <div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:500px;">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" alt="First slide" style="height:500px;width:1490px">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://www.maxlifeinsurance.com/content/dam/corporate/images/online%20insurance.jpg" alt="Second slide" style="height:500px;width:1490px">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="~/css/carousel.jpg" alt="Third slide" style="height:500px;width:1490px">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
-    <script>
-        var myIndex = 0;
-        carousel();
-
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            myIndex++;
-            if (myIndex > x.length) { myIndex = 1 }
-            x[myIndex - 1].style.display = "block";
-            setTimeout(carousel, 2000); // Change image every 2 seconds
-        }
-    </script>
+    
     <br>
     <br>
     <br>
 
-
-
-    <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-4">
-            <div class="infocardContainer">
-                <div id="main">
-                    <img src="https://img.myloview.com/stickers/buyer-with-shopping-cart-line-icon-customer-sign-supermarket-client-symbol-quality-design-element-editable-stroke-linear-style-buyer-icon-vector-700-199496441.jpg"></img>
-                </div>
-                <div id="textbois">
-                    <h2>Buyer</h2>
-                    <h4>User who purchases</h4>
-                    <a href="#">Login</a>
-                    <div id="hotlinks">
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                    </div>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <div class="card hover" style="width:350px">
+                <img class="card-img-top" src="https://img.myloview.com/stickers/buyer-with-shopping-cart-line-icon-customer-sign-supermarket-client-symbol-quality-design-element-editable-stroke-linear-style-buyer-icon-vector-700-199496441.jpg" alt="Card image" style="height:300px;">
+                <div class="card-body">
+                    <h4 class="card-title">Buyer</h4>
+                    <p class="card-text">User who purchases</p>
+                    <a href="/Login/Login" class="btn btn-primary btn-block text-light">Login</a>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4">
-            <div class="infocardContainer">
-                <div id="main">
-                    <img src="https://media.istockphoto.com/vectors/brokerage-line-icon-concept-sign-outline-vector-illustration-linear-vector-id1207836996?k=20&m=1207836996&s=612x612&w=0&h=sv7a6qbJjGqR4J-qcngqatoKn7YZ7G36kICGPNoXX1s="></img>
-                </div>
-                <div id="textbois">
-                    <h2>Broker</h2>
-                    <h4> User who connects</h4>
-                    <a href="#">Login</a>
-                    <div id="hotlinks">
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                    </div>
+            <div class="card hover" style="width:350px">
+                <img class="card-img-top" src="https://media.istockphoto.com/vectors/brokerage-line-icon-concept-sign-outline-vector-illustration-linear-vector-id1207836996?k=20&m=1207836996&s=612x612&w=0&h=sv7a6qbJjGqR4J-qcngqatoKn7YZ7G36kICGPNoXX1s=" alt="Card image" style="height:300px;">
+                <div class="card-body">
+                    <h4 class="card-title">Broker</h4>
+                    <p class="card-text">User who connects</p>
+                    <a href="/Login/Login" class="btn btn-primary btn-block text-light">Login</a>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4">
-            <div class="infocardContainer">
-                <div id="main">
-                    <img src="https://cdn3.vectorstock.com/i/1000x1000/70/72/accident-insurance-icon-flat-design-vector-14387072.jpg"></img>
-                </div>
-                <div id="textbois">
-                    <h2>Insurer</h2>
-                    <h4>User who sells</h4>
-                    <a href="#">Login</a>
-                    <div id="hotlinks">
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                        <a href="https://codepen.io/LIMESTA">
-                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                        </a>
-                    </div>
+            <div class="card hover" style="width:350px">
+                <img class="card-img-top" src="https://cdn3.vectorstock.com/i/1000x1000/70/72/accident-insurance-icon-flat-design-vector-14387072.jpg" alt="Card image" style="height:300px;">
+                <div class="card-body">
+                    <h4 class="card-title">Insurer</h4>
+                    <p class="card-text">User who sells</p>
+                    <a href="/Login/Login" class="btn btn-primary btn-block text-light">Login</a>
                 </div>
             </div>
         </div>
@@ -381,9 +352,7 @@
     <br>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6">
-                <img src="./css/scott-graham-OQMZwNd3ThU-unsplash.jpg" alt="responsive webite" class="img-fluid" style="height:620px">
-            </div>
+            
             <div class="col-xl-6 col-lg-6 col-md-6">
                 <div class="container">
                     <main role="main" class="pb-3">
@@ -426,7 +395,7 @@
                 <h1 class="xlarge-font"><b>Clarity</b></h1>
                 <h1 class="large-font" style="color:red;"><b>Key benefits include:  </b></h1>
                 <p>
-                    <span style="font-size:24px">A revolution in Insurance market</span> ->Claims are paid within hours, not years<br>
+                    <span style="font-size:24px">A revolution in Insurance market</span> <br />->Claims are paid within hours, not years<br>
                     ->It takes only seconds to agree and settle premiums<br>
                     ->Client service should take precedence over administration for brokers<br>
                     ->Near-real-time exposure tracking for insurers
@@ -492,9 +461,10 @@
     <br>
     <footer class="border-top footer bg-dark ">
         <div class="container text-light">
-            &copy; 2022 - PresentationLayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Insurewave - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <a class="btn btn-light" href="#top" style="position:fixed;right:30px;bottom:30px;box-shadow:0 0 10px black;"><i class="fa fa-angle-up" ></i></a>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
