@@ -1,7 +1,13 @@
 ﻿@model DataLayer.Models.UserDetail
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Profile | Edit";
+    if (Model.Role == "buyer")
+        Layout = "_LayoutBuyer";
+    if (Model.Role == "broker")
+        Layout = "_LayoutBroker";
+    if (Model.Role == "insurer")
+        Layout = "_LayoutInsurer";
 }
 
 <h1>Edit</h1>
