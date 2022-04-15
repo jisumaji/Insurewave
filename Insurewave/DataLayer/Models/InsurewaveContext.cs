@@ -31,7 +31,7 @@ namespace DataLayer.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= SWETASARKAR\\MSSQLSERVER03;Database=Insurewave;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-FOMB7L0;Database=Insurewave;Integrated Security=true");
             }
         }
 
@@ -137,7 +137,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F20174F39768")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F2019B551399")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
