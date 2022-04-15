@@ -4,14 +4,236 @@
     Layout = "_LayoutBuyer";
 }
 
-<h1 style="color:white">Index</h1>
-<p class="text-white">Welcome Buyer @Context.Session.GetString("FirstName")</p>
 
-<form>
-    <div class="form-group">
-        @*<input type="submit" value="Payment" asp-controller="Buyer" asp-action="Payment" class="btn btn-primary" />
-        <input type="submit" value="Display Asset" asp-controller="Buyer" asp-action="DisplayAssets" class="btn btn-primary" />*@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/22798a5bcc.js" crossorigin="anonymous"></script>
+
+
+
+
+<!--<a class="btn btn-success" href="/Broker/GetAllPolicies">Details</a>
+<a class="btn btn-primary" asp-action="AddPolicy" asp-controller="Broker">Add Policy</a>-->
+
+
+
+
+<body class="for-background-image">
+
+    <div class="col-xl-12 col-lg-12 col-md-12">
+
+
+        <div class="w3-content w3-section" style="max-width:500px">
+            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+            <img class="mySlides" src="https://www.maxlifeinsurance.com/content/dam/corporate/images/online%20insurance.jpg" style="height:400px;width:1490px">
+            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+        </div>
     </div>
-</form>
-    
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+
+        <!--About section starting-->
+
+        <section id="about">
+
+            <div class="conatiner row mt-5 pb-5">
+
+                <div class="hero-text col-md-6 ">
+
+                    <div class="pt-5 mt-5 order-2 d-flex flex-column justify-content-center">
+                        <strong><h1>Hello @Context.Session.GetString("FirstName")</h1></strong>
+                        <h1 class="hero-main-header font-weight-bold mb-4 text-dark about-section-text-animation">Leave the Insurance to Us.</h1>
+                        <h4 class="hero-main-subtext text-muted about-section-text-animation">We provide a team of experienced brokers  and bunch of certified insurers who can help you with service of your need</h4>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="hero-image col-md-6 pt-5 ">
+                    <img class="img-fluid about-section-animation responsive-size" src="https://media.istockphoto.com/vectors/insurance-broker-concept-vector-illustration-vector-id1167885564?k=20&m=1167885564&s=170667a&w=0&h=3xr0Ew1Llt2tIlngfUti-th-H61wtITQbuHY4KZ3vKw=" alt="" style="height:350px;width:500px">
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+    <!--orange circle starting-->
+    <div class="orange-cicle">
+
+    </div>
+    <!--orange circle ending-->
+
+    <div class="container mt-5 pt-5">
+        <div class="container row">
+            <div class="col-md-6">
+                <img src="https://darvideo.tv/wp-content/uploads/2019/07/1-1.jpg" alt="" class="img-fluid" style="height:350px;width:500px">
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center" style="margin-left: 10%;">
+                    <h2 class="text-dark text-left responsive-h2">Our brokers will help you identify your individual  risks to help you decide what to insure, and how to manage those risks in other ways.</h2>
+                    <h5 class="text-secondary mt-3 text-left"> Our Insurance brokers can give you technical advice that can be very useful if you need to make a claim.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--For up arrow starting-->
+    <div class="arrow">
+        <img class="for-arrow-background-image" src="https://eastwesthealing.com/wp-content/uploads/2016/06/growth-arrow.png" alt="">
+    </div>
+
+    <!--For up arrow ending-->
+
+    <div class="container mt-1 pt-5">
+        <div class="container row">
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center mt-5" style="padding-top: 20%;">
+                    <h2 class="text-dark text-left responsive-h2">Brokers are aware of the terms and conditions, coverage’s and exclusions and costs of a wide range of competing insurance policies</h2>
+                    <h5 class="text-secondary mt-3 text-left">They can help you find the most appropriate cover for your own circumstances</h5>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-top: 10%">
+                <img class="img-fluid analytics-image" style="height:350px;width:500px;margin-left: 20%; " src="https://i.pinimg.com/550x/dc/b3/92/dcb392138d1679e7c62e8b7e9b54a794.jpg" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5 pt-5">
+        <div class="container row">
+            <div class="col-md-6">
+                <img src="https://thumbs.dreamstime.com/b/vector-illustration-concept-life-insurance-property-real-estate-savings-large-family-background-symbols-objects-142993202.jpg" alt="" class="img-fluid" style="height:350px;width:500px">
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center" style="margin-left: 10%;">
+                    <h2 class="text-dark text-left responsive-h2">Our Insurers will provide you affordable secure and risk free insurances.</h2>
+                    <h5 class="text-secondary mt-3 text-left"> We have partnered with 100+ insurance companies who provide insurance for 1000+ assets</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+                <input type="submit" value="Add Asset" asp-controller="Buyer" asp-action="Payment" class="btn btn-info btn-lg btn-block" />
+                <input type="submit" value="Display Asset" asp-controller="Buyer" asp-action="DisplayAssets" class="btn btn-info btn-lg btn-block" />
+            </div>
+        </form>
+    </div>
+    <br />
+    <br />
+    <!--About section ending-->
+    <!--services section starting-->
+    <section class="bg-light pb-2">
+        <br />
+        <br />
+        <div class="container mt-5">
+            <h1 class="text-center text-dark">Find Best Insurance Services For Your Assets</h1>
+
+        </div>
+        <div class="container d-flex flex-column" id="services">
+
+
+            <div class="container row mt-3 mb-3 pt-4 mx-auto">
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://www.veriday.com/wp-content/uploads/2017/10/ThinkstockPhotos-619049748-1030x997.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Customer Care</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://www.contractor-advertising.com/wp-content/uploads/business-performance-analysis-with-graphs_53876-59915.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Analysis</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://www.bradleystaffinggroup.com/wp-content/uploads/2019/10/photo_119958_20190405.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Assistance</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container row mt-3 mb-3 mx-auto">
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://previews.123rf.com/images/emojoez/emojoez1808/emojoez180800062/112266457-illustrations-design-concept-cr%C3%A9atif-croissance-financi%C3%A8re-investissement-d-argent-via-une-poign%C3%A9e-d.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Finance</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://thumbs.dreamstime.com/b/developers-work-cyber-security-program-cyber-security-software-information-security-program-antivirus-concept-141668589.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Security</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://freerangestock.com/sample/102627/contract--a-businessman-signs-a-contract--illustration.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Paperwork</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+    <!--services section ending-->
+    <!--Testimonial section starting-->
+    <!--CALL TO ACTION section ending-->
+    <!--Bootstap links-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!--Bootstap links ended-->
+</body>
+
+
 
