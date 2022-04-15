@@ -29,14 +29,12 @@ namespace RepoLayer
             List<PolicyDetail> p = db.PolicyDetails.Where(a => a.InsurerId == insurerId).ToList();
             return p;
         }
-
        /*for one asset only*/
         public List<PolicyDetail> GetAllPoliciesAsset(int assetid)
         {
-            List<PolicyDetail> p = db.PolicyDetails.Where(a => a.AssetId == assetid ).Where(a => a.PolicyStatus=="pending").ToList();
+            List<PolicyDetail> p = db.PolicyDetails.Where(a => a.AssetId == assetid ).ToList();
             return p;
         }
-        
         public void AddPolicy(PolicyDetail p)
         {
             db.PolicyDetails.Add(p);

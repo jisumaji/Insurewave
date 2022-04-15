@@ -3,62 +3,495 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PresentationLayer</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         body {
-            
             background-image: linear-gradient(to right,#cfe3ed, #96c4db);
         }
+
         header {
             background-color: white;
         }
+
         footer {
             background-color: white;
         }
+
+        .mySlides {
+            display: none;
+        }
+
+
+
+
+
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both
+        }
+
+        .column-66 {
+            float: left;
+            width: 66.66666%;
+            padding: 20px;
+        }
+
+        .column-33 {
+            float: left;
+            width: 33.33333%;
+            padding: 20px;
+        }
+
+        .large-font {
+            font-size: 48px;
+        }
+
+        .xlarge-font {
+            font-size: 64px
+        }
+
+        .button {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #04AA6D;
+        }
+
+        img.under {
+            display: block;
+        }
+
+
+
+
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 25%;
+            padding: 0 5px;
+        }
+
+        .row {
+            margin: 0 -5px;
+        }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: #444;
+            color: white;
+        }
+
+        .fa {
+            font-size: 50px;
+        }
+
+
+
+
+
+
+
+
+        .infocardContainer * {
+            font-family: 'Fira Sans Condensed', sans-serif;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-weight: 600;
+            font-style: italic;
+            font-family: "Fira Sans Condensed", sans-serif;
+        }
+
+
+
+        a {
+            text-decoration: none;
+        }
+
+            a:visited {
+                color: #555566;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .infocardContainer {
+            display: flex;
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+            background: rgb(0,159,255);
+            background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgba(0,159,255,1) 100%);
+            transition: all 500ms ease-in;
+            transition-delay: 1s;
+            margin: auto;
+            margin-top: 100px;
+            --margin-top: 100px;
+        }
+
+            .infocardContainer:hover {
+                width: 500px;
+                border-radius: 100px 10px 100px 100px;
+                transition: all 1s ease-out;
+            }
+
+            .infocardContainer div {
+                text-color: white;
+                flex-shrink: 1;
+                width: 100%;
+                --background-color: green;
+            }
+
+                .infocardContainer div * {
+                    display: flex;
+                    --flex: inherit;
+                    overflow: hidden;
+                    text-overflow: hidden;
+                    --background-color: yellow;
+                    color: white;
+                    white-space: nowrap;
+                    width: 0;
+                    height: auto;
+                    transition: all 450ms ease-in;
+                    transition-delay: 1s;
+                }
+
+            .infocardContainer:hover div * {
+                --background-color: purple;
+                display: flex;
+                visibility: visible;
+                transition: all 1s ease-out;
+                transition-delay: 500ms;
+                width: 100%;
+                height: auto;
+            }
+
+            .infocardContainer #main, .infocardContainer #main img {
+                --background-color: red;
+                height: 200px;
+                width: 200px;
+                padding-right: 10px;
+                border-radius: 100%;
+                flex-shrink: 0;
+                object-fit: cover;
+            }
+
+                .infocardContainer #main img {
+                    height: 180px;
+                    width: 180px;
+                    transition: none;
+                    display: float;
+                    position: relative;
+                    border: 10px solid white;
+                    margin: 0 0 0 0;
+                    padding: 0 0 0 0;
+                }
+
+            .infocardContainer #textbois {
+                position: relative;
+            }
+
+                .infocardContainer #textbois #hotlinks {
+                    max-width: 60%;
+                    max-height: 30px;
+                    --background-color: white;
+                    position: absolute;
+                    bottom: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                    border-radius: 13px;
+                }
+
+                    .infocardContainer #textbois #hotlinks * {
+                        background-color: white;
+                        max-width: 30px;
+                        --margin: 0 1px 0 1px;
+                        border-radius: 25px;
+                    }
+                        /*TODO: animate copy main transition style for info*/
+                        .infocardContainer #textbois #hotlinks *:hover {
+                        }
+
+
+
+        .cow {
+            width: 100px;
+            border-radius: 20px;
+        }
     </style>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3 ">
+        <nav class="navbar bg-dark navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3 ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="/css/insurewave.png" alt="" width="80" height="50" class="d-inline-block align-text-top">
+                    <img src="/css/Insurewave.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
 
                 </a>
-                <a class="navbar-brand text-dark" asp-controller="Home" asp-action="Index"><strong>Insurewave</strong></a>
+                <a class="navbar-brand text-light" asp-controller="Home" asp-action="Index"><strong>Insurewave</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav ml-auto">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light btn btn-outline-success cow" asp-area="" asp-controller="Login" asp-action="Login">Sign in</a>
                         </li>
+                        &nbsp;
+                        &nbsp;
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Register">Create Account</a>
+                            <a class="nav-link text-light btn btn-outline-warning cow" asp-area="" asp-controller="Login" asp-action="Register">Sign Up</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="col-xl-12 col-lg-12 col-md-12">
+
+
+        <div class="w3-content w3-section" style="max-width:500px">
+            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+            <img class="mySlides" src="https://www.maxlifeinsurance.com/content/dam/corporate/images/online%20insurance.jpg" style="height:400px;width:1490px">
+            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+        </div>
+    </div>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+
+
+
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="infocardContainer">
+                <div id="main">
+                    <img src="https://img.myloview.com/stickers/buyer-with-shopping-cart-line-icon-customer-sign-supermarket-client-symbol-quality-design-element-editable-stroke-linear-style-buyer-icon-vector-700-199496441.jpg"></img>
+                </div>
+                <div id="textbois">
+                    <h2>Buyer</h2>
+                    <h4>User who purchases</h4>
+                    <a href="#">Login</a>
+                    <div id="hotlinks">
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="infocardContainer">
+                <div id="main">
+                    <img src="https://media.istockphoto.com/vectors/brokerage-line-icon-concept-sign-outline-vector-illustration-linear-vector-id1207836996?k=20&m=1207836996&s=612x612&w=0&h=sv7a6qbJjGqR4J-qcngqatoKn7YZ7G36kICGPNoXX1s="></img>
+                </div>
+                <div id="textbois">
+                    <h2>Broker</h2>
+                    <h4> User who connects</h4>
+                    <a href="#">Login</a>
+                    <div id="hotlinks">
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="infocardContainer">
+                <div id="main">
+                    <img src="https://cdn3.vectorstock.com/i/1000x1000/70/72/accident-insurance-icon-flat-design-vector-14387072.jpg"></img>
+                </div>
+                <div id="textbois">
+                    <h2>Insurer</h2>
+                    <h4>User who sells</h4>
+                    <a href="#">Login</a>
+                    <div id="hotlinks">
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                        <a href="https://codepen.io/LIMESTA">
+                            <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer ">
-        <div class="container text-dark">
+
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <img src="./css/scott-graham-OQMZwNd3ThU-unsplash.jpg" alt="responsive webite" class="img-fluid" style="height:620px">
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div style="text-align:center">
+        <h2>what we offer</h2>
+
+    </div>
+
+    <!-- The App Section -->
+    <div class="container">
+        <div class="row">
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>Insurewave</b></h1>
+                <h1 class="large-font" style="color:MediumSeaGreen;"><b>Integrating insurance experiences:</b></h1>
+                <p><span style="font-size:36px">Smooth and simple procedure</span> As a platform that connects brokers, insurers, and buyers of commercial insurance, as well as shared real-time risk data and insights, we are enabling a better insurance experience for the whole market.</p>
+
+            </div>
+            <div class="column-33">
+                <img class="under" src="https://tradebrains.in/wp-content/uploads/2020/10/top-10-insurance-companies-in-India-in-2020.jpg" alt="img" width="335" height="335">
+            </div>
+        </div>
+    </div>
+
+    <!-- Clarity Section -->
+    <div class="container" style="background-color:#f1f1f1">
+        <div class="row">
+            <div class="column-33">
+                <img class="under" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKUFYyHm_-WAMAjpMJAEUM5-_0Z1QOcPGTZg&usqp=CAU" alt="img" width="335" height="335">
+            </div>
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>Clarity</b></h1>
+                <h1 class="large-font" style="color:red;"><b>Key benefits include:  </b></h1>
+                <p>
+                    <span style="font-size:24px">A revolution in Insurance market</span> ->Claims are paid within hours, not years<br>
+                    ->It takes only seconds to agree and settle premiums<br>
+                    ->Client service should take precedence over administration for brokers<br>
+                    ->Near-real-time exposure tracking for insurers
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The App Section -->
+    <div class="container">
+        <div class="row">
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>Insurewave</b></h1>
+                <h1 class="large-font" style="color:MediumSeaGreen;"><b>Why use it?</b></h1>
+                <p><span style="font-size:36px">Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+            </div>
+            <div class="column-33">
+                <img class="under" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJEDJoebDLU-xKIhk0sOsJyRG_BKrQwAr5qA&usqp=CAU" width="335" height="335">
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-user"></i></p>
+                    <h3>100+</h3>
+                    <p>Insurers</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-check"></i></p>
+                    <h3>1000+</h3>
+                    <p>Policies</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-smile-o"></i></p>
+                    <h3>100+</h3>
+                    <p>Happy Clients</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-bolt"></i></p>
+                    <h3>100%</h3>
+                    <p>Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <footer class="border-top footer bg-dark ">
+        <div class="container text-light">
             &copy; 2022 - PresentationLayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

@@ -1,9 +1,206 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Insurer | Home";
     Layout = "_LayoutInsurer";
 }
 
-<h1>Index</h1>
-<p>Welcome Insurer</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/22798a5bcc.js" crossorigin="anonymous"></script>
+
+
+
+
+<!--<a class="btn btn-success" href="/Broker/GetAllPolicies">Details</a>
+<a class="btn btn-primary" asp-action="AddPolicy" asp-controller="Broker">Add Policy</a>-->
+
+
+
+
+<body class="for-background-image">
+
+    <div class="col-xl-12 col-lg-12 col-md-12">
+
+
+        <div class="w3-content w3-section" style="max-width:500px">
+            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+            <img class="mySlides" src="https://www.maxlifeinsurance.com/content/dam/corporate/images/online%20insurance.jpg" style="height:400px;width:1490px">
+            <img class="mySlides" src="https://economictimes.indiatimes.com/thumb/msid-69278711,width-1200,height-900,resizemode-4,imgsize-132321/home-insurance-getty.jpg?from=mdr" style="height:400px;width:1490px">
+        </div>
+    </div>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+
+
+
+
+    <div class="container">
+
+        <!--About section starting-->
+
+        <section id="about">
+
+            <div class="conatiner row mt-5 pb-5">
+
+                <div class="hero-text col-md-6 ">
+
+                    <div class="pt-5 mt-5 order-2 d-flex flex-column justify-content-center">
+                        <strong><h1>Hello @Context.Session.GetString("FirstName")</h1></strong>
+                        <h1 class="hero-main-header font-weight-bold mb-4 text-dark about-section-text-animation">Attention Insurers!!</h1>
+                        <h4 class="hero-main-subtext text-muted about-section-text-animation">Explore a whole new world of buyer- broker-insurer relationships with Insurewave.</h4>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="hero-image col-md-6 pt-5 ">
+                    <img class="img-fluid about-section-animation responsive-size" src="https://static.vecteezy.com/system/resources/thumbnails/001/822/276/small_2x/broker-or-realtor-offering-a-house-by-standing-behind-a-model-of-property-free-vector.jpg" alt="" style="height:350px;width:500px">
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+
+
+    <div class="container mt-5 pt-5">
+        <div class="container row">
+            <div class="col-md-6">
+                <img src="https://www.corporatecomplianceinsights.com/wp-content/uploads/2021/08/shutterstock_1890861670.jpg" alt="" class="img-fluid" style="height:350px;width:500px">
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center" style="margin-left: 10%;">
+                    <h2 class="text-dark text-left responsive-h2">Come join us in forming the biggest platform for insurance management.</h2>
+                    <h5 class="text-secondary mt-3 text-left">Access our wonderful clientele of buyers and brokers.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--For up arrow starting-->
+    <div class="arrow">
+        <img class="for-arrow-background-image" src="https://eastwesthealing.com/wp-content/uploads/2016/06/growth-arrow.png" alt="">
+    </div>
+
+    <!--For up arrow ending-->
+
+    <div class="container mt-1 pt-5">
+        <div class="container row">
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center mt-5" style="padding-top: 20%;">
+                    <h2 class="text-dark text-left responsive-h2">Get customisable policy contracts.</h2>
+                    <h5 class="text-secondary mt-3 text-left">Choose the contracts that you wish to accept!</h5>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-top: 10%">
+                <img class="img-fluid analytics-image" style="height:350px;width:500px;margin-left: 20%; " src="https://media.istockphoto.com/vectors/rules-regulatory-concept-vector-flat-cartoon-graphic-design-vector-id1189794566?k=20&m=1189794566&s=170667a&w=0&h=lnHaxyyYLMe6kcJ-veFwXcY16o_960hz9Y5cH4bdtlI=" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <!--About section ending-->
+    <!--services section starting-->
+    <section class="bg-light pb-2">
+        <br />
+        <br />
+        <div class="container mt-5">
+            <h1 class="text-center text-dark">Bunch of Services For Insurers</h1>
+
+        </div>
+        <div class="container d-flex flex-column" id="services">
+
+
+            <div class="container row mt-3 mb-3 pt-4 mx-auto">
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://graphicriver.img.customer.envatousercontent.com/files/244003090/preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=590&s=95b12373df51c08b4a71c78ae48e9633" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Broker Service</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://www.contractor-advertising.com/wp-content/uploads/business-performance-analysis-with-graphs_53876-59915.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Analysis</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://www.bradleystaffinggroup.com/wp-content/uploads/2019/10/photo_119958_20190405.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Assistance</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container row mt-3 mb-3 mx-auto">
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://previews.123rf.com/images/unitonevector/unitonevector1904/unitonevector190404282/123918285-zakelijk-partnerschapscontract-cartoonovereenkomst-advocaat-en-cli%C3%ABnt-bespreken-zaak-platte-karakter.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 1.7rem;">Modifiable Contracts</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://peak.capital/peak2021/wp-content/uploads/2021/05/business-innovation-1-1024x535_5dd7b6daf1b1095f6a77e4aae21801c2_800.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Advisory</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card for-height" style="width: 18rem; height: 20rem">
+                        <img class="card-img-top" src="https://freerangestock.com/sample/102627/contract--a-businessman-signs-a-contract--illustration.jpg" alt="Card image cap" style="height:12rem">
+                        <div class="card-body">
+                            <h2 class="text-dark text-center" style="margin-top: 3.2rem;">Paperwork</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!--services section ending-->
+    <!--Testimonial section starting-->
+    <!--CALL TO ACTION section ending-->
+    <!--Bootstap links-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!--Bootstap links ended-->
+</body>
 

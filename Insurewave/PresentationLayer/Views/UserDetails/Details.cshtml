@@ -1,13 +1,8 @@
 ﻿@model DataLayer.Models.UserDetail
 
 @{
-    ViewData["Title"] = "Details";
-    if (Model.Role == "buyer")
-        Layout = "_LayoutBuyer";
-    if (Model.Role == "broker")
-        Layout = "_LayoutBroker";
-    if (Model.Role == "insurer")
-        Layout = "_LayoutInsurer";
+    ViewData["Title"] = "Profile | Details";
+    Layout = "_LayoutLogReg";
 }
 <style>
     .ass

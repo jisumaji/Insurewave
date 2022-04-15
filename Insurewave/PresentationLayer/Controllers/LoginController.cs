@@ -51,10 +51,6 @@ namespace PresentationLayer.Controllers
                 return RedirectToAction("Error");
             }
         }
-        public IActionResult Page1()
-        {
-            return View();
-        }
         public IActionResult Register()
         {
             /*List<string> allUsers = obj.GetAllUserIds();

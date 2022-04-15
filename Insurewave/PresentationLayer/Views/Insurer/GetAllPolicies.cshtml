@@ -1,99 +1,63 @@
 ﻿@model IEnumerable<DataLayer.Models.PolicyDetail>
 
 @{
-    ViewData["Title"] = "GetAllPolicies";
+    ViewData["Title"] = "Insurer | Policies";
     Layout = "~/Views/Shared/_LayoutInsurer.cshtml";
 }
 
-<h1>GetAllPolicies</h1>
+<style>
+    .hover:hover {
+        box-shadow: 0 0 20px black;
+        background-image: linear-gradient(to right,#000428, #004e92);
+        color: white;
+        transition: all ease-in-out 0.2s;
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Duration)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Premium)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LumpSum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PremiumInterval)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaturityAmount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PolicyStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReviewStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Feedback)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Asset)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Broker)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Insurer)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Premium)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LumpSum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PremiumInterval)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaturityAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PolicyStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Feedback)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asset.AssetName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BrokerId)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Insurer.InsurerId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PolicyId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PolicyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PolicyId">Delete</a>
-            </td>*@
-        </tr>
-}
-    </tbody>
-</table>
+    .hover {
+        box-shadow: 2px 2px 8px black;
+    }
+
+    .ass {
+        width: 150px;
+    }
+
+        .ass:hover {
+            border-radius: 20px;
+
+            @*transition:all ease-in-out 0.3s;
+            *@
+        }
+</style>
+<h1 class="text-center">Policies</h1>
+<hr />
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="card hover">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayNameFor(model => model.Asset): &nbsp;  @Html.DisplayFor(modelItem => item.Asset.AssetName)</h4>
+                <h4> @Html.DisplayNameFor(model => model.Broker): &nbsp;  @Html.DisplayFor(modelItem => item.Broker.BrokerId)</h4>
+                <h4>Policy Details:</h4>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p><strong>@Html.DisplayNameFor(model => model.StartDate):</strong> @Html.DisplayFor(modelItem => item.StartDate)</p>
+                        <p><strong>@Html.DisplayNameFor(model => model.Duration):</strong> @Html.DisplayFor(modelItem => item.Duration)</p>
+                        <p><strong>@Html.DisplayNameFor(model => model.MaturityAmount):</strong> @Html.DisplayFor(modelItem => item.MaturityAmount)</p>
+                    </div>
+                    <div>
+                        <p><strong>@Html.DisplayNameFor(model => model.LumpSum):</strong> @Html.DisplayFor(modelItem => item.LumpSum)</p>
+                        <p><strong>@Html.DisplayNameFor(model => model.Premium):</strong> @Html.DisplayFor(modelItem => item.Premium)</p>
+                        <p><strong>@Html.DisplayNameFor(model => model.PremiumInterval):</strong> @Html.DisplayFor(modelItem => item.PremiumInterval)</p>
+                    </div>
+                    <div>
+                        <p><strong>@Html.DisplayNameFor(model => model.PolicyStatus):</strong> @Html.DisplayFor(modelItem => item.PolicyStatus)</p>
+                        <p><strong>@Html.DisplayNameFor(model => model.ReviewStatus):</strong> @Html.DisplayFor(modelItem => item.ReviewStatus)</p>
+                        <p><strong>@Html.DisplayNameFor(model => model.Feedback):</strong> @Html.DisplayFor(modelItem => item.Feedback)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+</div>
+

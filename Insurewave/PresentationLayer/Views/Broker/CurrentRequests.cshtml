@@ -1,48 +1,49 @@
 ﻿@model IEnumerable<DataLayer.Models.BrokerRequest>
 
 @{
-    ViewData["Title"] = "CurrentRequests";
+    ViewData["Title"] = "Broker | Requests";
     Layout = "~/Views/Shared/_LayoutBroker.cshtml";
 }
 
-<h1>CurrentRequests</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <!--<th>
-                @Html.DisplayNameFor(model => model.ReviewStatus)
-            </th>-->
-            <th>
-                @Html.DisplayNameFor(model => model.Asset)
-            </th>
-            <!--<th>
-                @Html.DisplayNameFor(model => model.Broker)
-            </th>-->
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <!--<td>
-        @Html.DisplayFor(modelItem => item.ReviewStatus)
-    </td>-->
-            <td>
-                @Html.DisplayFor(modelItem => item.Asset.AssetName)
-            </td>
-          @*<td>
-            @Html.DisplayFor(modelItem => item.Broker.BrokerId)
-            </td>
-            <td>
-        <a asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.RequestId">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
-    </td>*@
-        <td>
-            <a class="btn btn-success" asp-action="AddPolicy" asp-route-assetId="@item.AssetId">Add Policy</a>
-        </td>
-        </tr>
-        
-}
-    </tbody>
-</table>
+<style>
+    .ass {
+        width: 150px;
+    }
+
+        .ass:hover {
+            border-radius: 20px;
+
+            @*transition:all ease-in-out 0.3s;
+            *@
+        }
+</style>
+<div class="mx-auto" style="width: 1000px; margin-top: 50px; border-radius:30px;">
+    <div class="card text-center">
+        <h3 class="card-title" style="background-color: rgb(7, 43, 68); color:rgb(251, 251, 255)">Current Requests</h3>
+        <div class="card-body" style="background-color: azure;">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr style="text-align:center; background-color: rgb(101, 167, 202);">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Asset)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Asset.AssetName)
+                            </td>
+                            <td>
+                                <a class="btn btn-success ass" asp-action="AddPolicy" asp-route-assetId="@item.AssetId">Add Policy</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
