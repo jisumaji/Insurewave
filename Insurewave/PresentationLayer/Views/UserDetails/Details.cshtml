@@ -2,12 +2,7 @@
 
 @{
     ViewData["Title"] = "Profile | Details";
-    if (Model.Role == "buyer")
-        Layout = "_LayoutBuyer";
-    if (Model.Role == "broker")
-        Layout = "_LayoutBroker";
-    if (Model.Role == "insurer")
-        Layout = "_LayoutInsurer";
+    Layout = "_LayoutLogReg";
 }
 <style>
     .ass
