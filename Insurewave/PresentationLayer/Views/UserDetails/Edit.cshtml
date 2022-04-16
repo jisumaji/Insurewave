@@ -5,68 +5,123 @@
     Layout = "_LayoutLogReg";
 }
 
-<h1>Edit</h1>
+@*<h1>Edit</h1>
 
-<h4>UserDetail</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="UserId" />
-            <div class="form-group">
-                <label asp-for="Password" class="control-label" hidden></label>
-                <input asp-for="Password" class="form-control" hidden/>
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" readonly/>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" readonly/>
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LicenseId" class="control-label"></label>
-                <input asp-for="LicenseId" class="form-control" readonly/>
-                <span asp-validation-for="LicenseId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>UserDetail</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="UserId" />
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label" hidden></label>
+                    <input asp-for="Password" class="form-control" hidden/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <input asp-for="Gender" class="form-control" readonly/>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label"></label>
+                    <input asp-for="Role" class="form-control" readonly/>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LicenseId" class="control-label"></label>
+                    <input asp-for="LicenseId" class="form-control" readonly/>
+                    <span asp-validation-for="LicenseId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        @{
+
+            if (Model.Role == "broker")
+            {
+                <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Broker">Back to List</a>
+            }
+
+            if (Model.Role == "insurer")
+            {
+                <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Insurer">Back to List</a>
+            }
+            if (Model.Role == "buyer")
+            {
+                <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Buyer">Back to List</a>
+            }
+        }~/css/Edit1.jpg
+    </div>
+*@
+<div class="mx-auto" style="width: 450px; margin-top: 50px; padding-bottom: 50px;">
+    <div class="card shadow-lg">
+        <img src="https://www.sdttc.org/testimonials/2_default_pic.png" alt="edit img not available" style="width:350px;padding-top:10px;align-self:center">
+        <h1 style="text-align:center">Edit Profile</h1>
+        <hr />
+        <div class="card-body justify-content-around">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="UserId" />
+                @*<div class="form-group">
+                    <label asp-for="Password" class="control-label" hidden></label>
+                    <input asp-for="Password" class="form-control" hidden />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label" style=" font-size:larger">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label" style="font-size:larger">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label" style="font-size:larger"></label>
+                    <input asp-for="Gender" class="form-control" readonly />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label" style="font-size:larger"></label>
+                    <input asp-for="Role" class="form-control" readonly />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                @if (Model.Role == "broker" || Model.Role == "insurer")
+                {
+                    <div class="form-group">
+
+                        <label asp-for="LicenseId" class="control-label" style="font-size:larger">License ID</label>
+                        <input asp-for="LicenseId" class="form-control" readonly />
+                        <span asp-validation-for="LicenseId" class="text-danger"></span>
+                    </div>
+                }
+                <div class="d-flex">
+                    <div>
+                        <a class="text-white btn btn-dark" asp-action="Details" asp-controller="UserDetails">Back</a>
+                    </div>
+                    <div class="form-group ml-auto">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    @{
-
-        if (Model.Role == "broker")
-        {
-            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Broker">Back to List</a>
-        }
-
-        if (Model.Role == "insurer")
-        {
-            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Insurer">Back to List</a>
-        }
-        if (Model.Role == "buyer")
-        {
-            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Buyer">Back to List</a>
-        }
-    }
-</div>
-

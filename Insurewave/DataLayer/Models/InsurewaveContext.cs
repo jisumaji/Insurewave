@@ -31,7 +31,7 @@ namespace DataLayer.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-FOMB7L0;Database=Insurewave;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server=ECSTASY;Database=Insurewave;Integrated Security=true");
             }
         }
 
@@ -137,7 +137,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F2019B551399")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201D53FD031")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
@@ -187,7 +187,7 @@ namespace DataLayer.Models
                     .WithOne(p => p.PaymentBuyer)
                     .HasForeignKey<PaymentBuyer>(d => d.PolicyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PaymentBu__Polic__47DBAE45");
+                    .HasConstraintName("FK__PaymentBu__Polic__619B8048");
             });
 
             modelBuilder.Entity<PolicyDetail>(entity =>
