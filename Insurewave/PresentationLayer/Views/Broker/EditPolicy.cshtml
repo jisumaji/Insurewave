@@ -99,8 +99,8 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="PolicyId" />
                 <div class="form-group">
-                    <label asp-for="AssetId" class="control-label" style="font-size:larger">Asset Name</label>
-                    <input asp-for="AssetId" class="form-control" value="ViewBag.AssetId" readonly></input>
+                    <label asp-for="AssetId" class="control-label" style="font-size:larger">Asset ID for @ViewBag.Name</label>
+                    <input type="text" asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetId" readonly>
                     <span asp-validation-for="AssetId" class="text-danger"></span>
                 </div>
                 <div class="form-group">

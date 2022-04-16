@@ -19,6 +19,5 @@ namespace RepoLayer
         public List<PolicyDetail> GetAllPoliciesAsset(int assetid);
         public PolicyDetail GetPolicyByPolId(int polid);
         public string GetAssetName(int id);
-
     }
 }
