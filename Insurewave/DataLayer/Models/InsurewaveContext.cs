@@ -137,7 +137,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201D53FD031")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F2018A899215")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
@@ -187,7 +187,7 @@ namespace DataLayer.Models
                     .WithOne(p => p.PaymentBuyer)
                     .HasForeignKey<PaymentBuyer>(d => d.PolicyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PaymentBu__Polic__619B8048");
+                    .HasConstraintName("FK__PaymentBu__Polic__47DBAE45");
             });
 
             modelBuilder.Entity<PolicyDetail>(entity =>
@@ -226,7 +226,6 @@ namespace DataLayer.Models
                 entity.HasOne(d => d.Asset)
                     .WithMany(p => p.PolicyDetails)
                     .HasForeignKey(d => d.AssetId)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FKPolicyDetailsAssetId");
 
                 entity.HasOne(d => d.Broker)

@@ -8,7 +8,7 @@ namespace DataLayer.Models
     public partial class PolicyDetail
     {
         public int PolicyId { get; set; }
-        public int? AssetId { get; set; }
+        public int AssetId { get; set; }
         public string InsurerId { get; set; }
         public string BrokerId { get; set; }
         public int Duration { get; set; }

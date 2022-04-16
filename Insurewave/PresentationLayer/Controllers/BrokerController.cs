@@ -15,10 +15,12 @@ namespace PresentationLayer.Controllers
     {
         InsurewaveContext _context;
         IBroker obj;
-        public BrokerController( IBroker _obj)
+        IPolicy ip;
+        public BrokerController( IBroker _obj,IPolicy ip1)
         {
             _context = new InsurewaveContext();
             obj = _obj;
+            ip = ip1;
         }
         public IActionResult Index()
         {
@@ -83,7 +85,7 @@ namespace PresentationLayer.Controllers
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);            
             return View(policyDetail);
         }
-        public async Task<IActionResult> EditPolicy(int? id)
+        public async Task<IActionResult> EditPolicy(int id)
         {
             if (id == null)
             {
@@ -95,7 +97,9 @@ namespace PresentationLayer.Controllers
             {
                 return NotFound();
             }
-            ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
+            //ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
+            //ViewBag.AssetId = ip.GetAssetName(policyDetail.AssetId);
+            //ViewData["AssetId"] = new SelectListItem(text=);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
             return View(policyDetail);
@@ -116,6 +120,8 @@ namespace PresentationLayer.Controllers
 
             if (ModelState.IsValid)
             {
+                policyDetail.PolicyStatus = "pending";
+                policyDetail.ReviewStatus = "no";
                 try
                 {
                     _context.Update(policyDetail);
@@ -133,9 +139,10 @@ namespace PresentationLayer.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(GetAllPolicies));
             }
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
+            //ViewData["AssetId"] = ip.GetAssetName(policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
             return View(policyDetail);

@@ -70,5 +70,9 @@ namespace RepoLayer
             PolicyDetail p = db.PolicyDetails.Where(a => a.PolicyId == polid).FirstOrDefault();
             return p;
         }
+        public string GetAssetName(int id)
+        {
+            return db.BuyerAssets.Where(a => a.AssetId == id).Select(a=>a.AssetName).FirstOrDefault();
+        }
     }
 }
