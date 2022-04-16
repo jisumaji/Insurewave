@@ -100,7 +100,6 @@ namespace PresentationLayer.Controllers
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             //ViewBag.AssetId = ip.GetAssetName(policyDetail.AssetId);
             //ViewData["AssetId"] = new SelectListItem(text=);
-            //TempData["Ass"] = id;
             ViewData["Name"] = ip.GetAssetName((int)id);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
             ViewData["InsurerId"] = new SelectList(_context.InsurerDetails, "InsurerId", "InsurerId", policyDetail.InsurerId);
@@ -124,7 +123,6 @@ namespace PresentationLayer.Controllers
             {
                 policyDetail.PolicyStatus = "pending";
                 policyDetail.ReviewStatus = "no";
-                //policyDetail.AssetId = (int)TempData["Ass"];
                 try
                 {
                     _context.Update(policyDetail);
