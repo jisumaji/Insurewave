@@ -137,7 +137,7 @@ namespace DataLayer.Models
 
                 entity.ToTable("CurrencyConversion");
 
-                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F201A4ECB31E")
+                entity.HasIndex(e => e.CountryName, "UQ__Currency__E056F2010B66655C")
                     .IsUnique();
 
                 entity.Property(e => e.CountryId).ValueGeneratedNever();
