@@ -79,11 +79,11 @@
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="UserId" />
-                @*<div class="form-group">
+                <div class="form-group">
                     <label asp-for="Password" class="control-label" hidden></label>
                     <input asp-for="Password" class="form-control" hidden />
                     <span asp-validation-for="Password" class="text-danger"></span>
-                </div>*@
+                </div>
                 <div class="form-group">
                     <label asp-for="FirstName" class="control-label" style=" font-size:larger">First Name</label>
                     <input asp-for="FirstName" class="form-control" />

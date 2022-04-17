@@ -115,7 +115,11 @@ namespace PresentationLayer.Controllers
         {
             //TempData["Id"] = UserId;
             //TempData["pwd"] = pwd;
-            obj.ChangePassword(UserId, pwd);
+            UserDetail ud = obj.GetUserById(UserId);
+            if (ud != null)
+                obj.ChangePassword(UserId, pwd);
+            else
+                return RedirectToAction("Error");
             return RedirectToAction("PasswordChanged");
         }
         public IActionResult PasswordChanged()

@@ -32,7 +32,7 @@ namespace RepoLayer
        /*for one asset only*/
         public List<PolicyDetail> GetAllPoliciesAsset(int assetid)
         {
-            List<PolicyDetail> p = db.PolicyDetails.Where(a => a.AssetId == assetid ).ToList();
+            List<PolicyDetail> p = db.PolicyDetails.Where(a => a.AssetId == assetid && a.PolicyStatus=="accepted" ).ToList();
             return p;
         }
         public void AddPolicy(PolicyDetail p)
