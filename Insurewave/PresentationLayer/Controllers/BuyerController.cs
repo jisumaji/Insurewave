@@ -154,8 +154,9 @@ namespace PresentationLayer.Controllers
             ViewBag.abc =q.Count;
             return View(result);
         }
-        public IActionResult Gateway(int policyid)
+        public IActionResult Gateway(int policyid,string paidStatus)
         {
+            ViewBag.paidStatus = paidStatus;
             PolicyDetail p = obj4.GetPolicyByPolId(policyid); 
             return View(p);
         }

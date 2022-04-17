@@ -23,7 +23,10 @@
 
 <body>
     @{
-        var x = Model.LumpSum;
+        decimal x = 0M;
+        if (ViewBag.paidStatus == "false")
+        { x = Model.LumpSum; }
+
         var y = Model.Premium;
         var d = Model.Duration;
         var i = Model.PremiumInterval;
@@ -31,7 +34,6 @@
         var pending = result - y - x;
         var total = x + y;
     }
-
     <div class="container-fluid" >
         <div class="row m-0">
             <div class="col-md-7 col-12">
@@ -118,33 +120,54 @@
                         
                             <div class="row m-0 border mb-3">
                                 <div class="col-6 h8 pe-0 ps-2">
-                                    <p class="textmuted py-2">Items</p> <span class="d-block py-2 border-bottom">
-                                        Lumpsum
-                                    </span> <span class="d-block py-2">Premium</span>
+                                    <p class="textmuted py-2">Items</p>
+                                    @if (ViewBag.paidStatus == "false")
+                                    {
+                                        <span class="d-block py-2 border-bottom">
+                                            Lumpsum
+                                        </span>
+
+                                    }
+                                    <span class="d-block py-2">Premium</span>
                                 </div>
                                 <div class="col-2 text-center p-0">
-                                    <p class="textmuted p-2">Qty</p> <span class="d-block p-2 border-bottom">1</span> <span class="d-block p-2">1</span>
+                                    <p class="textmuted p-2">Qty</p>
+                                    @if (ViewBag.paidStatus=="false") 
+                                    {
+                                        <span class="d-block p-2 border-bottom">1</span> 
+                                     }
+                                    <span class="d-block p-2">1</span>
                                 </div>
                                 <div class="col-2 p-0 text-center h8 border-end">
-                                    <p class="textmuted p-2">Price</p> <span class="d-block border-bottom py-2">
-                                        <span class="fas fa-dollar-sign"></span>
-                                        @Html.DisplayFor(model => model.LumpSum)
-
-                                    </span> <span class="d-block py-2 ">
+                                    <p class="textmuted p-2">Price</p> 
+                                    @if (ViewBag.paidStatus=="false")
+                                    {
+                                        <span class="d-block border-bottom py-2">
+                                            <span class="fas fa-dollar-sign"></span>
+                                                @Html.DisplayFor(model => model.LumpSum)
+                                        </span>
+                                    }
+                                 <span class="d-block py-2 ">
                                         <span class="fas fa-dollar-sign"></span>
                                         @Html.DisplayFor(model => model.Premium)
 
                                     </span>
                                 </div>
                                 <div class="col-2 p-0 text-center">
-                                    <p class="textmuted p-2">Total</p> <span class="d-block py-2 border-bottom">
-                                        <span class="fas fa-dollar-sign"></span>
-                                        @Html.DisplayFor(model => model.LumpSum)
-                                    </span> <span class="d-block py-2">
-                                        <span class="fas fa-dollar-sign"></span>
-                                        @Html.DisplayFor(model => model.Premium)
-                                    </span>
-                                </div>
+                                    <p class="textmuted p-2">Total</p>
+                                    @if (ViewBag.paidStatus == "false")
+                                    {
+                                        <span class="d-block py-2 border-bottom">
+                                            <span class="fas fa-dollar-sign"></span>
+                                            @Html.DisplayFor(model => model.LumpSum)
+                                        </span>
+                                     }
+
+                                         <span class="d-block py-2">
+                                            <span class="fas fa-dollar-sign"></span>
+                                            @Html.DisplayFor(model => model.Premium)
+                                        </span>
+                                    </div>
                             </div>
                             <div class="d-flex h7 mb-2">
                                 <p class="">Total Amount</p>
