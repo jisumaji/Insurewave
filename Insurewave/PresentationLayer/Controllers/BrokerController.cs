@@ -74,11 +74,11 @@ namespace PresentationLayer.Controllers
                 policyDetail.ReviewStatus = "no";
                 policyDetail.PolicyStatus = "pending";
                 Broker r = new();
-                r.ChangeReviewStatus((int)policyDetail.AssetId, policyDetail.BrokerId);
+                r.ChangeReviewStatus(policyDetail.AssetId, policyDetail.BrokerId);
 
                 _context.Add(policyDetail);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CurrentRequests));
             }
             ViewData["AssetId"] = new SelectList(_context.BuyerAssets, "AssetId", "AssetName", policyDetail.AssetId);
             ViewData["BrokerId"] = new SelectList(_context.BrokerDetails, "BrokerId", "BrokerId", policyDetail.BrokerId);
@@ -153,8 +153,16 @@ namespace PresentationLayer.Controllers
             string brokerId = HttpContext.Session.GetString("UserId");
             /*Request r = new();
             List<BrokerRequest> br = r.GetRequestList(brokerId);*/
+            ViewBag.Message = "Request has been deleted";
             var insurewaveContext = _context.BrokerRequests.Include(b => b.Asset).Include(b => b.Broker).Where(a=>a.BrokerId==brokerId && a.ReviewStatus=="no");
             return View(await insurewaveContext.ToListAsync());
+        }
+        public IActionResult DeleteRequest(int requestId)
+        {
+            BrokerRequest br=_context.BrokerRequests.Where(a=>a.RequestId==requestId).FirstOrDefault();
+            br.ReviewStatus = "yes";
+            _context.SaveChanges();
+            return RedirectToAction("CurrentRequests");
         }
     }
 }

@@ -140,12 +140,13 @@
                                         else
                                         {
                                             <td>
-                                                <a class="btn btn-success" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>
+                                                <a class="btn btn-success" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId" asp-route-paidStatus="@item.PaidStatus">Make Payment</a>
                                             </td>
                                         }
                                     </tr>
                                 }
                             </tbody>
+                    
                         </table>
                     </div>
                 </div>

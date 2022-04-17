@@ -2,83 +2,89 @@
 
 @{
     ViewData["Title"] = "Broker | AddPolicy";
-    Layout = "_LayoutBroker";
+    Layout = "_LayoutLogReg";
 }
 
-<h1>AddPolicy</h1>
 
-<h4>PolicyDetail</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddPolicy">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="AssetId" class="control-label" hidden></label>
-                <input asp-for="AssetId" class ="form-control" value="@ViewBag.AssetId" hidden>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsurerId" class="control-label"></label>
-                <select asp-for="InsurerId" class ="form-control" asp-items="ViewBag.InsurerId"></select>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="BrokerId" class="control-label"></label>
-                <input as*@
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Premium" class="control-label"></label>
-                <input asp-for="Premium" class="form-control" />
-                <span asp-validation-for="Premium" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LumpSum" class="control-label"></label>
-                <input asp-for="LumpSum" class="form-control" />
-                <span asp-validation-for="LumpSum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PremiumInterval" class="control-label"></label>
-                <input asp-for="PremiumInterval" class="form-control" />
-                <span asp-validation-for="PremiumInterval" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaturityAmount" class="control-label"></label>
-                <input asp-for="MaturityAmount" class="form-control" />
-                <span asp-validation-for="MaturityAmount" class="text-danger"></span>
-            </div>
-            <!--<div class="form-group">
-                <label asp-for="PolicyStatus" class="control-label"></label>
-                <input asp-for="PolicyStatus" class="form-control" />
-                <span asp-validation-for="PolicyStatus" class="text-danger"></span>
-            </div>-->
-            <!--<div class="form-group">
-                <label asp-for="ReviewStatus" class="control-label"></label>
-                <input asp-for="ReviewStatus" class="form-control" />
-                <span asp-validation-for="ReviewStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Feedback" class="control-label"></label>
-                <input asp-for="Feedback" class="form-control" />
-                <span asp-validation-for="Feedback" class="text-danger"></span>
-            </div>-->
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="mx-auto" style="width:500px">
+    <div class="card shadow-lg" style="border-radius: 20px;">
+        <img src="https://www.alert-software.com/hubfs/writing%20company%20policies.png" style="width:480px;padding-top:10px;align-self:center;border-radius:10px"/>
+        
+        <hr />
+        <div class="card-body">
+            <h3 class="text-center">Add Policy</h3>
+            <form asp-action="AddPolicy">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="AssetId" class="control-label" hidden></label>
+                    <input asp-for="AssetId" class="form-control" value="@ViewBag.AssetId" hidden>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InsurerId" class="control-label"></label>
+                    <select asp-for="InsurerId" class="form-control" asp-items="ViewBag.InsurerId"></select>
+                </div>
+                @*<div class="form-group">
+            <label asp-for="BrokerId" class="control-label"></label>
+            <input as*@
+                <div class="form-group">
+                    <label asp-for="Duration" class="control-label"></label>
+                    <input asp-for="Duration" class="form-control" />
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Premium" class="control-label"></label>
+                    <input asp-for="Premium" class="form-control" />
+                    <span asp-validation-for="Premium" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LumpSum" class="control-label"></label>
+                    <input asp-for="LumpSum" class="form-control" />
+                    <span asp-validation-for="LumpSum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PremiumInterval" class="control-label"></label>
+                    <input asp-for="PremiumInterval" class="form-control" />
+                    <span asp-validation-for="PremiumInterval" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaturityAmount" class="control-label"></label>
+                    <input asp-for="MaturityAmount" class="form-control" />
+                    <span asp-validation-for="MaturityAmount" class="text-danger"></span>
+                </div>
+                <!--<div class="form-group">
+            <label asp-for="PolicyStatus" class="control-label"></label>
+            <input asp-for="PolicyStatus" class="form-control" />
+            <span asp-validation-for="PolicyStatus" class="text-danger"></span>
+        </div>-->
+                <!--<div class="form-group">
+            <label asp-for="ReviewStatus" class="control-label"></label>
+            <input asp-for="ReviewStatus" class="form-control" />
+            <span asp-validation-for="ReviewStatus" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Feedback" class="control-label"></label>
+            <input asp-for="Feedback" class="form-control" />
+            <span asp-validation-for="Feedback" class="text-danger"></span>
+        </div>-->
+                <div class="d-flex">
+                    <div>
+                        <a class="btn btn-dark" asp-action="Index">Back</a>
+                    </div>
+                    <div class="form-group ml-auto">
+                        <input type="submit" value="Add" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

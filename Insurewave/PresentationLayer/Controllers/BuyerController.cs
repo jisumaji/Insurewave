@@ -71,7 +71,7 @@ namespace PresentationLayer.Controllers
         public IActionResult Delete(int assetid)
         {
             obj.DeleteAsset(assetid);
-            return RedirectToAction("Index");
+            return RedirectToAction("DisplayAssets");
         }
         public IActionResult Edit(int assetid)
         {
@@ -121,7 +121,7 @@ namespace PresentationLayer.Controllers
             obj2.AddRequest(br);
             int assetid =(int) HttpContext.Session.GetInt32("AssetId2");
             obj.EditAssetRequest(assetid);
-            return RedirectToAction("Index");    
+            return RedirectToAction("DisplayAssets");    
         }
         
         public IActionResult Payment()
@@ -154,8 +154,9 @@ namespace PresentationLayer.Controllers
             ViewBag.abc =q.Count;
             return View(result);
         }
-        public IActionResult Gateway(int policyid)
+        public IActionResult Gateway(int policyid,string paidStatus)
         {
+            ViewBag.paidStatus = paidStatus;
             PolicyDetail p = obj4.GetPolicyByPolId(policyid); 
             return View(p);
         }

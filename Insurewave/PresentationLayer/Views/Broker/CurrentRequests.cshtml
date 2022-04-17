@@ -28,22 +28,31 @@
                             @Html.DisplayNameFor(model => model.Asset)
                         </th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Asset.AssetName)
-                            </td>
-                            <td>
-                                <a class="btn btn-success ass" asp-action="AddPolicy" asp-route-assetId="@item.AssetId">Add Policy</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Asset.AssetName)
+                        </td>
+                        <td>
+                            <a class="btn btn-success ass" asp-action="AddPolicy" asp-route-assetId="@item.AssetId">Add Policy</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger ass" onclick="message()" asp-action="DeleteRequest" asp-route-requestId="@item.RequestId">Delete</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script>
+    function message() {
+        alert("Request has been deleted");
+    }
+</script>
