@@ -21,9 +21,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Broker)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CustomerCount)
-                        </th>
+                        
                         <th></th>
                     </tr>
                 </thead>
@@ -35,9 +33,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.BrokerId)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CustomerCount)
-                            </td>
+                            
 
                             <td>
                                 <a class="btn btn-sm btn-success" asp-action="AddRequest1" onclick="myFunction()" asp-route-BrokerId="@item.BrokerId ">Send Request</a>
