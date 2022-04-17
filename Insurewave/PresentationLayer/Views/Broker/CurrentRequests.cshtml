@@ -17,9 +17,10 @@
             *@
         }
 </style>
+<h3 class="text-center container-fluid" style="background-color: teal; padding: 10px; margin-top: 20px; box-shadow: 0px 15px 10px -15px #111;width:1000px">Current Requests</h3>
+
 <div class="mx-auto" style="width: 1000px; margin-top: 50px; border-radius:30px;">
     <div class="card text-center">
-        <h3 class="card-title" style="background-color: rgb(7, 43, 68); color:rgb(251, 251, 255)">Current Requests</h3>
         <div class="card-body" style="background-color: azure;">
             <table class="table table-hover">
                 <thead class="bg-light">
@@ -34,17 +35,17 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Asset.AssetName)
-                        </td>
-                        <td>
-                            <a class="btn btn-success ass" asp-action="AddPolicy" asp-route-assetId="@item.AssetId">Add Policy</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger ass" onclick="message()" asp-action="DeleteRequest" asp-route-requestId="@item.RequestId">Delete</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Asset.AssetName)
+                            </td>
+                            <td>
+                                <a class="btn btn-success ass" asp-action="AddPolicy" asp-route-assetId="@item.AssetId">Add Policy</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger ass" onclick="message()" asp-action="DeleteRequest" asp-route-requestId="@item.RequestId">Delete</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

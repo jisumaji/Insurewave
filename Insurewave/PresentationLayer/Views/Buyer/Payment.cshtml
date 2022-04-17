@@ -78,9 +78,10 @@
 </head>
 
 <body>
-    <div class="mx-auto" style="width: 1400px; margin-top: 50px; border-radius:30px;">
+    <h3 class="text-center container-fluid" style="background-color: teal; padding: 10px; margin-top: 20px; box-shadow: 0px 15px 10px -15px #111;">Payment Status</h3>
+    <div class="mx-auto" style="width: 1400px; margin-top: 20px; border-radius:30px;">
         <div class="card text-center">
-            <h3 class="card-title" style="background-color: rgb(7, 43, 68); color:rgb(251, 251, 255)">Payment Status</h3>
+
             <div class="card-body" style="background-color: azure;">
                 <table class="table table-hover">
                     <thead class="bg-light">
@@ -117,41 +118,40 @@
                                 </td>
                                 @if (item.PaidStatus == "true")
                                 {
-                            <td>
-                                <span class="badge badge-success rounded-pill d-md-inline-block" style="font-size: 15px;">paid</span>
+                                    <td>
+                                        <span class="badge badge-success rounded-pill d-md-inline-block" style="font-size: 15px;">paid</span>
 
-                            </td>
+                                    </td>
                                 }
                                 else
                                 {
-                            <td>
-                                <span class="badge badge-danger rounded-pill d-md-inline-block" style="font-size: 15px;">unpaid</span>
-                            </td>
+                                    <td>
+                                        <span class="badge badge-danger rounded-pill d-md-inline-block" style="font-size: 15px;">unpaid</span>
+                                    </td>
                                 }
 
                                 @if (item.PaidStatus == "true")
                                 {
-                            <td>
-                                <a class="btn btn-primary" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a> 
-                                @*<a class="btn btn-primary btn-sm" style="border-radius:10px;" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>*@
+                                    <td>
+                                        <a class="btn btn-primary" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>
+                                        @*<a class="btn btn-primary btn-sm" style="border-radius:10px;" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>*@
 
                                     </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <a class="btn btn-success" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId" asp-route-paidStatus="@item.PaidStatus">Make Payment</a>
-                                            </td>
-                                        }
-                                    </tr>
                                 }
-                            </tbody>
-                    
-                        </table>
-                    </div>
-                </div>
+                                else
+                                {
+                                    <td>
+                                        <a class="btn btn-success" asp-action="Gateway" asp-route-PolicyId="@item.PolicyId">Make Payment</a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        </body>
+        </div>
+    </div>
+</body>
 
         </html>
 

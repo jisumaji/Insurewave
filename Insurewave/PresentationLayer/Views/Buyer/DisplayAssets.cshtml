@@ -75,9 +75,10 @@
         </head>
 
         <body>
-            <div class="mx-auto" style="width: 1400px; margin-top: 50px; border-radius:30px;">
+            <h3 class="text-center container-fluid" style="background-color: teal; padding: 10px; margin-top: 20px; box-shadow: 0px 15px 10px -15px #111;">Buyer Assets</h3>
+
+            <div class="mx-auto" style="width: 1400px; margin-top: 20px; border-radius:30px;">
                 <div class="card text-center">
-                    <h3 class="card-title" style="background-color: rgb(7, 43, 68); color:rgb(251, 251, 255)">Buyer Assets</h3>
                     <div class="card-body" style="background-color: azure;">
                         <table class="table table-hover">
                             <thead class="bg-light">
@@ -103,70 +104,70 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr style="text-align:center">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AssetName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CountryId)
-                                    </td>
+                                    <tr style="text-align:center">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AssetName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Type)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CountryId)
+                                        </td>
 
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PriceUsd)
+                                        </td>
+                                        @*
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.PriceUsd)
+                                       @Html.DisplayFor(modelItem => item.Request)
                                     </td>
-                                    @*
-                                      <td>
-                                         @Html.DisplayFor(modelItem => item.Request)
-                                      </td>
-                                    *@
-                                    @if (item.Request == "no")
-                                    {
-                                <td style="color:red;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                    @*<span class="badge badge-danger rounded-pill d-md-inline-block " style="font-size: 15px;">no</span>*@
-                                </td>
-                                    }
-                                    else
-                                    {
-                                <td style="color: green;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                                    </svg>
-                                    @*<span class="badge badge-success rounded-pill d-md-inline-block" style="font-size: 15px;">yes</span>*@
-                                </td>
-                                    }
-                                <td>
-                                    <a class="btn btn-primary btn-sm" style="border-radius:10px;" asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a>
-                                    <a class="btn btn-success btn-sm" style="border-radius:10px;" asp-controller="Buyer" asp-action="RequestToBroker" asp-route-AssetId="@item.AssetId">Request Broker</a>
-                                    @if (item.Request == "yes")
-                                    {
-                                        <a class="btn btn-secondary btn-sm" style="border-radius:10px;" asp-action="ViewPolicyForOneAsset" asp-route-AssetId="@item.AssetId">Policy</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-danger btn-sm" style="border-radius:10px;" asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
-                                    }
+                                        *@
+                                        @if (item.Request == "no")
+                                        {
+                                            <td style="color:red;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                </svg>
+                                                @*<span class="badge badge-danger rounded-pill d-md-inline-block " style="font-size: 15px;">no</span>*@
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td style="color: green;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                                </svg>
+                                                @*<span class="badge badge-success rounded-pill d-md-inline-block" style="font-size: 15px;">yes</span>*@
+                                            </td>
+                                        }
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" style="border-radius:10px;" asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a>
+                                            <a class="btn btn-success btn-sm" style="border-radius:10px;" asp-controller="Buyer" asp-action="RequestToBroker" asp-route-AssetId="@item.AssetId">Request Broker</a>
+                                            @if (item.Request == "yes")
+                                            {
+                                                <a class="btn btn-secondary btn-sm" style="border-radius:10px;" asp-action="ViewPolicyForOneAsset" asp-route-AssetId="@item.AssetId">Policy</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-danger btn-sm" style="border-radius:10px;" asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
+                                            }
 
-@*
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <span class="material-icons">create</span>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <span class="material-icons">delete_outline</span>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <span class="material-icons">view_list</span>
-                                    </button>
-    *@
-                                </td>
-                                </tr>
+                                            @*
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="material-icons">create</span>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="material-icons">delete_outline</span>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="material-icons">view_list</span>
+                                        </button>
+                                            *@
+                                        </td>
+                                    </tr>
                                 }
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
