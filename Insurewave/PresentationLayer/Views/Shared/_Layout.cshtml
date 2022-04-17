@@ -248,6 +248,40 @@
         .hover:hover{
             box-shadow:0 0 20px black;
         }
+
+        #maindiv{
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#div1 {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+
+#div2 {
+  display: inline-block;
+  animation: marquee2 20s linear infinite;
+  animation-delay: 10s;
+}
+
+@@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@@keyframes marquee2 {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-200%);
+  }
+}
     </style>
     <script>
         $('.carousel').carousel({
@@ -264,7 +298,7 @@
                     <img src="/css/Insurewave.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
 
                 </a>
-                <h4 class="navbar-brand text-light" ><strong>Insurewave</strong></h4>
+                <h4 class="navbar-brand text-light"><strong>Insurewave</strong></h4>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -313,7 +347,7 @@
             </a>
         </div>
     </div>
-    
+
     <br>
     <br>
     <br>
@@ -355,7 +389,7 @@
     <br>
     <div class="container-fluid">
         <div class="row">
-            
+
             <div class="col-xl-6 col-lg-6 col-md-6">
                 <div class="container">
                     <main role="main" class="pb-3">
@@ -379,7 +413,7 @@
             <div class="column-66">
                 <h1 class="xlarge-font"><b>Insurewave</b></h1>
                 <h1 class="large-font" style="color:MediumSeaGreen;"><b>Integrating insurance experiences:</b></h1>
-                <p><span style="font-size:36px">Smooth and simple procedure</span> As a platform that connects brokers, insurers, and buyers of commercial insurance, as well as shared real-time risk data and insights, we are enabling a better insurance experience for the whole market.</p>
+                <p><span style="font-size:36px">Smooth and simple procedure</span><br> As a platform that connects brokers, insurers, and buyers of commercial insurance, as well as shared real-time risk data and insights, we are enabling a better insurance experience for the whole market.</p>
 
             </div>
             <div class="column-33">
@@ -414,7 +448,12 @@
             <div class="column-66">
                 <h1 class="xlarge-font"><b>Insurewave</b></h1>
                 <h1 class="large-font" style="color:MediumSeaGreen;"><b>Why use it?</b></h1>
-                <p><span style="font-size:36px">Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>
+                <span>
+                    Here at insurwave, we thrive on the challenge of creating unique solutions. As a company, we have a desire to create something that has never existed before: a fully automated, connected insurance experience.
+                    Among the key benefits are the ability to innovate, to bring new products and services to market quickly, and to increase competitiveness.
+                </span>
+                </p>
 
             </div>
             <div class="column-33">
@@ -425,41 +464,113 @@
 
     <br>
     <br>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="column">
-                <div class="card">
-                    <p><i class="fa fa-user"></i></p>
-                    <h3>100+</h3>
-                    <p>Insurers</p>
-                </div>
-            </div>
+   
+    <div class="container-fluid" id="maindiv">
+        <div  id="div1">
+            <div class="d-flex">
 
-            <div class="column">
-                <div class="card">
+                <div class="card ml-4 mr-4" style="width:300px">
+                    <p><i class="fa fa-user"></i></p>
+                    <h3>1M+</h3>
+                    <p>Users</p>
+                </div>
+
+
+
+                <div class="card ml-4 mr-4" style="width:300px">
                     <p><i class="fa fa-check"></i></p>
                     <h3>1000+</h3>
                     <p>Policies</p>
                 </div>
-            </div>
 
-            <div class="column">
-                <div class="card">
+
+
+                <div class="card ml-4 mr-4" style="width:300px">
                     <p><i class="fa fa-smile-o"></i></p>
                     <h3>100+</h3>
                     <p>Happy Clients</p>
                 </div>
-            </div>
 
-            <div class="column">
-                <div class="card">
+                <div class="card mr-4" style="width:300px">
+                    <p><i class="fa fa-user"></i></p>
+                    <h3>100K+</h3>
+                    <p>Insurers</p>
+                </div>
+
+                <div class="card ml-4 mr-4" style="width:300px">
                     <p><i class="fa fa-bolt"></i></p>
                     <h3>100%</h3>
                     <p>Success Rate</p>
                 </div>
+
+                <div class="card ml-4 mr-4" style="width:300px">
+                    <p><i class="fa fa-user"></i></p>
+                    <h3>250K+</h3>
+                    <p>Brokers</p>
+                </div>
+
+                <div class="card ml-4 mr-4" style="width:300px">
+                    <p><i class="fa fa-lock"></i></p>
+                    <h3>100%</h3>
+                    <p>Security</p>
+                </div>
+
             </div>
         </div>
+    <div  id="div2">
+        <div class="d-flex">
+
+            <div class="card mr-4" style="width:300px">
+                <p><i class="fa fa-user"></i></p>
+                <h3>1M+</h3>
+                <p>Users</p>
+            </div>
+
+
+
+            <div class="card ml-4 mr-4" style="width:300px">
+                <p><i class="fa fa-check"></i></p>
+                <h3>1000+</h3>
+                <p>Policies</p>
+            </div>
+
+
+
+            <div class="card ml-4 mr-4" style="width:300px">
+                <p><i class="fa fa-smile-o"></i></p>
+                <h3>100+</h3>
+                <p>Happy Clients</p>
+            </div>
+
+            <div class="card mr-4" style="width:300px">
+                <p><i class="fa fa-user"></i></p>
+                <h3>100K+</h3>
+                <p>Insurers</p>
+            </div>
+
+
+            <div class="card ml-4 mr-4" style="width:300px">
+                <p><i class="fa fa-bolt"></i></p>
+                <h3>100%</h3>
+                <p>Success Rate</p>
+            </div>
+
+            <div class="card ml-4 mr-4" style="width:300px">
+                <p><i class="fa fa-user"></i></p>
+                <h3>250K+</h3>
+                <p>Brokers</p>
+            </div>
+
+            <div class="card ml-4 mr-4" style="width:300px">
+                <p><i class="fa fa-lock"></i></p>
+                <h3>100%</h3>
+                <p>Security</p>
+            </div>
+
+        </div>
     </div>
+        </div>
+
     <br>
     <br>
     <footer class="border-top footer bg-dark ">
@@ -467,7 +578,7 @@
             &copy; 2022 - Insurewave - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <a class="btn btn-light" href="#top" style="position:fixed;right:30px;bottom:30px;box-shadow:0 0 10px black;"><i class="fa fa-angle-up" ></i></a>
+    <a class="btn btn-light" href="#top" style="position:fixed;right:30px;bottom:30px;box-shadow:0 0 10px black;"><i class="fa fa-angle-up"></i></a>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
