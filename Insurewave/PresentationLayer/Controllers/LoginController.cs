@@ -98,7 +98,7 @@ namespace PresentationLayer.Controllers
                 };
                 obj.AddBrokerDetails(insert);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
             //return View();
         }
         public IActionResult Unavailable()
