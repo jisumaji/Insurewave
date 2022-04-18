@@ -4,93 +4,8 @@
     ViewData["Title"] = "Broker | Edit Policy";
     Layout = "_LayoutLogReg";
 }
-@*
-    <h1>EditPolicy</h1>
-
-    <h4>PolicyDetail</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="EditPolicy">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="PolicyId" />
-                <div class="form-group">
-                    <label asp-for="AssetId" class="control-label"></label>
-                    <select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetId"></select>
-                    <span asp-validation-for="AssetId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InsurerId" class="control-label"></label>
-                    <select asp-for="InsurerId" class="form-control" asp-items="ViewBag.InsurerId"></select>
-                    <span asp-validation-for="InsurerId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="BrokerId" class="control-label"></label>
-                    <select asp-for="BrokerId" class="form-control" asp-items="ViewBag.BrokerId"></select>
-                    <span asp-validation-for="BrokerId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Duration" class="control-label"></label>
-                    <input asp-for="Duration" class="form-control" />
-                    <span asp-validation-for="Duration" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Premium" class="control-label"></label>
-                    <input asp-for="Premium" class="form-control" />
-                    <span asp-validation-for="Premium" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LumpSum" class="control-label"></label>
-                    <input asp-for="LumpSum" class="form-control" />
-                    <span asp-validation-for="LumpSum" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="StartDate" class="control-label"></label>
-                    <input asp-for="StartDate" class="form-control" />
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PremiumInterval" class="control-label"></label>
-                    <input asp-for="PremiumInterval" class="form-control" />
-                    <span asp-validation-for="PremiumInterval" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MaturityAmount" class="control-label"></label>
-                    <input asp-for="MaturityAmount" class="form-control" />
-                    <span asp-validation-for="MaturityAmount" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PolicyStatus" class="control-label"></label>
-                    <input asp-for="PolicyStatus" class="form-control" />
-                    <span asp-validation-for="PolicyStatus" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ReviewStatus" class="control-label"></label>
-                    <input asp-for="ReviewStatus" class="form-control" />
-                    <span asp-validation-for="ReviewStatus" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Feedback" class="control-label"></label>
-                    <input asp-for="Feedback" class="form-control" />
-                    <span asp-validation-for="Feedback" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
-*@
 <div class="mx-auto" style="width: 500px; margin-top: 50px; padding-bottom: 50px;">
-    <div class="card shadow-lg">
+    <div class="card shadow-lg" style="border-radius:20px;">
         <img src="~/css/policyedit.jpg" alt="edit img not available" style="width:350px; align-self:center; padding-top:10px">
         <h1 style="text-align:center">Edit Policy</h1>
         <hr>
@@ -99,12 +14,12 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="PolicyId" />
                 <div class="form-group">
-                    <label asp-for="AssetId" class="control-label" style="font-size:larger">Asset ID for @ViewBag.Name</label>
+                    <label asp-for="AssetId" class="control-label" style="font-size:larger">Asset ID</label>
                     <input type="text" asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetId" readonly>
                     <span asp-validation-for="AssetId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="InsurerId" class="control-label" style="font-size:larger" >Insurer ID</label>
+                    <label asp-for="InsurerId" class="control-label" style="font-size:larger" >Insurer email</label>
                     <input type="text" asp-for="InsurerId" class="form-control" asp-items="ViewBag.InsurerId" readonly>
                     <span asp-validation-for="InsurerId" class="text-danger"></span>
                 </div>
@@ -114,32 +29,32 @@
                     <span asp-validation-for="BrokerId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Duration" class="control-label" style="font-size:larger"></label>
+                    <label asp-for="Duration" class="control-label" style="font-size:larger">Duration (in months)</label>
                     <input asp-for="Duration" class="form-control" />
                     <span asp-validation-for="Duration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Premium" class="control-label" style="font-size:larger"></label>
+                    <label asp-for="Premium" class="control-label" style="font-size:larger">Premium (in USD)</label>
                     <input asp-for="Premium" class="form-control" />
                     <span asp-validation-for="Premium" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="LumpSum" class="control-label" style="font-size:larger">Lump Sum</label>
+                    <label asp-for="LumpSum" class="control-label" style="font-size:larger">Lump Sum (in USD)</label>
                     <input asp-for="LumpSum" class="form-control" />
                     <span asp-validation-for="LumpSum" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="StartDate" class="control-label" style="font-size:larger">Start Date</label>
-                    <input asp-for="StartDate" class="form-control" />
+                    <input type="date" asp-for="StartDate" class="form-control" />
                     <span asp-validation-for="StartDate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="PremiumInterval" class="control-label" style="font-size:larger">Premium Interval</label>
+                    <label asp-for="PremiumInterval" class="control-label" style="font-size:larger">Premium Interval (in days)</label>
                     <input asp-for="PremiumInterval" class="form-control" />
                     <span asp-validation-for="PremiumInterval" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="MaturityAmount" class="control-label" style="font-size:larger">Maturity Amount</label>
+                    <label asp-for="MaturityAmount" class="control-label" style="font-size:larger">Maturity Amount (in USD)</label>
                     <input asp-for="MaturityAmount" class="form-control" />
                     <span asp-validation-for="MaturityAmount" class="text-danger"></span>
                 </div>
@@ -170,8 +85,6 @@
         </div>
     </div>
 </div>
-
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

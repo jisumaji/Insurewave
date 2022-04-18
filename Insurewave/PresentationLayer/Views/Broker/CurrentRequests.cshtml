@@ -18,9 +18,8 @@
         }
 </style>
 <h3 class="text-center container-fluid" style="background-color: teal; padding: 10px; margin-top: 20px; box-shadow: 0px 15px 10px -15px #111;width:1000px">Current Requests</h3>
-
 <div class="mx-auto" style="width: 1000px; margin-top: 50px; border-radius:30px;">
-    <div class="card text-center">
+    <div class="card text-center" style="border-radius:20px;">
         <div class="card-body" style="background-color: azure;">
             <table class="table table-hover">
                 <thead class="bg-light">
@@ -28,8 +27,8 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Asset)
                         </th>
-                        <th></th>
-                        <th></th>
+                        <th>Request to Insurer</th>
+                        <th>Delete request</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -28,11 +28,7 @@
         { x = Model.LumpSum; }
 
         var y = Model.Premium;
-        var d = Model.Duration;
-        var i = Model.PremiumInterval;
-        var result = x + ((d / i) * y);
-        var pending = result - y - x;
-        var total = x + y;
+        var due = x + y;
     }
     <div class="container-fluid" >
         <div class="row m-0">
@@ -44,7 +40,7 @@
                                 <p class="ps-3 textmuted fw-bold h6 mb-0">TOTAL AMMOUNT TO BE PAID</p>
 
                                 <p class="h1 fw-bold d-flex">
-                                    <span class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>@result
+                                    <span class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>@due 
                                     
                                 </p>
                                 <p class="ms-3 px-2 bg-green">+10% since last month</p>
@@ -52,12 +48,12 @@
                             <div class="col-md-4">
                                 <p class="p-blue"> <span class="fas fa-circle pe-2"></span>Pending </p>
                                 <p class="fw-bold mb-3">
-                                    <span class="fas fa-dollar-sign pe-1"></span>@pending
+                                    <span class="fas fa-dollar-sign pe-1"></span> @due
                                 </p>
                                 <p class="p-org"><span class="fas fa-circle pe-2"></span>On drafts</p>
 
                                 <p class="fw-bold">
-                                    <span class="fas fa-dollar-sign pe-1"></span>00<span class="textmuted">.00</span>
+                                    <span class="fas fa-dollar-sign pe-1"></span>@((int)y)<span class="textmuted">.00</span>
                                 </p>
                             </div>
                         </div>
@@ -93,15 +89,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 mb-2">
-                                    <p class="textmuted h8">Project / Description</p> <input class="form-control" type="text" placeholder="Legal Consulting" required>
+                                    <p class="textmuted h8">Project / Description</p> <input class="form-control" type="text" placeholder="Insurance" required>
                                 </div>
                                 <div class="col-6">
                                     <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                                     placeholder="@Html.DisplayFor(model => model.StartDate)" disabled>
+                                     placeholder="@Model.StartDate.ToShortDateString()" disabled>
                                 </div>
                                 <div class="col-6">
                                     <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                                                                              placeholder="Oct 25, 2020" disabled>
+                                                                              placeholder="@Model.StartDate.ToShortDateString()" disabled>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +167,7 @@
                             </div>
                             <div class="d-flex h7 mb-2">
                                 <p class="">Total Amount</p>
-                                <p class="ms-auto"><span class="fas fa-dollar-sign"></span>@total</p>
+                                <p class="ms-auto"><span class="fas fa-dollar-sign"></span>@due</p>
                             </div>
                             
                     </div>

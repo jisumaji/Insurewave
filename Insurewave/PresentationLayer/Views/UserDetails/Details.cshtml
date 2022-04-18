@@ -13,83 +13,10 @@
     .ass:hover
     {
         border-radius:20px;
-
-        @*transition:all ease-in-out 0.3s;
-            *@
     }
 </style>
-@*
-<head>
-    <title>Document</title>
-    <link href="~/css/userDetail.css" rel="stylesheet" />
-</head>
-
-<body>
-    <div class="frame">
-        <div class="center">
-
-            <div class="profile">
-                <div class="image">
-                    <div class="circle-1"></div>
-                    <div class="circle-2"></div>
-
-                    <img src="https://www.percona.com/blog/wp-content/uploads/2012/12/auditing-login-attempts-in-MySQL.jpg"
-                         width="70" height="70" alt="User">
-
-                </div>
-
-                <div class="name"><b> @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</b></div>
-
-
-                <div class="actions">
-                    @{
-
-                        if (Model.Role == "broker")
-                        {
-                            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Broker">Back to Page</a>
-                        }
-
-                        if (Model.Role == "insurer")
-                        {
-                            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Insurer">Back to Page</a>
-                        }
-                        if (Model.Role == "buyer")
-                        {
-                            <a class="btn btn-outline-success ass" asp-action="Index" asp-controller="Buyer">Back to Page</a>
-                        }
-                    }
-                    <a class="btn btn-outline-primary ass" asp-action="Edit" asp-route-id="@Model.UserId">Edit</a>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="box">
-                    <span class="value"><b>Gender</b></span><br />
-                    <h4>@Html.DisplayFor(model => model.Gender)</h4>
-
-                </div>
-
-                <div class="box">
-                    @if (Model.Role == "broker" || Model.Role == "insurer")
-                    {
-                        <span class="value"><b>License Id</b></span>
-                        <h4>
-                            @Html.DisplayFor(model => model.LicenseId)
-                        </h4>
-                    }
-                </div>
-                <div class="box">
-                    <span class="value"><b>Role</b></span>
-                    <h4>@Html.DisplayFor(model => model.Role)</h4>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</body>*@
 <div class="mx-auto" style="width: 430px; margin-top: 50px; padding-bottom: 50px;">
     <div class="card shadow-lg" style="border-radius:20px">
-                <div class="card text-black" style="width:430px">
 
                     <img src="https://cdn-icons-png.flaticon.com/512/306/306473.png"
                          class="card-img-top"
@@ -153,4 +80,3 @@
                     </div>
                 </div>
             </div>
-        </div>

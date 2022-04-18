@@ -18,47 +18,42 @@
             color: white;
             transition: all ease-in-out 0.2s;
         }
-
         .hover {
             box-shadow: 2px 2px 8px black;
         }
-
         .ass {
             width: 150px;
         }
-
             .ass:hover {
                 border-radius: 20px;
-
-                @*transition:all ease-in-out 0.3s;
-                *@
             }
     </style>
 </head>
 <body>
     <h1 class="text-center container" style="background-color: teal; padding: 10px; margin-top: 20px; box-shadow: 0px 15px 10px -15px #111;">Policies</h1>
+    <br />
     <div class="container">
         @foreach (var item in Model)
         {
-            <div class="card hover">
+            <div class="card hover" style="border-radius:20px;">
                 <div class="card-body">
-                    <h4 class="card-title">@Html.DisplayNameFor(model => model.AssetId): &nbsp;  @Html.DisplayFor(modelItem => item.AssetId)</h4>
+                    <h4 class="card-title">Asset Id : &nbsp;  @Html.DisplayFor(modelItem => item.AssetId)</h4>
                     <h4>Policy Details:</h4>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <p><strong>@Html.DisplayNameFor(model => model.StartDate):</strong> @Html.DisplayFor(modelItem => item.StartDate)</p>
-                            <p><strong>@Html.DisplayNameFor(model => model.Duration):</strong> @Html.DisplayFor(modelItem => item.Duration)</p>
-                            <p><strong>@Html.DisplayNameFor(model => model.MaturityAmount):</strong> @Html.DisplayFor(modelItem => item.MaturityAmount)</p>
+                            <p><strong>Start Date :</strong> @item.StartDate.ToShortDateString()</p>
+                            <p><strong>Duration (in months) :</strong> @Html.DisplayFor(modelItem => item.Duration)</p>
+                            <p><strong>Maturity amount (in USD) :</strong> @Html.DisplayFor(modelItem => item.MaturityAmount)</p>
                         </div>
                         <div>
-                            <p><strong>@Html.DisplayNameFor(model => model.LumpSum):</strong> @Html.DisplayFor(modelItem => item.LumpSum)</p>
-                            <p><strong>@Html.DisplayNameFor(model => model.Premium):</strong> @Html.DisplayFor(modelItem => item.Premium)</p>
-                            <p><strong>@Html.DisplayNameFor(model => model.PremiumInterval):</strong> @Html.DisplayFor(modelItem => item.PremiumInterval)</p>
+                            <p><strong>LumpSum (in USD) :</strong> @Html.DisplayFor(modelItem => item.LumpSum)</p>
+                            <p><strong>Premium (in USD) :</strong> @Html.DisplayFor(modelItem => item.Premium)</p>
+                            <p><strong>Premium Interval (in days) :</strong> @Html.DisplayFor(modelItem => item.PremiumInterval)</p>
                         </div>
                         <div>
-                            <p><strong>@Html.DisplayNameFor(model => model.PolicyStatus):</strong> @Html.DisplayFor(modelItem => item.PolicyStatus)</p>
-                            <p><strong>@Html.DisplayNameFor(model => model.ReviewStatus):</strong> @Html.DisplayFor(modelItem => item.ReviewStatus)</p>
-                            <p><strong>@Html.DisplayNameFor(model => model.Feedback):</strong> @Html.DisplayFor(modelItem => item.Feedback)</p>
+                            <p><strong>Policy Status :</strong> @Html.DisplayFor(modelItem => item.PolicyStatus)</p>
+                            <p><strong>Review Status :</strong> @Html.DisplayFor(modelItem => item.ReviewStatus)</p>
+                            <p><strong>Feedback :</strong> @Html.DisplayFor(modelItem => item.Feedback)</p>
                         </div>
                     </div>
                     <a class="btn btn-outline-primary card-link ass" asp-action="EditPolicy" asp-route-id="@item.PolicyId">Edit</a>

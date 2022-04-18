@@ -4,13 +4,9 @@
     ViewData["Title"] = "Broker | AddPolicy";
     Layout = "_LayoutLogReg";
 }
-
-
-<hr />
-<div class="mx-auto" style="width:500px">
+<div class="mx-auto" style="width:500px;padding-top:50px;">
     <div class="card shadow-lg" style="border-radius: 20px;">
         <img src="https://www.alert-software.com/hubfs/writing%20company%20policies.png" style="width:480px;padding-top:10px;align-self:center;border-radius:10px"/>
-        
         <hr />
         <div class="card-body">
             <h3 class="text-center">Add Policy</h3>
@@ -21,39 +17,39 @@
                     <input asp-for="AssetId" class="form-control" value="@ViewBag.AssetId" hidden>
                 </div>
                 <div class="form-group">
-                    <label asp-for="InsurerId" class="control-label"></label>
+                    <label asp-for="InsurerId" class="control-label">Insurer email</label>
                     <select asp-for="InsurerId" class="form-control" asp-items="ViewBag.InsurerId"></select>
                 </div>
                 @*<div class="form-group">
             <label asp-for="BrokerId" class="control-label"></label>
             <input as*@
                 <div class="form-group">
-                    <label asp-for="Duration" class="control-label"></label>
+                    <label asp-for="Duration" class="control-label">Duration (in months)</label>
                     <input asp-for="Duration" class="form-control" />
                     <span asp-validation-for="Duration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Premium" class="control-label"></label>
+                    <label asp-for="Premium" class="control-label">Premium (in USD)</label>
                     <input asp-for="Premium" class="form-control" />
                     <span asp-validation-for="Premium" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="LumpSum" class="control-label"></label>
+                    <label asp-for="LumpSum" class="control-label">Lump sum (in USD)</label>
                     <input asp-for="LumpSum" class="form-control" />
                     <span asp-validation-for="LumpSum" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="StartDate" class="control-label"></label>
-                    <input asp-for="StartDate" class="form-control" />
+                    <label asp-for="StartDate" class="control-label">Start Date</label>
+                    <input type="date" asp-for="StartDate" class="form-control" />
                     <span asp-validation-for="StartDate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="PremiumInterval" class="control-label"></label>
+                    <label asp-for="PremiumInterval" class="control-label">Premium Interval (in days)</label>
                     <input asp-for="PremiumInterval" class="form-control" />
                     <span asp-validation-for="PremiumInterval" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="MaturityAmount" class="control-label"></label>
+                    <label asp-for="MaturityAmount" class="control-label">Maturity amount (in USD)</label>
                     <input asp-for="MaturityAmount" class="form-control" />
                     <span asp-validation-for="MaturityAmount" class="text-danger"></span>
                 </div>
@@ -74,7 +70,7 @@
         </div>-->
                 <div class="d-flex">
                     <div>
-                        <a class="btn btn-dark" asp-action="Index">Back</a>
+                        <a class="btn btn-dark" asp-action="CurrentRequests">Back</a>
                     </div>
                     <div class="form-group ml-auto">
                         <input type="submit" value="Add" class="btn btn-success" />

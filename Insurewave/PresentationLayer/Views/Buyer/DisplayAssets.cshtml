@@ -4,67 +4,6 @@
     ViewData["Title"] = "Buyer | Display Assets";
     Layout = "_LayoutBuyer";
 }
-@*
-    <h1>Display All Assets</h1>
-
-        <table class="table text-white">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AssetName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Type)
-                    </th>
-                    <th>
-                        Country ID
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PriceUsd)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Request)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AssetName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CountryId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PriceUsd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Request)
-                        </td>
-                        <td>
-                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-AssetId="@item.AssetId">Edit</a>
-                            <a class="btn btn-success btn-sm" asp-controller="Buyer" asp-action="RequestToBroker" asp-route-AssetId="@item.AssetId">Request Broker</a>
-                            @if (item.Request == "yes")
-                            {
-                            <a class="btn btn-secondary btn-sm" asp-action="ViewPolicyForOneAsset" asp-route-AssetId="@item.AssetId">Policy</a>
-                            }
-                            else
-                            {
-                            <a class="btn btn-danger btn-sm" asp-action="DeleteOneAsset" asp-route-AssetId="@item.AssetId">Delete</a>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-    *@
         <html>
 
         <head>
@@ -84,21 +23,21 @@
                             <thead class="bg-light">
                                 <tr style="text-align:center; background-color: rgb(101, 167, 202);">
                                     <th>
-                                        @Html.DisplayNameFor(model => model.AssetName)
+                                        Asset Name
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Type)
+                                        Asset Type
                                     </th>
                                     <th>
                                         Country ID
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.PriceUsd)
+                                        Price (in USD)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.Request)
                                     </th>
-                                    <th></th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
