@@ -10,7 +10,7 @@
         <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
                 <img src="https://images.unsplash.com/photo-1625806786037-2af608423424?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;width:520px;height:620px" />
+                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;width:520px;height:700px" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
@@ -62,3 +62,6 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
