@@ -26,8 +26,8 @@
                         </div>
                    -->
                 <div class="form-group">
-                    <label asp-for="CountryId" class="control-label" style="font-size:larger">Country Id</label>
-                    <input asp-for="CountryId" class="form-control" />
+                    <label asp-for="CountryId" class="control-label" style="font-size:larger">Country</label>
+                    <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId"></select>
                     <span asp-validation-for="CountryId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Type" class="control-label" style="font-size:larger">Asset type</label>
-                    <input asp-for="Type" class="form-control" />
+                    <select asp-for="Type" class="form-control" asp-items="ViewBag.Types"></select>
                     <span asp-validation-for="Type" class="text-danger"></span>
                 </div>
                 <!--

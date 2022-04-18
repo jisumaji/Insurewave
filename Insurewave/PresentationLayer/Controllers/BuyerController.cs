@@ -42,6 +42,14 @@ namespace PresentationLayer.Controllers
         public IActionResult AddAssets()
         {
             ViewData["CountryId"] = new SelectList(db.CurrencyConversions, "CountryId", "CountryName");
+            ViewData["Types"] = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Engine", Text = "Engine" },
+                new SelectListItem { Value = "Container", Text = "Container" },
+                new SelectListItem { Value = "Ship", Text = "Ship" },
+                new SelectListItem { Value = "Anchor", Text = "Anchor" },
+                new SelectListItem { Value = "Crane", Text = "Crane" }
+            };
             return View();
         }
         [HttpPost]
@@ -77,6 +85,15 @@ namespace PresentationLayer.Controllers
         {
             BuyerAsset p = obj.GetAssetById(assetid);
             HttpContext.Session.SetString("Request", p.Request);
+            ViewData["CountryId"] = new SelectList(db.CurrencyConversions, "CountryId", "CountryName");
+            ViewData["Types"] = new List<SelectListItem> 
+            { 
+                new SelectListItem { Value = "Engine", Text = "Engine" },
+                new SelectListItem { Value = "Container", Text = "Container" },
+                new SelectListItem { Value = "Ship", Text = "Ship" },
+                new SelectListItem { Value = "Anchor", Text = "Anchor" },
+                new SelectListItem { Value = "Crane", Text = "Crane" }
+            };
             return View(p);
         }
         [HttpPost]
