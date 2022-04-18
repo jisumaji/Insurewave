@@ -76,7 +76,7 @@ namespace PresentationLayer.Controllers
                         throw;
                     }
                 }
-                //return RedirectToAction(nameof(Index));
+                HttpContext.Session.SetString("FirstName",userDetail.FirstName);
                 return RedirectToAction(nameof(Details));
             }
             return View(userDetail);
