@@ -114,102 +114,105 @@
         <div class="card card-registration my-4" style="border-radius: 1rem; background-color: white; ">
             <div class="row g-0">
                 <div class="col-xl-6 d-none d-xl-block">
-                      <img src="  https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                      alt="Sample photo"
-                      class="img-fluid"
-                      style="border-radius: 1rem 0 0 1rem; height: 100%; width: 550px" />
+                    <img src="  https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                         alt="Sample photo"
+                         class="img-fluid"
+                         style="border-radius: 1rem 0 0 1rem; height: 100%; width: 550px" />
                 </div>
                 <div class="col-xl-6">
-                      <div class="card-body p-md-5 text-black">
-                           <h3 class="mb-5 text-uppercase">Register</h3>
-                           <form asp-action="Register" id="form" onsubmit="addToModel()">
-                               <div class="form-outline">
-                                   <label asp-for="UserId" class="form-label">User Id</label>
-                                   <div class="input-group mb-3">
-                                       <div class="input-group-prepend">
-                                           <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                       </div>
-                                       <input id="userId" asp-for="UserId" type="email" class="form-control form-control-lg" required />
-                                   </div>
-                                   <em style="margin-top: 7px;" id="UserIdValid"></em>
-                                   <span asp-validation-for="UserId" class="text-danger"></span>
-                               </div>
-                                <div class="form-outline">
-                                    <label asp-for="Password" class="form-label">Password</label>
-                                    <div class="input-group">
-                                        <input asp-for="Password" id="Password" placeholder="Enter a password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
-                                        <div class="input-group-append">
-                                            <div class="input-group-text"><i class="fa fa-eye" id="eye"></i></div>
-                                        </div>
-                                        <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="card-body p-md-5 text-black">
+                        <h3 class="mb-5 text-uppercase">Register</h3>
+                        <form asp-action="Register" id="form" onsubmit="addToModel()">
+                            <div class="form-outline">
+                                <label asp-for="UserId" class="form-label">User Id</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input id="userId" asp-for="UserId" type="email" class="form-control form-control-lg" required />
+                                </div>
+                                <em style="margin-top: 7px;" id="UserIdValid"></em>
+                                <span asp-validation-for="UserId" class="text-danger"></span>
+                            </div>
+                            <div class="form-outline">
+                                <label asp-for="Password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input asp-for="Password" id="Password" placeholder="Enter a password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-lg" required />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"><i class="fa fa-eye" id="eye"></i></div>
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-outline">
+                                <label class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control form-control-lg" id="ConfirmPassword" placeholder="Confirm Password" name="confpassword" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"><i class="fa fa-eye" id="eye1"></i></div>
                                     </div>
                                 </div>
-                                <div class="form-outline">
-                                    <label class="form-label">Confirm Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control form-control-lg" id="ConfirmPassword" placeholder="Confirm Password" name="confpassword" required>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text"><i class="fa fa-eye" id="eye1"></i></div>
-                                        </div>
+                                <em style="margin-top: 7px;" id="CheckPasswordMatch"></em>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <label asp-for="FirstName" class="form-label"></label>
+                                        <input asp-for="FirstName" class="form-control form-control-lg" required />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
                                     </div>
-                                    <em style="margin-top: 7px;" id="CheckPasswordMatch"></em>
                                 </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <label asp-for="FirstName" class="form-label"></label>
-                                                    <input asp-for="FirstName" class="form-control form-control-lg" required />
-                                                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <label asp-for="LastName" class="form-label"></label>
-                                                    <input asp-for="LastName" class="form-control form-control-lg" required />
-                                                    <span asp-validation-for="LastName" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group mb-4">
-                                            <label asp-for="Gender" class="form-label"></label>
-                                            <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
-                                                <option value="" selected hidden disabled> Select Gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                                <option value="others">Others</option>
-                                            </select>
-                                            <span asp-validation-for="Gender" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group text-black">
-                                            <label asp-for="Role" class="form-label">Select Role</label>
-                                            <select name="Role" id="role" class="form-control form-control-lg" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
-                                                <option value="" selected hidden disabled> Select Role</option>
-                                                <option value="buyer">Buyer</option>
-                                                <option value="broker">Broker</option>
-                                                <option value="insurer">Insurer</option>
-                                            </select>
-                                            <span asp-validation-for="Role" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group text-black" id="hiddenDiv">
-                                            <label asp-for="LicenseId" class="form-label">Enter License Id</label>
-                                            <input asp-for="LicenseId" class="form-control form-control-lg" type="number" />
-                                            <span asp-validation-for="LicenseId" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="d-flex justify-content-end pt-3">
-                                                <input id="butt" type="submit" value="Register" class="btn btn-success btn-lg btn-block" />
-                                            </div>
-                                            <br />
-                                            <div>
-                                                <a class="btn btn-dark" asp-controller="Home" asp-action="Index">Back</a>
-                                            </div>
-                                        </div>
-                            </form>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <label asp-for="LastName" class="form-label"></label>
+                                        <input asp-for="LastName" class="form-control form-control-lg" required />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Gender" class="form-label"></label>
+                                <select name="Gender" class="form-control form-control-lg" asp for="Gender" asp-items="@ViewBag.gender" required>
+                                    <option value="" selected hidden disabled> Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="others">Others</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                            <div class="form-group text-black">
+                                <label asp-for="Role" class="form-label">Select Role</label>
+                                <select name="Role" id="role" class="form-control form-control-lg" on="load()" onclick="click()" asp for="Role" asp-items="@ViewBag.roles" required>
+                                    <option value="" selected hidden disabled> Select Role</option>
+                                    <option value="buyer">Buyer</option>
+                                    <option value="broker">Broker</option>
+                                    <option value="insurer">Insurer</option>
+                                </select>
+                                <span asp-validation-for="Role" class="text-danger"></span>
+                            </div>
+                            <div class="form-group text-black" id="hiddenDiv">
+                                <label asp-for="LicenseId" class="form-label">Enter License Id</label>
+                                <input asp-for="LicenseId" class="form-control form-control-lg" type="number" />
+                                <span asp-validation-for="LicenseId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex justify-content-end pt-3">
+                                    <input id="butt" type="submit" value="Register" class="btn btn-success btn-lg btn-block" />
+                                </div>
+                                <br />
+                                <div>
+                                    <a class="btn btn-dark" asp-controller="Home" asp-action="Index">Back</a>
+                                </div>
+                            </div>
+                        </form>
 
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
